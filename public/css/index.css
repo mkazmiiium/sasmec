@@ -1,0 +1,58 @@
+ 
+body{
+    height: 100%;
+ width: 100%;
+ z-index: -1;
+ position: absolute;
+ opacity: 1; 
+ background-size: cover; 
+ background-position: center top; 
+}
+
+.box {
+ background-color: transparent;
+ font-family: sans-serif;
+
+ padding: 10px 20px;
+}	
+label.error{
+ color: #FA3C3C;
+ font-weight: normal;
+     font-size: 12px;
+}
+input.error{
+ border: 1px solid #FA3C3C;
+}
+
+span{
+ font-weight: normal;
+}
+
+/************ Buttons ****************/
+
+body{
+font-family: sans-serif;
+}
+
+.btn{
+ margin: 4px;
+ box-shadow: 1px 1px 5px #888888;
+ font-weight: bold;
+}
+
+.btn-xs{
+ font-weight: 300;
+}
+ 
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus {
+ outline: none;
+ outline-offset: 0px;
+}
+
+.lbl
+{
+ text-align:left !important;
+}

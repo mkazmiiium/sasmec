@@ -1,0 +1,46 @@
+body{
+    background-image: url('images/sasmec-iium.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container{
+    display: relative;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: rgb(229 231 235);
+    opacity: 0.95;
+    padding: 30px;
+}
+
+.form-logo{
+    display: flex;
+    justify-content: center;
+}
+
+form{
+    display: block;
+    margin-top: 1;
+    width: 100%;
+    font-size: 30px
+}
+
+form input{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 2px 4px 2px 4px;
+    border-radius: 50px;
+    font-size: 30px;
+}
+
+.form-footer{
+    padding-top: 50px;
+    padding-bottom: 3px;
+}
+
