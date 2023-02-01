@@ -29,7 +29,7 @@ class TermsController extends Controller
      */
     public function create()
     {
-        return view('terms.create_report');
+        return view('Terms.create_report');
     }
 
     /**

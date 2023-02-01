@@ -31,7 +31,7 @@ class ClinicController extends Controller
      */
     public function create()
     {
-        return view('clinic.create_report');
+        return view('Clinic.create_report');
     }
 
     public function viewAll(){      
@@ -44,7 +44,7 @@ class ClinicController extends Controller
         //$clinics = DB::select('select * from clinics')->latest()->paginate(4);
         $clinics = DB::table('clinics')->latest()->paginate(4);
 
-        return view('managereports.all-clinic', ['clinics'=>$clinics]);
+        return view('ManageReports.all-clinic', ['clinics'=>$clinics]);
     }
 
     /**

@@ -21,11 +21,11 @@ class ComplaintFormController extends Controller
                         ->select('users.name')
                         ->get();
 
-        return view('managereports.all-complaint', compact('complaints', 'received_by'));
+        return view('ManageReports.all-complaint', compact('complaints', 'received_by'));
     }
 
     public function create(){
-        return view('forms.complaint.create');
+        return view('Forms.Complaint.create');
     }
 
     public function storeReport(Request $request){
@@ -60,7 +60,7 @@ class ComplaintFormController extends Controller
                         ->select('users.name')
                         ->get();
 
-        return view('managereports.view-complaint-details', compact('complaint', 'received_by'));
+        return view('ManageReports.view-complaint-details', compact('complaint', 'received_by'));
     }
 
     public function assignStaff($id){

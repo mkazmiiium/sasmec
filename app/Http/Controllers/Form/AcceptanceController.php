@@ -20,7 +20,7 @@ class AcceptanceController extends Controller
     }
 
     public function create(){
-        return view('forms.acceptance.create');
+        return view('Forms.Acceptance.create');
     }
 
     public function store(Request $request){
@@ -52,7 +52,7 @@ class AcceptanceController extends Controller
                         ->select('users.name')
                         ->get();
 
-        return view('managereports.view-complaint-details', compact('complaint', 'received_by'));
+        return view('ManageReports.view-complaint-details', compact('complaint', 'received_by'));
     }
 
     public function assignStaff($id){

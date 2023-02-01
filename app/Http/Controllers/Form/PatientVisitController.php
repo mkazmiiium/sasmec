@@ -21,7 +21,7 @@ class PatientVisitController extends Controller
     //                     ->select('users.name')
     //                     ->get();
 
-    //     return view('managereports.all-patient-visit', compact('complaints', 'received_by'));
+    //     return view('ManageReports.all-patient-visit', compact('complaints', 'received_by'));
     // }
 
     public function viewAll(){      
@@ -32,7 +32,7 @@ class PatientVisitController extends Controller
     }
 
     public function create(){
-        return view('forms.PatientVisit.create');
+        return view('Forms.PatientVisit.create');
     }
 
     public function storeReport(Request $request){
@@ -70,7 +70,7 @@ class PatientVisitController extends Controller
                         ->select('users.name')
                         ->get();
 
-        return view('managereports.view-complaint-details', compact('complaint', 'received_by'));
+        return view('ManageReports.view-complaint-details', compact('complaint', 'received_by'));
     }
 
     public function assignStaff($id){
@@ -128,7 +128,7 @@ class PatientVisitController extends Controller
 
         $patientvisit = PatientVisit::findOrFail($id);
 
-        return view('managereports.view-patientvisit-details', compact('patientvisit'));
+        return view('ManageReports.view-patientvisit-details', compact('patientvisit'));
     }
 
     public function pdf($id) {

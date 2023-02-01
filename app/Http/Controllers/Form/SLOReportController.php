@@ -16,11 +16,11 @@ class SLOReportController extends Controller
 
         $sloreports = DB::table('slo_reports')->latest()->paginate(8);
 
-        return view('managereports.all-slo-report', compact('sloreports'));
+        return view('ManageReports.all-slo-report', compact('sloreports'));
     }
 
     public function create(){
-        return view('forms.sloreport.create');
+        return view('Forms.SLOReport.create');
     }
 
     public function storeReport(Request $request){

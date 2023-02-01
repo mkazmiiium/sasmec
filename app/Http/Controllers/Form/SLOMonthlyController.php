@@ -16,11 +16,11 @@ class SLOMonthlyController extends Controller
 
         $slomonthly = DB::table('s_l_o_monthlies')->latest()->paginate(8);
 
-        return view('managereports.all-slo-monthly', compact('slomonthly'));
+        return view('ManageReports.all-slo-monthly', compact('slomonthly'));
     }
 
     public function create(){
-        return view('forms.slomonthly.create');
+        return view('Forms.SloMonthly.create');
     }
 
     public function storeReport(Request $request){
@@ -44,7 +44,7 @@ class SLOMonthlyController extends Controller
 
         $slomonthly = SloMonthly::findOrFail($id);
 
-        return view('managereports.view-slomonthly-details', compact('slomonthly'));
+        return view('ManageReports.view-slomonthly-details', compact('slomonthly'));
     }
 
     public function pdf($id) {

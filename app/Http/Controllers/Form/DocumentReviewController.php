@@ -16,11 +16,11 @@ class DocumentReviewController extends Controller
 
         $documents = DB::table('document_reviews')->latest()->paginate(10);
 
-        return view('managereports.all-document-review', compact('documents'));
+        return view('ManageReports.all-document-review', compact('documents'));
     }
 
     public function create(){
-        return view('forms.documentreview.create');
+        return view('Forms.DocumentReview.create');
     }
 
     public function store(Request $request){
@@ -57,7 +57,7 @@ class DocumentReviewController extends Controller
 
         $document = DocumentReview::findOrFail($id);
 
-        return view('managereports.view-document-details', compact('document'));
+        return view('ManageReports.view-document-details', compact('document'));
     }
 
     public function pdf($id) {

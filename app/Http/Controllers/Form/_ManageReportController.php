@@ -36,7 +36,7 @@ class ManageReportController extends Controller
                                                 ->orderBy('status', 'DESC')
                                                 ->get();
 
-        return view('user.report_history', compact('complaints'),['programs'=>$programs,'terms'=>$terms,
+        return view('User.report_history', compact('complaints'),['programs'=>$programs,'terms'=>$terms,
         'speakers'=>$speaker,'clinics'=>$clinics]);
 
         

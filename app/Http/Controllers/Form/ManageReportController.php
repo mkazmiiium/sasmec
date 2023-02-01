@@ -31,7 +31,7 @@ class ManageReportController extends Controller
         //                                         ->orderBy('status', 'DESC')
         //                                         ->get();
 
-        // return view('user.report_history', compact('complaints', 'referrals', 'slo'),['programs'=>$programs]);
+        // return view('User.report_history', compact('complaints', 'referrals', 'slo'),['programs'=>$programs]);
 
         // $complaints = DB::table('complaint_forms')->where('scu_id', '=', Auth::user()->id)
         //                                         ->orderBy('status', 'DESC')
@@ -63,7 +63,7 @@ class ManageReportController extends Controller
 
         $patientvisit = DB::select('select * from patient_visits');
 
-        return view('user.report_history', compact('complaints','terms','speakers','programs','documents'
+        return view('User.report_history', compact('complaints','terms','speakers','programs','documents'
         ,'referrals','sloreports','clinics','acceptances','slomonthly','patientvisit'));
     }
 

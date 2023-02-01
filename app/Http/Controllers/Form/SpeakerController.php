@@ -29,7 +29,7 @@ class SpeakerController extends Controller
      */
     public function create()
     {
-        return view('speaker.create_report');
+        return view('Speaker.create_report');
     }
 
     /**

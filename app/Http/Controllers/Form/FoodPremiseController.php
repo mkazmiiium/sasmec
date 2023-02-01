@@ -18,7 +18,7 @@ class FoodPremiseController extends Controller
      */
     public function index()
     {
-        return view('food.create_report');
+        return view('Food.create_report');
     }
 
     /**
@@ -28,7 +28,7 @@ class FoodPremiseController extends Controller
      */
     public function create()
     {
-        return view('food.create_report');
+        return view('Food.create_report');
     }
 
     /**
@@ -161,7 +161,7 @@ class FoodPremiseController extends Controller
     public function show(food $food)
     {
         $food = DB::select('select * from food_premises');
-        return view('food.show_report',['food_premises'=>$food]);
+        return view('Food.show_report',['food_premises'=>$food]);
     }
 
     /**

@@ -33,7 +33,7 @@ class ProgramController extends Controller
         //                 ->get();
         $programs = DB::table('programs')->latest()->paginate(4);
 
-        return view('managereports.all-program', compact('programs'));
+        return view('ManageReports.all-program', compact('programs'));
     }
 
     /**
@@ -43,7 +43,7 @@ class ProgramController extends Controller
      */
     public function create()
     {
-        return view('program.create_report');
+        return view('Program.create_report');
     }
 
     /**

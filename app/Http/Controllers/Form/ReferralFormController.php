@@ -17,11 +17,11 @@ class ReferralFormController extends Controller
 
         $referrals = DB::table('referral_forms')->latest()->paginate(8);
 
-        return view('managereports.all-referral', compact('referrals'));
+        return view('ManageReports.all-referral', compact('referrals'));
     }
 
     public function create(){
-        return view('forms.referral.create');
+        return view('Forms.Referral.create');
     }
 
     public function store(Request $request){
@@ -62,7 +62,7 @@ class ReferralFormController extends Controller
         //                     ->where('users.id', 'referral_forms.doc_id')
         //                     ->get(['users.name', 'users.position', 'users.dept']); JOIN TABLE
 
-        return view('managereports.view-referral-details', compact('referral'));
+        return view('ManageReports.view-referral-details', compact('referral'));
     }
 
     public function pdf($id) {
