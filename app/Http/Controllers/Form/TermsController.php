@@ -41,17 +41,19 @@ class TermsController extends Controller
     public function store(Request $request)
     {
         $terms = new Terms;
-        
+
         $terms->name = request('name');
         $terms->address = request('address');
         $terms->contactnumber = request('contactnumber');
         $terms->gender = request('gender');
         $terms->nric = request('nric');
-        $terms->additionalrequirements = request('additionalrequirements');
+        // since additional document arent required we check here, {best way of doing this is in the db file}
+
+        request('additionalrequirements') == null ? $terms->additionalrequirements = "null" : $terms->additionalrequirements = request('additionalrequirements');
         $terms->declaration = request('declaration');
         $terms->save();
 
-        return redirect('/dashboard')->with('message','Data is added successfully!');
+        return redirect('/dashboard')->with('message', 'Data is added successfully!');
     }
 
     /**
@@ -63,15 +65,16 @@ class TermsController extends Controller
     // public function show(Terms $terms)
     // {
     //     $terms = DB::select('select * from terms');
-        
+
     //     return view('terms.show_report',['terms'=>$terms]);
     // }
 
-    public function viewAll(){      
+    public function viewAll()
+    {
 
         $terms = DB::select('select * from terms');
 
-        return view('ManageReports.all-terms',['terms'=>$terms]);
+        return view('ManageReports.all-terms', ['terms' => $terms]);
     }
 
     /**
@@ -82,9 +85,10 @@ class TermsController extends Controller
      */
     public function edit(Terms $terms)
     {
-        $terms = Terms::find($id);
+        // sus
+        $terms = Terms::find($terms->id);
 
-        return view('terms.edit')->with('terms',$terms);
+        return view('Terms.edit')->with('terms', $terms);
     }
 
     /**
@@ -110,16 +114,18 @@ class TermsController extends Controller
         //
     }
 
-    public function view($id) {
+    public function view($id)
+    {
         $terms = terms::find($id);
-        
-        return view('terms.view',compact('terms'));
+
+        return view('Terms.view', compact('terms'));
     }
 
-    public function pdf($id) {
+    public function pdf($id)
+    {
         $terms = terms::find($id);
-        $pdf = PDF::loadView('terms/pdf', compact('terms'));
-        
-        return $pdf->download('terms.pdf');
+        $pdf = PDF::loadView('Terms/pdf', compact('terms'));
+
+        return $pdf->download('Terms.pdf');
     }
 }

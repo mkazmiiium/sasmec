@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Form;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\SloReport;
+use App\Models\SLOReport;
 use Illuminate\Support\Carbon;
 use Auth;
 use DB;
@@ -25,7 +25,7 @@ class SLOReportController extends Controller
 
     public function storeReport(Request $request){
 
-        SloReport::insert([
+        SLOReport::insert([
             'slo_id' => Auth::user()->id,
             'slo_name' => Auth::user()->name,
             'dept' => Auth::user()->dept,
@@ -43,12 +43,12 @@ class SLOReportController extends Controller
 
         $sloreports = SloReport::findOrFail($id);
 
-        return view('managereports.view-sloreport-details', compact('sloreports'));
+        return view('ManageReports.view-sloreport-details', compact('sloreports'));
     }
 
     public function pdf($id) {
         $slo = SloReport::find($id);
-        $pdf = PDF::loadView('forms/sloreport/pdf', compact('slo'));
+        $pdf = PDF::loadView('Forms/SLOReport/pdf', compact('slo'));
         
         return $pdf->download('slo_report.pdf');
     }
