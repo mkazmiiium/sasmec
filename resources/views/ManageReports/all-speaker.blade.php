@@ -4,7 +4,7 @@
 
 <div class="sl-mainpanel">
   <nav class="breadcrumb sl-breadcrumb">
-    <a class="breadcrumb-item" href="index.html">Dashboard</a>
+    <a class="breadcrumb-item" href="/dashboard">Dashboard</a>
     <a class="breadcrumb-item" href="#">Manage Report</a>
     <span class="breadcrumb-item active">Speaker Consent Form</span>
   </nav>

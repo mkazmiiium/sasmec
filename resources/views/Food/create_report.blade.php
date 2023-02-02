@@ -4,7 +4,7 @@
 
 <div class="sl-mainpanel">
   <nav class="breadcrumb sl-breadcrumb">
-    <a class="breadcrumb-item" href="index.html">Dashboard</a>
+    <a class="breadcrumb-item" href="/dashboard">Dashboard</a>
     <a class="breadcrumb-item" href="#">View Report</a>
     <span class="breadcrumb-item active">Food Premise Inspection Form</span>
   </nav>
@@ -42,7 +42,7 @@
                                 <input type="text" id="programname" name="programname" placeholder="Name of Program" class="form-control" autofocus>
                                  
                                 <div class="mg-t-25">
-                                  <label for="PremiseName" class="form-label">Premise Name *</label>
+                                  <label for="PremiseName" class="form-label">Premise Name </label>
                                 </div>
                                 <input type="text" id="PremiseName" name="PremiseName" placeholder="Premise Name" class="form-control" autofocus>
                                 
