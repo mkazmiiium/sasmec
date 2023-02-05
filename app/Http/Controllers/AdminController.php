@@ -16,7 +16,7 @@ class AdminController extends Controller
             ->join('role_user', 'role_user.user_id', 'users.id')
             ->join('roles', 'role_user.role_id', 'roles.id')
             ->select('users.*', 'roles.display_name')
-            ->latest()->paginate(10);
+            ->latest()->latest()->get();
 
 
         return view('Admin.ManageStaff.view', compact('users'));

@@ -62,7 +62,7 @@ class AcceptanceController extends Controller
                          ->where('reviewreport', '=', 1)
                          ->get();
 
-        return view('forms.complaint.assignstaff', compact('complaint', 'staffs'));
+        return view('Forms.Complaint.assignstaff', compact('complaint', 'staffs'));
     }
 
     public function storeAssignStaff(Request $request, $id){
@@ -89,7 +89,7 @@ class AcceptanceController extends Controller
 
         $complaint = ComplaintForm::findOrFail($id);
 
-        return view('forms.complaint.investigate', compact('complaint'));
+        return view('Forms.Complaint.investigate', compact('complaint'));
     }
 
     public function storeInvestigation(Request $request, $id){
@@ -109,12 +109,12 @@ class AcceptanceController extends Controller
     public function view($id) {
         $acceptance = Acceptance::find($id);
         
-        return view('forms.acceptance.view',compact('acceptance'));
+        return view('Forms.Acceptance.view',compact('acceptance'));
     }
 
     public function pdf($id) {
         $acceptance = Acceptance::find($id);
-        $pdf = PDF::loadView('forms/acceptance/pdf', compact('acceptance'));
+        $pdf = PDF::loadView('Forms/Acceptance/pdf', compact('acceptance'));
         
         return $pdf->download('acceptance.pdf');
     }

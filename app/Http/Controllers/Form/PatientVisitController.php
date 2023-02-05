@@ -14,7 +14,7 @@ class PatientVisitController extends Controller
 {
     // public function viewAll(){      
 
-    //     $complaints = DB::table('complaint_forms')->latest()->paginate(4);
+    //     $complaints = DB::table('complaint_forms')->latest()->latest()->get();
 
     //     $received_by = DB::table('users')
     //                     ->join('complaint_forms', 'users.id', '=', 'complaint_forms.scu_id')

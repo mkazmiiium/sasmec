@@ -14,7 +14,7 @@ class ComplaintFormController extends Controller
 {
     public function viewAll(){      
 
-        $complaints = DB::table('complaint_forms')->latest()->paginate(20);
+        $complaints = DB::table('complaint_forms')->latest()->latest()->get();
 
         $received_by = DB::table('users')
                         ->join('complaint_forms', 'users.id', '=', 'complaint_forms.scu_id')
@@ -70,7 +70,7 @@ class ComplaintFormController extends Controller
                          ->where('reviewreport', '=', 1)
                          ->get();
 
-        return view('forms.complaint.assignstaff', compact('complaint', 'staffs'));
+        return view('Forms.Complaint.assignstaff', compact('complaint', 'staffs'));
     }
 
     public function storeAssignStaff(Request $request, $id){
@@ -98,7 +98,7 @@ class ComplaintFormController extends Controller
 
         $complaint = ComplaintForm::findOrFail($id);
 
-        return view('forms.complaint.investigate', compact('complaint'));
+        return view('Forms.Complaint.investigate', compact('complaint'));
     }
 
     public function storeInvestigation(Request $request, $id){
@@ -117,7 +117,7 @@ class ComplaintFormController extends Controller
 
     public function pdf($id) {
         $complaint = ComplaintForm::find($id);
-        $pdf = PDF::loadView('forms/complaint/pdf', compact('complaint'));
+        $pdf = PDF::loadView('Forms/Complaint/pdf', compact('complaint'));
         
         return $pdf->download('complaint.pdf');
     }

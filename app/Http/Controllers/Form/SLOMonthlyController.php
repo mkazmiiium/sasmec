@@ -14,7 +14,7 @@ class SLOMonthlyController extends Controller
 {
     public function viewAll(){      
 
-        $slomonthly = DB::table('s_l_o_monthlies')->latest()->paginate(8);
+        $slomonthly = DB::table('s_l_o_monthlies')->latest()->latest()->get();
 
         return view('ManageReports.all-slo-monthly', compact('slomonthly'));
     }

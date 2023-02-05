@@ -14,7 +14,7 @@ class DocumentReviewController extends Controller
 {
     public function viewAll(){      
 
-        $documents = DB::table('document_reviews')->latest()->paginate(10);
+        $documents = DB::table('document_reviews')->latest()->get();
 
         return view('ManageReports.all-document-review', compact('documents'));
     }

@@ -14,7 +14,7 @@ class SLOReportController extends Controller
 {
     public function viewAll(){      
 
-        $sloreports = DB::table('slo_reports')->latest()->paginate(8);
+        $sloreports = DB::table('slo_reports')->latest()->latest()->get();
 
         return view('ManageReports.all-slo-report', compact('sloreports'));
     }

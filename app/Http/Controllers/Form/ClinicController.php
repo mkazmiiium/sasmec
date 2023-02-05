@@ -36,13 +36,13 @@ class ClinicController extends Controller
 
     public function viewAll(){      
 
-        // $clinic = DB::table('clinics')->latest()->paginate(4);
+        // $clinic = DB::table('clinics')->latest()->latest()->get();
         // $staffData= DB::table('users')
         //                 ->where('reviewreport', '=', 1)
         //                 ->get();
 
-        //$clinics = DB::select('select * from clinics')->latest()->paginate(4);
-        $clinics = DB::table('clinics')->latest()->paginate(4);
+        //$clinics = DB::select('select * from clinics')->latest()->latest()->get();
+        $clinics = DB::table('clinics')->latest()->latest()->get();
 
         return view('ManageReports.all-clinic', ['clinics'=>$clinics]);
     }

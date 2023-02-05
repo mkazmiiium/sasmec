@@ -15,7 +15,7 @@ class ReferralFormController extends Controller
 {      
     public function viewAll(){      
 
-        $referrals = DB::table('referral_forms')->latest()->paginate(8);
+        $referrals = DB::table('referral_forms')->latest()->latest()->get();
 
         return view('ManageReports.all-referral', compact('referrals'));
     }

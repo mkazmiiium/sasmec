@@ -114,8 +114,8 @@ class SpeakerController extends Controller
 
     public function pdf($id) {
         $speaker = speaker::find($id);
-        $pdf = PDF::loadView('speaker/pdf', compact('speaker'));
+        $pdf = PDF::loadView('Speaker/pdf', compact('speaker'));
         
-        return $pdf->download('speaker.pdf');
+        return $pdf->download('Speaker.pdf');
     }
 }

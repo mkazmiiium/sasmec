@@ -25,13 +25,14 @@ class ProgramController extends Controller
         return view('list', compact('programs'));
     }
 
-    public function viewAll(){      
+    public function viewAll()
+    {
 
-        //$programs = DB::table('programs')->latest()->paginate(4);
+        //$programs = DB::table('programs')->latest()->latest()->get();
         // $staffData= DB::table('users')
         //                 ->where('reviewreport', '=', 1)
         //                 ->get();
-        $programs = DB::table('programs')->latest()->paginate(4);
+        $programs = DB::table('programs')->latest()->latest()->get();
 
         return view('ManageReports.all-program', compact('programs'));
     }
@@ -55,7 +56,7 @@ class ProgramController extends Controller
     public function store(Request $request)
     {
         // $program = new Program;
-        
+
         // $program->name = request('name');
         // $program->date = request('date');
         // $program->organizer = request('organizer');
@@ -94,17 +95,19 @@ class ProgramController extends Controller
         return redirect()->route('dashboard')->with($notification);
     }
 
-    public function assignStaff($id){
+    public function assignStaff($id)
+    {
 
         $program = Program::findOrFail($id);
-        $staffs= DB::table('users')
-                         ->where('reviewreport', '=', 1)
-                         ->get();
+        $staffs = DB::table('users')
+            ->where('reviewreport', '=', 1)
+            ->get();
 
-        return view('program.assignstaff', compact('program', 'staffs'));
+        return view('Program.assignstaff', compact('program', 'staffs'));
     }
 
-    public function storeAssignStaff(Request $request, $id){
+    public function storeAssignStaff(Request $request, $id)
+    {
 
         // $received_staff = DB::table('users')
         //                     ->select('name')
@@ -114,9 +117,9 @@ class ProgramController extends Controller
         Program::findOrFail($id)->update([
             'scu_id' => $request->review_staff,
             'received_by' => DB::table('users')
-                                ->select('name')
-                                ->where('id', '=', $request->review_staff)
-                                ->get(),
+                ->select('name')
+                ->where('id', '=', $request->review_staff)
+                ->get(),
             'received_date' => Carbon::now(),
             'status' => "In review",
         ]);
@@ -125,14 +128,16 @@ class ProgramController extends Controller
 
     }
 
-    public function commentProgram($id){
+    public function commentProgram($id)
+    {
 
         $program = Program::findOrFail($id);
 
         return view('program.commentProgram', compact('program'));
     }
 
-    public function storeComment(Request $request, $id){
+    public function storeComment(Request $request, $id)
+    {
 
         Program::findOrFail($id)->update([
             'briefing_date' => $request->briefing_date,
@@ -158,7 +163,7 @@ class ProgramController extends Controller
     public function show(Program $program)
     {
         $programs = DB::select('select * from programs');
-        return view('program.show_report',['programs'=>$programs]);
+        return view('Program.show_report', ['programs' => $programs]);
     }
 
     /**
@@ -171,7 +176,7 @@ class ProgramController extends Controller
     {
         $program = Program::find($id);
 
-        return view('program.edit')->with('program',$program);
+        return view('program.edit')->with('program', $program);
     }
 
     /**
@@ -197,16 +202,18 @@ class ProgramController extends Controller
         //
     }
 
-    public function view($id) {
+    public function view($id)
+    {
         $program = program::find($id);
-        
-        return view('program.view',compact('program'));
+        return view('program.view', compact('program'));
     }
 
-    public function pdf($id) {
+
+    public function pdf($id)
+    {
         $program = program::find($id);
         $pdf = PDF::loadView('/program/pdf', compact('program'));
-        
+
         return $pdf->download('program.pdf');
     }
 }
