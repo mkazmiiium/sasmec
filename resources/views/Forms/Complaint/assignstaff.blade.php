@@ -64,8 +64,8 @@
                         @if($complaint->received_by == NULL)
                         <form action="{{ url('complaint/assign-staff/store/'.$complaint->id) }}" method="POST">
                             @csrf
-                            <select class="form-control select2" data-placeholder="Assign to">
-                            <option label="Assign to"></option>
+                            <select class="form-control select2" data-placeholder="Assign to" style="height: 15%;">
+                            <option label="Assign to" ></option>
                             @foreach($staffs as $staff)
                             <option value= "{{ $staff->id }}">
                                     <span>{{ $staff->id }}</span>

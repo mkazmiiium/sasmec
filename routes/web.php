@@ -95,7 +95,7 @@ Route::group(['middleware' => ['auth', 'role:dsc']], function () {
     Route::get('/document-review/create', 'App\Http\Controllers\Form\DocumentReviewController@create')->name('document-review.create');
     Route::post('/document-review/store', 'App\Http\Controllers\Form\DocumentReviewController@store')->name('document-review.store');
     Route::get('/manage-document/view/all', 'App\Http\Controllers\Form\DocumentReviewController@viewAll')->name('document-review.view-all');
-    Route::get('/document-review/details/{id}', 'Apop\Http\Controllers\Form\DocumentReviewController@viewDocumentDetails');
+    Route::get('/document-review/details/{id}', 'App\Http\Controllers\Form\DocumentReviewController@viewDocumentDetails');
     Route::get('/document/pdf/{id}', 'App\Http\Controllers\Form\DocumentReviewController@pdf')->name('document.pdf');
 
     //Food Premise

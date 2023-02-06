@@ -116,6 +116,6 @@ class AcceptanceController extends Controller
         $acceptance = Acceptance::find($id);
         $pdf = PDF::loadView('Forms/Acceptance/pdf', compact('acceptance'));
         
-        return $pdf->download('acceptance.pdf');
+        return $pdf->stream('acceptance.pdf');
     }
 }

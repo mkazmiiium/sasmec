@@ -14,7 +14,7 @@ class SLOReportController extends Controller
 {
     public function viewAll(){      
 
-        $sloreports = DB::table('slo_reports')->latest()->latest()->get();
+        $sloreports = DB::table('slo_reports')->latest()->get();
 
         return view('ManageReports.all-slo-report', compact('sloreports'));
     }
@@ -50,6 +50,6 @@ class SLOReportController extends Controller
         $slo = SloReport::find($id);
         $pdf = PDF::loadView('Forms/SLOReport/pdf', compact('slo'));
         
-        return $pdf->download('slo_report.pdf');
+        return $pdf->stream('slo_report.pdf');
     }
 }

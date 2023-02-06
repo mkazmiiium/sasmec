@@ -42,7 +42,7 @@ class ClinicController extends Controller
         //                 ->get();
 
         //$clinics = DB::select('select * from clinics')->latest()->latest()->get();
-        $clinics = DB::table('clinics')->latest()->latest()->get();
+        $clinics = DB::table('clinics')->latest()->get();
 
         return view('ManageReports.all-clinic', ['clinics'=>$clinics]);
     }
@@ -89,7 +89,7 @@ class ClinicController extends Controller
                          ->where('reviewreport', '=', 1)
                          ->get();
 
-        return view('clinic.assignstaff', compact('clinic', 'staffs'));
+        return view('Clinic.assignstaff', compact('clinic', 'staffs'));
     }
 
     public function storeAssignStaff(Request $request, $id){
@@ -109,7 +109,7 @@ class ClinicController extends Controller
             'status' => "In review",
         ]);
 
-        return redirect()->route('clinic.view-all');
+        return redirect()->route('Clinic.view-all');
 
     }
 
@@ -154,7 +154,7 @@ class ClinicController extends Controller
     {
         $clinic = clinic::find($id);
 
-        return view('clinic.edit')->with('clinic',$clinic);
+        return view('Clinic.edit')->with('clinic',$clinic);
         
     }
 
@@ -192,14 +192,14 @@ class ClinicController extends Controller
     public function view($id) {
         $clinic = clinic::find($id);
         
-        return view('clinic.view',compact('clinic'));
+        return view('Clinic.view',compact('clinic'));
     }
 
     public function pdf($id) {
         $clinic = clinic::find($id);
-        $pdf = PDF::loadView('/clinic/pdf', compact('clinic'));
+        $pdf = PDF::loadView('Clinic/pdf', compact('clinic'));
         
-        return $pdf->download('clinic.pdf');
+        return $pdf->stream('Clinic.pdf');
     }
 
     public function manage()

@@ -61,7 +61,7 @@ class SpeakerController extends Controller
     // public function show(Speaker $speaker)
     // {
     //     $speaker = DB::select('select * from speakers');
-    //     return view('speaker.show_report',['speakers'=>$speaker]);
+    //     return view('Speaker.show_report',['speakers'=>$speaker]);
     // }
 
     public function viewAll(Speaker $speaker)
@@ -80,7 +80,7 @@ class SpeakerController extends Controller
     {
         $speaker = Speaker::find($id);
 
-        return view('speaker.edit')->with('speaker',$speaker);
+        return view('Speaker.edit')->with('speaker',$speaker);
     }
 
     /**
@@ -109,13 +109,13 @@ class SpeakerController extends Controller
     public function view($id) {
         $speaker = speaker::find($id);
         
-        return view('speaker.view',compact('speaker'));
+        return view('Speaker.view',compact('speaker'));
     }
 
     public function pdf($id) {
         $speaker = speaker::find($id);
-        $pdf = PDF::loadView('Speaker/pdf', compact('speaker'));
+        $pdf = PDF::loadview('Speaker/pdf', compact('speaker'));
         
-        return $pdf->download('Speaker.pdf');
+        return $pdf->stream('Speaker.pdf');
     }
 }

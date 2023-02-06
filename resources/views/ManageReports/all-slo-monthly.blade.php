@@ -14,59 +14,56 @@
       <h5>Slo Monthly Report</h5>
     </div><!-- sl-page-title -->
 
-      <div class="card pd-20 pd-sm-40">
-         
+    <div class="card pd-20 pd-sm-40">
 
-        <div class="table-wrapper">
-          <table id="datatable1" class="table display responsive nowrap">
-            <thead>
-              <tr>
-                <th class="wd-10p">Report ID</th>
-                <th class="wd-15p">Program</th>
-                <th class="wd-15p">Date</th>
-                <th class="wd-15p">Name</th>
-                {{-- <th class="wd-15p">Status</th>
-                <th class="wd-20p">SCU in-charge</th> --}}
-                <th class="wd-25p">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach($slomonthly as $slomonthly)
-              <tr>
-                <td>{{ $slomonthly->id }}</td>
-                <td>{{ $slomonthly->slo_name }}</td>
-                <td>{{ $slomonthly->dept }}</td>
-                <td>{{ $slomonthly->date }}</td>
-                {{-- <td>
-                  @if($complaint->received_by == NULL)
-                    No SCU assigned
-                  @else
-                    {{ $received_by }}  
-                  @endif
-                </td> --}}
-                <td>
-                  <div class="btn-group table-action" role="group">
-                    <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
-                      <i class="fa fa-eye mg-r-10"></i>
-                      <a href="#">Show</a>
-                    </button>
-                    <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
-                      <i class="fa fa-download mg-r-10"></i> 
-                      <a href="#">Download</a>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-        </div><!-- table-wrapper -->
-      </div><!-- card -->
+
+      <div class="table-wrapper">
+        <table id="datatable1" class="table display responsive nowrap">
+          <thead>
+            <tr>
+              <th class="wd-10p">Report ID</th>
+              <th class="wd-15p">Program</th>
+              <th class="wd-15p">Date</th>
+              <th class="wd-15p">Name</th>
+              {{-- <th class="wd-15p">Status</th>
+              <th class="wd-20p">SCU in-charge</th> --}}
+              <th class="wd-25p">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($slomonthly as $slomonthly)
+            <tr>
+              <td>{{ $slomonthly->id }}</td>
+              <td>{{ $slomonthly->slo_name }}</td>
+              <td>{{ $slomonthly->dept }}</td>
+              <td>{{ $slomonthly->date }}</td>
+              {{-- <td>
+                @if($complaint->received_by == NULL)
+                No SCU assigned
+                @else
+                {{ $received_by }}
+                @endif
+              </td> --}}
+              <td>
+
+                <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
+                  <i class="fa fa-eye mg-r-10"></i>
+                  <a href="{{ action('App\Http\Controllers\Form\SLOMonthlyController@pdf', $slomonthly->id) }}"
+                    target="_blank">Show</a>
+                </button>
+      </div>
+      </td>
+      </tr>
+      @endforeach
+      </tbody>
+      </table>
+    </div><!-- table-wrapper -->
+  </div><!-- card -->
 
 </div><!-- sl-mainpanel -->
 
 <script>
-  $(function(){
+  $(function () {
     'use strict';
 
     $('#datatable1').DataTable({

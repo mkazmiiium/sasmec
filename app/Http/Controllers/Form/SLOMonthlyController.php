@@ -49,8 +49,8 @@ class SLOMonthlyController extends Controller
 
     public function pdf($id) {
         $slomonthly = SloMonthly::find($id);
-        $pdf = PDF::loadView('forms/slomonthly/pdf', compact('slomonthly'));
+        $pdf = PDF::loadView('Forms/SloMonthly/pdf', compact('slomonthly'));
         
-        return $pdf->download('slo_monthly.pdf');
+        return $pdf->stream('slo_monthly.pdf');
     }
 }

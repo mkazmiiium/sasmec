@@ -123,9 +123,11 @@ class TermsController extends Controller
 
     public function pdf($id)
     {
+
+        // this the function i need to exactly edit to solve this problem
         $terms = terms::find($id);
         $pdf = PDF::loadView('Terms/pdf', compact('terms'));
 
-        return $pdf->download('Terms.pdf');
+        return $pdf->stream('Terms.pdf');
     }
 }

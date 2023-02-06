@@ -62,7 +62,7 @@ class DocumentReviewController extends Controller
 
     public function pdf($id) {
         $document = DocumentReview::find($id);
-        $pdf = PDF::loadView('forms/documentreview/pdf', compact('document'));
+        $pdf = PDF::loadView('/Forms/DocumentReview/pdf', compact('document'));
         
         return $pdf->download('document_review.pdf');
     }
