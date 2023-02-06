@@ -117,7 +117,7 @@ class ClinicController extends Controller
 
         $clinic = Clinic::findOrFail($id);
 
-        return view('clinic.comment_clinic', compact('clinic'));
+        return view('Clinic.comment_clinic', compact('clinic'));
     }
 
     public function storeComment(Request $request, $id){

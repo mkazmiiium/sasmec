@@ -133,7 +133,7 @@ class ProgramController extends Controller
 
         $program = Program::findOrFail($id);
 
-        return view('program.commentProgram', compact('program'));
+        return view('Program.commentProgram', compact('program'));
     }
 
     public function storeComment(Request $request, $id)
@@ -176,7 +176,7 @@ class ProgramController extends Controller
     {
         $program = Program::find($id);
 
-        return view('program.edit')->with('program', $program);
+        return view('Program.edit')->with('program', $program);
     }
 
     /**
@@ -205,15 +205,15 @@ class ProgramController extends Controller
     public function view($id)
     {
         $program = program::find($id);
-        return view('program.view', compact('program'));
+        return view('Program.view', compact('program'));
     }
 
 
     public function pdf($id)
     {
         $program = program::find($id);
-        $pdf = PDF::loadView('/program/pdf', compact('program'));
+        $pdf = PDF::loadView('Program/pdf', compact('program'));
 
-        return $pdf->download('program.pdf');
+        return $pdf->stream('Program.pdf');
     }
 }

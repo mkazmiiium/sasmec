@@ -15,8 +15,8 @@
       <div class="card-header p-2">
         <ul class="nav nav-pills">
           <li class="nav-item"><a class="nav-link active" href="#document_review" data-toggle="tab">Document Review</a></li>
-          {{-- <li class="nav-item"><a class="nav-link" href="#food_premise" data-toggle="tab">Food Premise Inspection</a></li> --}}
-          <li class="nav-item"><a class="nav-link" href="#referral" data-toggle="tab">Referral Form</a></li>
+          
+          <!-- <li class="nav-item"><a class="nav-link" href="#referral" data-toggle="tab">Referral Form</a></li> -->
           <li class="nav-item"><a class="nav-link" href="#program" data-toggle="tab">Program Monitoring</a></li>
           {{-- <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Activity Monitoring</a></li> --}}
           <li class="nav-item"><a class="nav-link" href="#complaint" data-toggle="tab">Complaint Form</a></li>
@@ -57,13 +57,13 @@
                         <td>{{ $document->status }}</td>
                         <td>
                           <div class="btn-group table-action" role="group">
-                            <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
+                            <!-- <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
                               <i class="fa fa-eye mg-r-10"></i>
                               <a href="{{ url('document-review/details/'.$document->id) }}">Edit</a>
-                            </button>
-                            <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
-                              <i class="fa fa-download mg-r-10"></i> 
-                              <a href="{{ action('App\Http\Controllers\Form\DocumentReviewController@pdf', $document->id) }}">Download</a>
+                            </button> -->
+                            <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
+                              <i class="fa fa-eye mg-r-10"></i>
+                              <a href="/{{ $document->document_file}}" target="_blank">Show</a>
                             </button>
                           </div>
                         </td>
@@ -115,7 +115,7 @@
                             </button>
                             <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
                               <i class="fa fa-download mg-r-10"></i> 
-                              <a href="{{ action('App\Http\Controllers\Form\ProgramController@pdf', $program->id) }}">Download</a>
+                              <a href="{{ action('App\Http\Controllers\Form\ProgramController@pdf', $program->id) }}" target="_blank">Download</a>
                             </button>
                           </div>
                         </td>
@@ -159,7 +159,7 @@
                   <div class="btn-group table-action" role="group">
                     <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
                       <i class="fa fa-eye mg-r-10"></i>
-                      <a href="{{ url('/complaint/details/'.$complaint->id) }}">Edit</a>
+                      <a href="{{ url('/complaint/details/'.$complaint->id) }}">Show</a>
                     </button>
                     <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
                       <i class="fa fa-download mg-r-10"></i> 

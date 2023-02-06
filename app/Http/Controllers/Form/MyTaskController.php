@@ -11,16 +11,19 @@ use DB;
 
 class MyTaskController extends Controller
 {
-    public function viewTask(){
+    public function viewTask()
+    {
 
-        $complaints = DB::table('complaint_forms')->where('scu_id', '=', Auth::user()->id)
-                                                ->orderBy('status', 'DESC')
-                                                ->get();
-        
+        // $complaints = DB::table('complaint_forms')->where('scu_id', '=', Auth::user()->id)
+        //                                         ->orderBy('status', 'DESC')
+        //                                         ->get();
+
         // $terms = DB::table('terms')->where('scu_id', '=', Auth::user()->id)
         // ->orderBy('status', 'DESC')
         // ->get();
         $terms = DB::select('select * from terms');
+        
+        $complaints = DB::select('select * from complaint_forms');
 
         $speakers = DB::select('select * from speakers');
 
@@ -30,6 +33,6 @@ class MyTaskController extends Controller
 
         $documents = DB::select('select * from document_reviews');
 
-        return view('MyTask.view', compact('complaints','terms','speakers','programs','clinics','documents'));
+        return view('MyTask.view', compact('complaints', 'terms', 'speakers', 'programs', 'clinics', 'documents'));
     }
 }
