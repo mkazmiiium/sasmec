@@ -133,8 +133,8 @@ class PatientVisitController extends Controller
 
     public function pdf($id) {
         $patientvisit = PatientVisit::find($id);
-        $pdf = PDF::loadView('forms/patientvisit/pdf', compact('patientvisit'));
+        $pdf = PDF::loadView('Forms/PatientVisit/pdf', compact('patientvisit'));
         
-        return $pdf->download('patientvisit.pdf');
+        return $pdf->stream('PatientVisit.pdf');
     }
 }

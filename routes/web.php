@@ -122,8 +122,8 @@ Route::group(['middleware' => ['auth', 'role:dsc']], function () {
     // Route::post('program', 'App\Http\Controllers\Form\ProgramController@store');
     // Route::post('/program/store', 'ProgramController@store');
 
-    //Activity Monitoring
-    Route::get('/activity-monitoring/create', 'App\Http\Controllers\Form\ActivityMonitoringController@create')->name('activity-monitor.create');
+    //Activity MonitoringActivityMonitoringController
+    Route::get('/activity-monitoring/create', 'App\Http\Controllers\Form\@create')->name('activity-monitor.create');
     Route::post('/activity-monitoring/store', 'App\Http\Controllers\Form\ActivityMonitoringController@store')->name('activity-monitor.store');
 
     //Referral
