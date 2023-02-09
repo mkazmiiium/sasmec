@@ -14,7 +14,7 @@ class CreatePatientVisitTable extends Migration
     public function up()
     {
         Schema::create('patient_visit', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('patientname')->nullable();
             $table->string('ward')->nullable();
             $table->date('referreddate')->nullable();

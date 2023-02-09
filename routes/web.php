@@ -102,10 +102,11 @@ Route::group(['middleware' => ['auth', 'role:dsc']], function () {
     Route::get('/food/create', 'App\Http\Controllers\Form\FoodPremiseController@create')->name('food.create');
     Route::post('/food/store', 'App\Http\Controllers\Form\FoodPremiseController@store')->name('food.store');
     Route::get('/food/show', 'App\Http\Controllers\Form\FoodPremiseController@show')->name('food.show');
-    Route::get('/food/details/{id}', 'App\Http\Controllers\Form\FoodPremiseController@viewFood');
+    // Route::get('/food/details/{id}', 'App\Http\Controllers\Form\FoodPremiseController@show')->name('food.details');
+    Route::get('/food/details/{id}', [FoodPremiseController::class, 'show']);
     Route::post('food', 'App\Http\Controllers\Form\FoodPremiseController@store')->name('food.store');
-    Route::post('food', 'App\Http\Controllers\Form\FoodPremiseController@store');
-    Route::post('/food/store', 'FoodPremiseController@store');
+    // Route::post('food', 'App\Http\Controllers\Form\FoodPremiseController@store');
+    // Route::post('/food/store', 'FoodPremiseController@store');
 
     //Program Monitoring
     Route::get('/program/create', 'App\Http\Controllers\Form\ProgramController@create')->name('program.create');

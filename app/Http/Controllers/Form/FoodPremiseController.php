@@ -158,7 +158,7 @@ class FoodPremiseController extends Controller
      * @param  \App\Models\food  $food
      * @return \Illuminate\Http\Response
      */
-    public function show(food $food)
+    public function show(Request $request)
     {
         $food = DB::select('select * from food_premises');
         return view('Food.show_report',['food_premises'=>$food]);

@@ -21,7 +21,7 @@
         <table id="datatable1" class="table display responsive nowrap">
           <thead>
             <tr>
-              <th class="wd-10p">Report ID</th>
+              <th class="wd-10p">No</th>
               <th class="wd-15p">Program</th>
               <th class="wd-15p">Date</th>
               <th class="wd-15p">Name</th>
@@ -31,9 +31,10 @@
             </tr>
           </thead>
           <tbody>
+            <span hidden> {{ $count = 1; }}</span>
             @foreach($slomonthly as $slomonthly)
             <tr>
-              <td>{{ $slomonthly->id }}</td>
+              <td>{{ $count }}</td>
               <td>{{ $slomonthly->slo_name }}</td>
               <td>{{ $slomonthly->dept }}</td>
               <td>{{ $slomonthly->date }}</td>
@@ -42,18 +43,18 @@
                 No SCU assigned
                 @else
                 {{ $received_by }}
-                @endif
+              @endif
               </td> --}}
               <td>
 
                 <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
                   <i class="fa fa-eye mg-r-10"></i>
-                  <a href="{{ action('App\Http\Controllers\Form\SLOMonthlyController@pdf', $slomonthly->id) }}"
-                    target="_blank">Show</a>
+                  <a href="{{ action('App\Http\Controllers\Form\SLOMonthlyController@pdf', $slomonthly->id) }}" target="_blank">Show</a>
                 </button>
       </div>
       </td>
       </tr>
+      <span hidden> {{ $count++; }}</span>
       @endforeach
       </tbody>
       </table>
@@ -63,7 +64,7 @@
 </div><!-- sl-mainpanel -->
 
 <script>
-  $(function () {
+  $(function() {
     'use strict';
 
     $('#datatable1').DataTable({
@@ -82,7 +83,9 @@
     });
 
     // Select2
-    $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+    $('.dataTables_length select').select2({
+      minimumResultsForSearch: Infinity
+    });
 
   });
 </script>

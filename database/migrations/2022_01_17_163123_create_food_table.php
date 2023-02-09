@@ -356,6 +356,6 @@ class CreateFoodTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('food');
+        Schema::dropIfExists('food_premises');
     }
 }

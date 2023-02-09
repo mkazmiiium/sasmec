@@ -15,7 +15,7 @@
       <div class="card-header p-2">
         <ul class="nav nav-pills">
           <li class="nav-item"><a class="nav-link active" href="#document_review" data-toggle="tab">Document Review</a></li>
-          
+
           <!-- <li class="nav-item"><a class="nav-link" href="#referral" data-toggle="tab">Referral Form</a></li> -->
           <li class="nav-item"><a class="nav-link" href="#program" data-toggle="tab">Program Monitoring</a></li>
           {{-- <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Activity Monitoring</a></li> --}}
@@ -32,241 +32,249 @@
       <div class="card-body">
         <div class="tab-content">
 
-          <!-- Document Review -->  
+          <!-- Document Review -->
           <div class="active tab-pane" id="document_review">
             <div class="card pd-20 pd-sm-40">
-         
 
-                <div class="table-wrapper">
-                  <table id="datatable1" class="table display responsive nowrap">
-                    <thead>
-                      <tr>
-                        <th class="wd-10p">Report ID</th>
-                        <th class="wd-15p">Document Name</th>
-                        <th class="wd-15p">Received Date</th>
-                        <th class="wd-20p">Status</th>
-                        <th class="wd-25p">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @foreach($documents as $document)
-                      <tr>
-                        <td>{{ $document->id }}</td>
-                        <td>{{ $document->document_name }}</td>
-                        <td>{{ $document->received_date }}</td>
-                        <td>{{ $document->status }}</td>
-                        <td>
-                          <div class="btn-group table-action" role="group">
-                            <!-- <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
+
+              <div class="table-wrapper">
+                <table id="datatable1" class="table display responsive nowrap">
+                  <thead>
+                    <tr>
+                      <th class="wd-10p">NO</th>
+                      <th class="wd-15p">Document Name</th>
+                      <th class="wd-15p">Received Date</th>
+                      <th class="wd-20p">Status</th>
+                      <th class="wd-25p">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <span hidden> {{ $count = 1; }}</span>
+                    @foreach($documents as $document)
+                    <tr>
+                      <td>{{ $count}}</td>
+                      <td>{{ $document->document_name }}</td>
+                      <td>{{ $document->received_date }}</td>
+                      <td>{{ $document->status }}</td>
+                      <td>
+                        <div class="btn-group table-action" role="group">
+                          <!-- <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
                               <i class="fa fa-eye mg-r-10"></i>
                               <a href="{{ url('document-review/details/'.$document->id) }}">Edit</a>
                             </button> -->
-                            <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
-                              <i class="fa fa-eye mg-r-10"></i>
-                              <a href="/{{ $document->document_file}}" target="_blank">Show</a>
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                      @endforeach
-                    </tbody>
-                  </table>
-                </div><!-- table-wrapper -->
-              </div><!-- card -->
+                          <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
+                            <i class="fa fa-eye mg-r-10"></i>
+                            <a href="/{{ $document->document_file}}" target="_blank">Show</a>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <span hidden> {{ $count++ }}</span>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div><!-- table-wrapper -->
+            </div><!-- card -->
           </div>
-          <!-- End Document Review -->  
+          <!-- End Document Review -->
 
           <!-- Food Premise -->
           <div class="tab-pane" id="food_premise">
-              
-            </div>
-            <!-- End Food Premise -->
 
-        <!-- Program Monitoring -->
-        <div class="tab-pane" id="program">
+          </div>
+          <!-- End Food Premise -->
+
+          <!-- Program Monitoring -->
+          <div class="tab-pane" id="program">
             <div class="card pd-20 pd-sm-40">
-         
 
-                <div class="table-wrapper">
-                  <table id="datatable1" class="table display responsive nowrap">
-                    <thead>
-                      <tr>
-                        <th class="wd-10p">Report ID</th>
-                        <th class="wd-15p">Program Name</th>
-                        <th class="wd-15p">Date</th>
-                        <th class="wd-15p">Organizer</th>
-                        <th class="wd-20p">Status</th>
-                        <th class="wd-25p">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @foreach($programs as $program)
-                      <tr>
-                        <td>{{ $program->id }}</td>
-                        <td>{{ $program->name }}</td>
-                        <td>{{ $program->date }}</td>
-                        <td>{{ $program->organizer }}</td>
-                        <td>{{ $program->status }}</td>
-                        <td>
-                          <div class="btn-group table-action" role="group">
-                            <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
-                              <i class="fa fa-eye mg-r-10"></i>
-                              <a href="{{ url('/program/comment/'.$program->id) }}">Edit</a>
-                            </button>
-                            <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
-                              <i class="fa fa-download mg-r-10"></i> 
-                              <a href="{{ action('App\Http\Controllers\Form\ProgramController@pdf', $program->id) }}" target="_blank">Download</a>
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                      @endforeach
-                    </tbody>
-                  </table>
-                </div><!-- table-wrapper -->
-              </div><!-- card -->
+
+              <div class="table-wrapper">
+                <table id="datatable1" class="table display responsive nowrap">
+                  <thead>
+                    <tr>
+                      <th class="wd-10p">No</th>
+                      <th class="wd-15p">Program Name</th>
+                      <th class="wd-15p">Date</th>
+                      <th class="wd-15p">Organizer</th>
+                      <th class="wd-20p">Status</th>
+                      <th class="wd-25p">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <span hidden> {{ $count = 1; }}</span>
+                    @foreach($programs as $program)
+                    <tr>
+                      <td>{{ $count }}</td>
+                      <td>{{ $program->name }}</td>
+                      <td>{{ $program->date }}</td>
+                      <td>{{ $program->organizer }}</td>
+                      <td>{{ $program->status }}</td>
+                      <td>
+                        <div class="btn-group table-action" role="group">
+                          <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
+                            <i class="fa fa-eye mg-r-10"></i>
+                            <a href="{{ url('/program/comment/'.$program->id) }}">Edit</a>
+                          </button>
+                          <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
+                            <i class="fa fa-download mg-r-10"></i>
+                            <a href="{{ action('App\Http\Controllers\Form\ProgramController@pdf', $program->id) }}" target="_blank">Download</a>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <span hidden> {{ $count++ }}</span>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div><!-- table-wrapper -->
+            </div><!-- card -->
           </div>
           <!-- End Program Monitoring -->
 
           <!-- Activity Monitoring -->
-        <div class="tab-pane" id="activity">
-          
-        </div>
-        <!-- End Activity Monitoring -->
+          <div class="tab-pane" id="activity">
 
-        <!-- Complaint Form -->
-        <div class="tab-pane" id="complaint">
-          <table id="datatable1" class="table display responsive nowrap">
-            <thead>
-              <tr>
-                <th class="wd-10p">Report ID</th>
-                <th class="wd-15p">Complainant Name</th>
-                <th class="wd-15p">Complaint Type</th>
-                <th class="wd-15p">Complaint Date</th>
-                <th class="wd-20p">Status</th>
-                <th class="wd-25p">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach($complaints as $complaint)
-              <tr>
-                <td>{{ $complaint->id }}</td>
-                <td>{{ $complaint->complainant_name }}</td>
-                <td>{{ $complaint->complaint_type }}</td>
-                <td>{{ $complaint->complaint_date }}</td>
-                <td>{{ $program->status }}</td>
-                <td>
-                  <div class="btn-group table-action" role="group">
-                    <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
-                      <i class="fa fa-eye mg-r-10"></i>
-                      <a href="{{ url('/complaint/details/'.$complaint->id) }}">Show</a>
-                    </button>
-                    <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
-                      <i class="fa fa-download mg-r-10"></i> 
-                      <a href="{{ action('App\Http\Controllers\Form\ComplaintFormController@pdf', $complaint->id) }}">Download</a>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table> 
-        </div>
-        <!-- End Complaint Form -->
+          </div>
+          <!-- End Activity Monitoring -->
 
-        <!-- Terms and Condition-->
-        <div class="tab-pane" id="terms">
-          
-        </div>
-        <!-- End Terms and Condition -->
+          <!-- Complaint Form -->
+          <div class="tab-pane" id="complaint">
+            <table id="datatable1" class="table display responsive nowrap">
+              <thead>
+                <tr>
+                  <th class="wd-10p">NO</th>
+                  <th class="wd-15p">Complainant Name</th>
+                  <th class="wd-15p">Complaint Type</th>
+                  <th class="wd-15p">Complaint Date</th>
+                  <th class="wd-20p">Status</th>
+                  <th class="wd-25p">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <span hidden> {{ $count = 1; }}</span>
+                @foreach($complaints as $complaint)
+                <tr>
+                  <td>{{ $count }}</td>
+                  <td>{{ $complaint->complainant_name }}</td>
+                  <td>{{ $complaint->complaint_type }}</td>
+                  <td>{{ $complaint->complaint_date }}</td>
+                  <td>{{ $program->status }}</td>
+                  <td>
+                    <div class="btn-group table-action" role="group">
+                      <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
+                        <i class="fa fa-eye mg-r-10"></i>
+                        <a href="{{ url('/complaint/details/'.$complaint->id) }}">Show</a>
+                      </button>
+                      <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
+                        <i class="fa fa-download mg-r-10"></i>
+                        <a href="{{ action('App\Http\Controllers\Form\ComplaintFormController@pdf', $complaint->id) }}">Download</a>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <span hidden> {{ $count++ }}</span>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+          <!-- End Complaint Form -->
 
-        <!-- SLO Report-->
-        <div class="tab-pane" id="sloreport">
-          
-        </div>
-        <!-- End SLO Report -->
+          <!-- Terms and Condition-->
+          <div class="tab-pane" id="terms">
 
-        <!-- Shariah Clinic-->
-        <div class="tab-pane" id="clinic">
-          <table id="datatable1" class="table display responsive nowrap">
-            <thead>
-              <tr>
-                <th class="wd-10p">Report ID</th>
-                <th class="wd-30p">Issue</th>
-                <th class="wd-10p">Status</th>
-                <th class="wd-25p">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach($clinics as $clinics)
-              <tr>
-                <td>{{ $clinics->id }}</td>
-                <td>{{ $clinics->issue }}</td>
-                <td>{{ $clinics->status }}</td>
-                {{-- <td>
+          </div>
+          <!-- End Terms and Condition -->
+
+          <!-- SLO Report-->
+          <div class="tab-pane" id="sloreport">
+
+          </div>
+          <!-- End SLO Report -->
+
+          <!-- Shariah Clinic-->
+          <div class="tab-pane" id="clinic">
+            <table id="datatable1" class="table display responsive nowrap">
+              <thead>
+                <tr>
+                  <th class="wd-10p">No</th>
+                  <th class="wd-30p">Issue</th>
+                  <th class="wd-10p">Status</th>
+                  <th class="wd-25p">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <span hidden> {{ $count = 1; }}</span>
+                @foreach($clinics as $clinics)
+                <tr>
+                  <td>{{ $count }}</td>
+                  <td>{{ $clinics->issue }}</td>
+                  <td>{{ $clinics->status }}</td>
+                  {{-- <td>
                   @if($complaint->received_by == NULL)
                     No SCU assigned
                   @else
-                    {{ $received_by }}  
+                    {{ $received_by }}
                   @endif
-                </td> --}}
-                <td>
-                  <div class="btn-group table-action" role="group">
-                    <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
-                      <i class="fa fa-eye mg-r-10"></i>
-                      <a href="{{ action('App\Http\Controllers\Form\ClinicController@commentClinic', $clinics->id) }}">Edit</a>
-                    </button>
-                    <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
-                      <i class="fa fa-download mg-r-10"></i> 
-                      <a href="{{ action('App\Http\Controllers\Form\ClinicController@pdf', $clinics->id) }}">Download</a>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table> 
+                  </td> --}}
+                  <td>
+                    <div class="btn-group table-action" role="group">
+                      <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
+                        <i class="fa fa-eye mg-r-10"></i>
+                        <a href="{{ action('App\Http\Controllers\Form\ClinicController@commentClinic', $clinics->id) }}">Edit</a>
+                      </button>
+                      <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
+                        <i class="fa fa-download mg-r-10"></i>
+                        <a href="{{ action('App\Http\Controllers\Form\ClinicController@pdf', $clinics->id) }}">Download</a>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <span hidden> {{ $count++ }}</span>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+          <!-- End Shariah Clinic -->
+
+          <!-- Speaker Consent-->
+          <div class="tab-pane" id="speaker">
+
+          </div>
+          <!-- End Speaker Consent -->
+
+          <!-- Acceptance of Consent Form-->
+          <div class="tab-pane" id="acceptance">
+
+          </div>
+          <!-- End Acceptance of Consent Form -->
+
+          <!-- SLO Monthly Form-->
+          <div class="tab-pane" id="slomonthly">
+
+          </div>
+          <!-- End SLO Monthly Form -->
+
+          <!-- Patient Visit Form-->
+          <div class="tab-pane" id="patient">
+
+          </div>
+          <!-- End Patient Visit Form -->
+
         </div>
-        <!-- End Shariah Clinic -->
 
-        <!-- Speaker Consent-->
-        <div class="tab-pane" id="speaker">
-          
-        </div>
-        <!-- End Speaker Consent -->
 
-        <!-- Acceptance of Consent Form-->
-      <div class="tab-pane" id="acceptance">
-        
+
       </div>
-      <!-- End Acceptance of Consent Form -->
 
-      <!-- SLO Monthly Form-->
-      <div class="tab-pane" id="slomonthly">
-        
-      </div>
-      <!-- End SLO Monthly Form -->
 
-      <!-- Patient Visit Form-->
-      <div class="tab-pane" id="patient">
-        
-      </div>
-      <!-- End Patient Visit Form -->
-
-        </div>
-        
-
-        
-      </div>
-      
-
-      </div><!-- /.card-body -->
-    </div>
-    <!-- /.card -->
+    </div><!-- /.card-body -->
   </div>
+  <!-- /.card -->
+</div>
 
 <script>
-  $(function(){
+  $(function() {
     'use strict';
 
     $('#datatable1').DataTable({
@@ -285,7 +293,9 @@
     });
 
     // Select2
-    $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+    $('.dataTables_length select').select2({
+      minimumResultsForSearch: Infinity
+    });
 
   });
 </script>

@@ -47,7 +47,7 @@
                                 <label for="correctiveaction" class="form-label">Corrective Action</label>
                                 </div>
 
-                                <textarea class="form-control" id="correctiveaction" rows="5" name="correctiveaction" required style="width:700px;"></textarea>
+                                <textarea class="form-control" id="correctiveaction" rows="5" name="correctiveaction" style="width:700px;"></textarea>
                                
                             </div><!-- col-3 -->
                         </div><!-- row -->

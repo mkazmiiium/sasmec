@@ -80,7 +80,44 @@
           <!-- Food Premise -->
           <div class="tab-pane" id="food_premise">
 
+
+            <table id="datatable1" class="table display responsive nowrap">
+              <thead>
+                <tr>
+                  <th class="wd-10p">No</th>
+                  <th class="wd-15p">Premise Name</th>
+                  <th class="wd-15p">Location</th>
+                  <th class="wd-15p">Action</th>
+
+
+                </tr>
+              </thead>
+              <tbody>
+
+                @foreach($food_premises as $food_premises)
+                <tr>
+
+                  <td>{{ $count }}</td>
+                  <td>{{ $food_premises->PremiseName }}</td>
+                  <td>{{ $food_premises->location }}</td>
+                  <td>
+                    <div class="btn-group table-action" role="group">
+                      <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
+                        <i class="fa fa-eye mg-r-10"></i>
+                        <a href="{{ url('food/create') }}">Edit</a>
+                      </button>
+                    </div>
+                  </td>
+
+
+                </tr>
+                <span hidden> {{ $count ++ }}</span>
+
+                @endforeach
+              </tbody>
+            </table>
           </div>
+
           <!-- End Food Premise -->
 
           <!-- Referral Form -->

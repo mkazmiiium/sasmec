@@ -21,7 +21,7 @@
           <table id="datatable1" class="table display responsive nowrap">
             <thead>
               <tr>
-                <th class="wd-10p">Report ID</th>
+                <th class="wd-10p">NO</th>
                 <th class="wd-15p">Complaint Type</th>
                 <th class="wd-15p">Complaint Date</th>
                 <th class="wd-15p">Status</th>
@@ -30,9 +30,10 @@
               </tr>
             </thead>
             <tbody>
+            <span hidden> {{ $count = 1; }}</span>
               @foreach($complaints as $complaint)
               <tr>
-                <td>{{ $complaint->id }}</td>
+                <td>{{ $count }}</td>
                 <td>{{ $complaint->complaint_type }}</td>
                 <td>{{ $complaint->complaint_date }}</td>
                 <td>{{ $complaint->status }}</td>
@@ -56,6 +57,7 @@
                   </div>
                 </td>
               </tr>
+              <span hidden> {{ $count++; }}</span>
               @endforeach
             </tbody>
           </table>
