@@ -40,16 +40,17 @@
             <table id="datatable1" class="table display responsive nowrap">
               <thead>
                 <tr>
-                  <th class="wd-10p">Report ID</th>
+                  <th class="wd-10p">No</th>
                   <th class="wd-15p">Document Name</th>
                   <th class="wd-15p">Received Date</th>
                   <th class="wd-25p">Actions</th>
                 </tr>
               </thead>
               <tbody>
+                <span hidden> {{ $count = 1; }}</span>
                 @foreach($documents as $document)
                 <tr>
-                  <td>{{ $document->id }}</td>
+                  <td>{{ $count }}</td>
                   <td>{{ $document->document_name }}</td>
                   <td>{{ $document->received_date }}</td>
                   {{-- <td>
@@ -57,7 +58,7 @@
                     No SCU assigned
                     @else
                     {{ $received_by }}
-                    @endif
+                  @endif
                   </td> --}}
                   <td>
                     <div class="btn-group table-action" role="group">
@@ -65,12 +66,12 @@
                       </button>
                       <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
                         <i class="fa fa-eye mg-r-10"></i>
-                        <a href="{{ action('App\Http\Controllers\Form\DocumentReviewController@pdf', $document->id) }}"
-                          target="_blank">Show</a>
+                        <a href="{{ action('App\Http\Controllers\Form\DocumentReviewController@pdf', $document->id) }}" target="_blank">Show</a>
                       </button>
                     </div>
                   </td>
                 </tr>
+                <span hidden> {{ $count++; }}</span>
                 @endforeach
               </tbody>
             </table>
@@ -125,7 +126,7 @@
             <table id="datatable1" class="table display responsive nowrap">
               <thead>
                 <tr>
-                  <th class="wd-10p">Report ID</th>
+                  <th class="wd-10p">No</th>
                   <th class="wd-15p">Name</th>
                   <th class="wd-15p">Phone No</th>
                   <th class="wd-15p">NRIC</th>
@@ -134,9 +135,10 @@
                 </tr>
               </thead>
               <tbody>
+                <span hidden> {{ $count = 1; }}</span>
                 @foreach($referrals as $referral)
                 <tr>
-                  <td>{{ $referral->id }}</td>
+                  <td>{{ $count }}</td>
                   <td>{{ $referral->name }}</td>
                   <td>{{ $referral->phone_no }}</td>
                   <td>{{ $referral->nric }}</td>
@@ -146,7 +148,7 @@
                     No SCU assigned
                     @else
                     {{ $received_by }}
-                    @endif
+                  @endif
                   </td> --}}
                   <td>
                     <div class="btn-group table-action" role="group">
@@ -156,12 +158,12 @@
                       </button>
                       <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
                         <i class="fa fa-download mg-r-10"></i>
-                        <a
-                          href="{{ action('App\Http\Controllers\Form\ReferralFormController@pdf', $referral->id) }}">Download</a>
+                        <a href="{{ action('App\Http\Controllers\Form\ReferralFormController@pdf', $referral->id) }}">Download</a>
                       </button>
                     </div>
                   </td>
                 </tr>
+                <span hidden> {{ $count++; }}</span>
                 @endforeach
               </tbody>
             </table>
@@ -177,7 +179,7 @@
                 <table id="datatable1" class="table display responsive nowrap">
                   <thead>
                     <tr>
-                      <th class="wd-10p">Report ID</th>
+                      <th class="wd-10p">NO</th>
                       <th class="wd-15p">Program Name</th>
                       <th class="wd-15p">Date</th>
                       <th class="wd-15p">PIC</th>
@@ -186,9 +188,10 @@
                     </tr>
                   </thead>
                   <tbody>
+                    <span hidden> {{ $count = 1; }}</span>
                     @foreach($programs as $program)
                     <tr>
-                      <td>{{ $program->id }}</td>
+                      <td>{{ $count }}</td>
                       <td>{{ $program->name }}</td>
                       <td>{{ $program->date }}</td>
                       <td>{{ $program->pic }}</td>
@@ -198,19 +201,19 @@
                         No SCU assigned
                         @else
                         {{ $received_by }}
-                        @endif
+                      @endif
                       </td> --}}
                       <td>
                         <div class="btn-group table-action" role="group">
 
                           <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
                             <i class="fa fa-eye mg-r-10"></i>
-                            <a href="{{ action('App\Http\Controllers\Form\ProgramController@pdf', $program->id) }}"
-                              target="_blank">Show</a>
+                            <a href="{{ action('App\Http\Controllers\Form\ProgramController@pdf', $program->id) }}" target="_blank">Show</a>
                           </button>
                         </div>
                       </td>
                     </tr>
+                    <span hidden> {{ $count++; }}</span>
                     @endforeach
                   </tbody>
                 </table>
@@ -230,7 +233,7 @@
             <table id="datatable1" class="table display responsive nowrap">
               <thead>
                 <tr>
-                  <th class="wd-10p">Report ID</th>
+                  <th class="wd-10p">NO</th>
                   <th class="wd-15p">Complainant Name</th>
                   <th class="wd-15p">Complaint Type</th>
                   <th class="wd-15p">Complaint Date</th>
@@ -238,9 +241,10 @@
                 </tr>
               </thead>
               <tbody>
+                <span hidden> {{ $count = 1; }}</span>
                 @foreach($complaints as $complaint)
                 <tr>
-                  <td>{{ $complaint->id }}</td>
+                  <td>{{ $count }}</td>
                   <td>{{ $complaint->complainant_name }}</td>
                   <td>{{ $complaint->complaint_type }}</td>
                   <td>{{ $complaint->complaint_date }}</td>
@@ -249,7 +253,7 @@
                     No SCU assigned
                     @else
                     {{ $received_by }}
-                    @endif
+                  @endif
                   </td> --}}
                   <td>
                     <div class="btn-group table-action" role="group">
@@ -259,12 +263,12 @@
                       </button>
                       <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
                         <i class="fa fa-download mg-r-10"></i>
-                        <a
-                          href="{{ action('App\Http\Controllers\Form\ComplaintFormController@pdf', $complaint->id) }}">Download</a>
+                        <a href="{{ action('App\Http\Controllers\Form\ComplaintFormController@pdf', $complaint->id) }}">Download</a>
                       </button>
                     </div>
                   </td>
                 </tr>
+                <span hidden> {{ $count++; }}</span>
                 @endforeach
               </tbody>
             </table>
@@ -276,7 +280,7 @@
             <table id="datatable1" class="table display responsive nowrap">
               <thead>
                 <tr>
-                  <th class="wd-10p">Report ID</th>
+                  <th class="wd-10p">NO</th>
                   <th class="wd-15p">Name</th>
                   <th class="wd-15p">Contact Number</th>
                   <th class="wd-15p">NRIC</th>
@@ -284,9 +288,10 @@
                 </tr>
               </thead>
               <tbody>
+                <span hidden> {{ $count = 1; }}</span>
                 @foreach($terms as $terms)
                 <tr>
-                  <td>{{ $terms->id }}</td>
+                  <td>{{ $count }}</td>
                   <td>{{ $terms->name }}</td>
                   <td>{{ $terms->contactnumber }}</td>
                   <td>{{ $terms->nric }}</td>
@@ -295,7 +300,7 @@
                     No SCU assigned
                     @else
                     {{ $received_by }}
-                    @endif
+                  @endif
                   </td> --}}
                   <td>
                     <div class="btn-group table-action" role="group">
@@ -308,6 +313,7 @@
                     </div>
                   </td>
                 </tr>
+                <span hidden> {{ $count++; }}</span>
                 @endforeach
               </tbody>
             </table>
@@ -319,7 +325,7 @@
             <table id="datatable1" class="table display responsive nowrap">
               <thead>
                 <tr>
-                  <th class="wd-10p">Report ID</th>
+                  <th class="wd-10p">NO</th>
                   <th class="wd-15p">SLO Name</th>
                   <th class="wd-15p">Department</th>
                   <th class="wd-15p">Report Date</th>
@@ -327,9 +333,10 @@
                 </tr>
               </thead>
               <tbody>
+                <span hidden> {{ $count = 1; }}</span>
                 @foreach($sloreports as $sloreports)
                 <tr>
-                  <td>{{ $sloreports->id }}</td>
+                  <td>{{ $count }}</td>
                   <td>{{ $sloreports->slo_name }}</td>
                   <td>{{ $sloreports->dept }}</td>
                   <td>{{ $sloreports->report_date }}</td>
@@ -338,20 +345,20 @@
                     No SCU assigned
                     @else
                     {{ $received_by }}
-                    @endif
+                  @endif
                   </td> --}}
                   <td>
                     <div class="btn-group table-action" role="group">
 
                       <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
                         <i class="fa fa-eye mg-r-10"></i>
-                        <a href="{{ action('App\Http\Controllers\Form\SLOReportController@pdf', $sloreports->id) }}"
-                          target="
+                        <a href="{{ action('App\Http\Controllers\Form\SLOReportController@pdf', $sloreports->id) }}" target="
                         ">Show</a>
                       </button>
                     </div>
                   </td>
                 </tr>
+                <span hidden> {{ $count++; }}</span>
                 @endforeach
               </tbody>
             </table>
@@ -363,22 +370,23 @@
             <table id="datatable1" class="table display responsive nowrap">
               <thead>
                 <tr>
-                  <th class="wd-10p">Report ID</th>
+                  <th class="wd-10p">NO</th>
                   <th class="wd-40p">Issue</th>
                   <th class="wd-25p">Actions</th>
                 </tr>
               </thead>
               <tbody>
+                <span hidden> {{ $count = 1; }}</span>
                 @foreach($clinics as $clinics)
                 <tr>
-                  <td>{{ $clinics->id }}</td>
+                  <td>{{ $count }}</td>
                   <td>{{ $clinics->issue }}</td>
                   {{-- <td>
                     @if($complaint->received_by == NULL)
                     No SCU assigned
                     @else
                     {{ $received_by }}
-                    @endif
+                  @endif
                   </td> --}}
                   <td>
                     <div class="btn-group table-action" role="group">
@@ -386,12 +394,12 @@
 
                       <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
                         <i class="fa fa-eye mg-r-10"></i>
-                        <a href="{{ action('App\Http\Controllers\Form\ClinicController@pdf', $clinics->id) }}"
-                          target="_blank">Show</a>
+                        <a href="{{ action('App\Http\Controllers\Form\ClinicController@pdf', $clinics->id) }}" target="_blank">Show</a>
                       </button>
                     </div>
                   </td>
                 </tr>
+                <span hidden> {{ $count++; }}</span>
                 @endforeach
               </tbody>
             </table>
@@ -403,7 +411,7 @@
             <table id="datatable1" class="table display responsive nowrap">
               <thead>
                 <tr>
-                  <th class="wd-5p">Report ID</th>
+                  <th class="wd-5p">NO</th>
                   <th class="wd-25p">Program Name</th>
                   <th class="wd-10p">Date</th>
                   <th class="wd-15p">Speaker's Name</th>
@@ -412,9 +420,10 @@
                 </tr>
               </thead>
               <tbody>
+                <span hidden> {{ $count = 1; }}</span>
                 @foreach($speakers as $speaker)
                 <tr>
-                  <td>{{ $speaker->id }}</td>
+                  <td>{{ $count }}</td>
                   <td>{{ $speaker->programname }}</td>
                   <td>{{ $speaker->date }}</td>
                   <td>{{ $speaker->speakername }}</td>
@@ -424,19 +433,19 @@
                     No SCU assigned
                     @else
                     {{ $received_by }}
-                    @endif
+                  @endif
                   </td> --}}
                   <td>
                     <div class="btn-group table-action" role="group">
 
                       <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
                         <i class="fa fa-eye mg-r-10"></i>
-                        <a href="{{ action('App\Http\Controllers\Form\SpeakerController@pdf', $speaker->id) }}"
-                          target="_blank">Show</a>
+                        <a href="{{ action('App\Http\Controllers\Form\SpeakerController@pdf', $speaker->id) }}" target="_blank">Show</a>
                       </button>
                     </div>
                   </td>
                 </tr>
+                <span hidden> {{ $count++; }}</span>
                 @endforeach
               </tbody>
             </table>
@@ -448,7 +457,7 @@
             <table id="datatable1" class="table display responsive nowrap">
               <thead>
                 <tr>
-                  <th class="wd-10p">Report ID</th>
+                  <th class="wd-10p">NO</th>
                   <th class="wd-15p">Program Name</th>
                   <th class="wd-15p">Date</th>
                   <th class="wd-15p">Speaker's Name</th>
@@ -457,9 +466,10 @@
                 </tr>
               </thead>
               <tbody>
+                <span hidden> {{ $count = 1; }}</span>
                 @foreach($acceptances as $acceptance)
                 <tr>
-                  <td>{{ $acceptance->id }}</td>
+                  <td>{{ $count }}</td>
                   <td>{{ $acceptance->program }}</td>
                   <td>{{ $acceptance->date }}</td>
                   <td>{{ $acceptance->name }}</td>
@@ -469,23 +479,22 @@
                     No SCU assigned
                     @else
                     {{ $received_by }}
-                    @endif
+                  @endif
                   </td> --}}
                   <td>
                     <div class="btn-group table-action" role="group">
                       <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
                         <i class="fa fa-eye mg-r-10"></i>
-                        <a
-                          href="{{ action('App\Http\Controllers\Form\AcceptanceController@view', $acceptance->id) }}">Show</a>
+                        <a href="{{ action('App\Http\Controllers\Form\AcceptanceController@view', $acceptance->id) }}">Show</a>
                       </button>
                       <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
                         <i class="fa fa-download mg-r-10"></i>
-                        <a
-                          href="{{ action('App\Http\Controllers\Form\AcceptanceController@pdf', $acceptance->id) }}">Download</a>
+                        <a href="{{ action('App\Http\Controllers\Form\AcceptanceController@pdf', $acceptance->id) }}">Download</a>
                       </button>
                     </div>
                   </td>
                 </tr>
+                <span hidden> {{ $count++; }}</span>
                 @endforeach
               </tbody>
             </table>
@@ -497,7 +506,7 @@
             <table id="datatable1" class="table display responsive nowrap">
               <thead>
                 <tr>
-                  <th class="wd-10p">Report ID</th>
+                  <th class="wd-10p">NO</th>
                   <th class="wd-15p">SLO Officer Name</th>
                   <th class="wd-15p">Department</th>
                   <th class="wd-15p">Month</th>
@@ -506,9 +515,10 @@
                 </tr>
               </thead>
               <tbody>
+                <span hidden> {{ $count = 1; }}</span>
                 @foreach($slomonthly as $slomonthly)
                 <tr>
-                  <td>{{ $slomonthly->id }}</td>
+                  <td>{{ $count }}</td>
                   <td>{{ $slomonthly->slo_name }}</td>
                   <td>{{ $slomonthly->dept }}</td>
                   <td>{{ $slomonthly->month }}</td>
@@ -518,19 +528,19 @@
                     No SCU assigned
                     @else
                     {{ $received_by }}
-                    @endif
+                  @endif
                   </td> --}}
                   <td>
                     <div class="btn-group table-action" role="group">
 
                       <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
                         <i class="fa fa-eye mg-r-10"></i>
-                        <a href="{{ action('App\Http\Controllers\Form\SLOMonthlyController@pdf', $slomonthly->id) }}"
-                          target="_blank">Show</a>
+                        <a href="{{ action('App\Http\Controllers\Form\SLOMonthlyController@pdf', $slomonthly->id) }}" target="_blank">Show</a>
                       </button>
                     </div>
                   </td>
                 </tr>
+                <span hidden> {{ $count++; }}</span>
                 @endforeach
               </tbody>
             </table>
@@ -542,7 +552,7 @@
             <table id="datatable1" class="table display responsive nowrap">
               <thead>
                 <tr>
-                  <th class="wd-10p">Report ID</th>
+                  <th class="wd-10p">No</th>
                   <th class="wd-15p">Patient Name</th>
                   <th class="wd-15p">Ward</th>
                   <th class="wd-15p">Referred Date</th>
@@ -551,9 +561,10 @@
                 </tr>
               </thead>
               <tbody>
+                <span hidden> {{ $count = 1; }}</span>
                 @foreach($patientvisit as $patientvisit)
                 <tr>
-                  <td>{{ $patientvisit->id }}</td>
+                  <td>{{ $count }}</td>
                   <td>{{ $patientvisit->patientname }}</td>
                   <td>{{ $patientvisit->ward }}</td>
                   <td>{{ $patientvisit->referreddate }}</td>
@@ -563,19 +574,19 @@
                     No SCU assigned
                     @else
                     {{ $received_by }}
-                    @endif
+                  @endif
                   </td> --}}
                   <td>
                     <div class="btn-group table-action" role="group">
 
                       <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
                         <i class="fa fa-eye mg-r-10"></i>
-                        <a href="{{ action('App\Http\Controllers\Form\PatientVisitController@pdf', $patientvisit->id) }}"
-                          target="_blank">Show</a>
+                        <a href="{{ action('App\Http\Controllers\Form\PatientVisitController@pdf', $patientvisit->id) }}" target="_blank">Show</a>
                       </button>
                     </div>
                   </td>
                 </tr>
+                <span hidden> {{ $count++; }}</span>
                 @endforeach
               </tbody>
             </table>
@@ -595,7 +606,7 @@
 </div>
 
 <script>
-  $(function () {
+  $(function() {
     'use strict';
 
     $('#datatable1').DataTable({
@@ -614,7 +625,9 @@
     });
 
     // Select2
-    $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+    $('.dataTables_length select').select2({
+      minimumResultsForSearch: Infinity
+    });
 
   });
 </script>
