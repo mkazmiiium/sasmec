@@ -15,6 +15,7 @@
     </div><!-- sl-page-title -->
 
     <form class="form-horizontal form-wizard form" action="{{ url('/program/comment/store/'.$program->id) }}" method="POST"  method="post" onsubmit="return submitUserForm();">
+    @csrf
     <div class="form-content col-md-8 col-md-offset-2">  	
         <div class="wizard-header">
             <h5 class="wizard-page">Page <span class="current-page"></span> of <span class="total-page"></span> </h5> 
