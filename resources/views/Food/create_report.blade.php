@@ -825,8 +825,7 @@
                       <tr>
                         <td>
                           <label for="remarks36" class="form-label">6. Others:
-                            <input type="text" id="others36" name="others36" placeholder="Others" class="form-control"
-                              style="width:200px;" required>
+                            
                           </label>
                           <textarea placeholder="Remarks" id="remarks36" name="remarks36" class="form-control"
                             id="remarks" rows="1" style="width:600px;" > </textarea>
@@ -981,8 +980,7 @@
                       <tr>
                         <td>
                           <label for="remarks44" class="form-label">8. Others:
-                            <input type="text" id="others44" name="others44" placeholder="Others" class="form-control"
-                              style="width:200px;" required>
+                            
                           </label>
                           <textarea placeholder="Remarks" id="remarks44" name="remarks44" class="form-control"
                             id="remarks" rows="1" style="width:600px;" > </textarea>
