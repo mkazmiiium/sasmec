@@ -14,16 +14,14 @@
             <h5>Document Review Form</h5>
         </div><!-- sl-page-title -->
 
-        <form class="form-horizontal form-wizard form" action="{{ route('document-review.store') }}" method="POST"
-            enctype="multipart/form-data" onsubmit="return submitUserForm();">
+        <form class="form-horizontal form-wizard form" action="{{ route('document-review.store') }}" method="POST" enctype="multipart/form-data" onsubmit="return submitUserForm();">
             @csrf
             <div class="form-content col-md-8 col-md-offset-2">
                 <div class="wizard-header">
                     <h5 class="wizard-page">Page <span class="current-page"></span> of <span class="total-page"></span>
                     </h5>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-lg" role="progressbar" aria-valuemin="0"
-                            aria-valuemax="100"></div>
+                        <div class="progress-bar progress-bar-lg" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
 
@@ -44,8 +42,7 @@
                                             <h6 class="form-label">Document Name<span style="color:red">*</span></h6>
                                         </div>
 
-                                        <input class="form-control" type="text" name="document_name"
-                                            placeholder="Enter document name" required minlength="5">
+                                        <input class="form-control" type="text" name="document_name" placeholder="Enter document name" required minlength="5">
 
                                         <div class="mg-t-25">
                                             <h6 class="form-label">Document File:<span style="color:red">*</span></h6>
@@ -54,9 +51,9 @@
                                         <!-- <textarea rows="5" class="form-control" name="details" placeholder="Complaint Details" required></textarea> -->
 
                                         <label class="custom-file">
-                                            <input type="file" id="file2" name="document_file" class="custom-file-input"
-                                                accept="application/pdf,.doc,.docx" required>
-                                            <span class="custom-file-control custom-file-control-primary"></span>
+                                            <input type="file" id="file2" name="document_file" "
+                                                accept=" application/pdf,.doc,.docx" required>
+                                     
                                         </label>
 
                                     </div><!-- col-3 -->
@@ -89,13 +86,9 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="pull-right">
-                                <button type="button"
-                                    class="action btn btn-default text-capitalize back btn">Back</button>
-                                <button type="button"
-                                    class="action btn btn-primary text-capitalize next btn">Next</button>
-                                <input type="submit" name="submit" id="btn-validate"
-                                    class="action btn btn-success text-capitalize submit btn" value="Submit"
-                                    onclick="return input_verify()" />
+                                <button type="button" class="action btn btn-default text-capitalize back btn">Back</button>
+                                <button type="button" class="action btn btn-primary text-capitalize next btn">Next</button>
+                                <input type="submit" name="submit" id="btn-validate" class="action btn btn-success text-capitalize submit btn" value="Submit" onclick="return input_verify()" />
                             </div>
                         </div>
 

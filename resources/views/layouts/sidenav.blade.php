@@ -74,7 +74,7 @@ $route = Route::current()->getName();
           {{-- <li class="nav-item"><a href="{{ route('document-review.view-all') }}" class="nav-link">Food Premise Inspection</a></li> --}}
           <li class="nav-item"><a href="{{ route('referral.view-all') }}" class="nav-link">Referral Form</a></li>
           <li class="nav-item"><a href="{{ route('program.view-all') }}" class="nav-link">Program Monitoring</a></li>
-          {{-- <li class="nav-item"><a href="{{ route('document-review.view-all') }}" class="nav-link">Activity Monitoring</a></li> --}}
+          <li class="nav-item"><a href="#" class="nav-link">Activity Monitoring</a></li>
           <li class="nav-item"><a href="{{ route('complaint.view-all') }}" class="nav-link">Complaint Form</a></li>
           <li class="nav-item"><a href="{{ route('terms.view-all') }}" class="nav-link">Terms and Condition</a></li>
           <li class="nav-item"><a href="{{ route('slo-report.view-all') }}" class="nav-link">SLO Report</a></li>
