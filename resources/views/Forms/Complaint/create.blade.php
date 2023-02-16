@@ -54,10 +54,10 @@
                                         </select>
 
                                         <div class="mg-t-25">
-                                            <h6 class="form-label">Details<span style="color:red">*</span></h6>
+                                            <h6 class="form-label">Details (if any)</h6>
                                         </div>
 
-                                        <textarea rows="5" class="form-control" name="details" placeholder="Complaint Details" required></textarea>
+                                        <textarea rows="5" class="form-control" name="details" placeholder="Complaint Details" ></textarea>
 
                                     </div><!-- col-3 -->
                                 </div><!-- row -->
