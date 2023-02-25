@@ -15,7 +15,6 @@ class CreateProgramsTable extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
-            $table->integer('programid')->nullable();
             $table->string('name')->nullable();
             $table->date('date')->nullable();
             $table->string('organizer')->nullable();
@@ -23,6 +22,7 @@ class CreateProgramsTable extends Migration
             $table->string('program_details')->nullable();
             $table->string('attachment')->nullable();
             $table->integer('scu_id')->nullable();
+            $table->string("scu_name")->nullable();
             $table->string('received_by')->nullable();
             $table->date('received_date')->nullable();
             $table->date('briefing_date')->nullable();
@@ -40,6 +40,7 @@ class CreateProgramsTable extends Migration
     }
 
     /**
+     * database/migrations/2022_02_10_080814_create_programs_table.php
      * Reverse the migrations.
      *
      * @return void

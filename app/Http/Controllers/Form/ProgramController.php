@@ -79,7 +79,7 @@ class ProgramController extends Controller
 
         $notification = array(
             'message' => 'Your program monitoring form is successfully submitted.',
-              'alert-type' => 'success',
+            'alert-type' => 'success',
             'alert-class' => 'bg-success text-white'
         );
 
@@ -100,20 +100,19 @@ class ProgramController extends Controller
     public function storeAssignStaff(Request $request, $id)
     {
 
-        // $received_staff = DB::table('users')
-        //                     ->select('name')
-        //                     ->where('id', '=', $request->review_staff)
-        //                     ->get();
-
-        Program::findOrFail($id)->update([
-            'scu_id' => $request->review_staff,
-            'received_by' => DB::table('users')
-                ->select('name')
-                ->where('id', '=', $request->review_staff)
-                ->get(),
-            'received_date' => Carbon::now(),
-            'status' => "In review",
-        ]);
+        DB::table('programs')
+            ->where('id', $id)
+            ->update([
+                'scu_id' => $request->review_staff,
+                'received_by' => DB::table('users')
+                    ->select('name')
+                    ->where('id', '=', $request->review_staff)
+                    ->get()
+                    ->first()
+                    ->name,
+                'received_date' => Carbon::now(),
+                'status' => "In review",
+            ]);
 
         return redirect()->route('program.view-all');
     }

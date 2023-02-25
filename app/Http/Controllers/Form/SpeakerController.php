@@ -51,7 +51,7 @@ class SpeakerController extends Controller
 
         $notification = array(
             'message' => 'Speaker Consent Form Created Successfully!',
-              'alert-type' => 'success',
+            'alert-type' => 'success',
             'alert-class' => 'bg-success text-white'
         );
 
@@ -124,9 +124,8 @@ class SpeakerController extends Controller
     {
         if (speaker::where('id', $id)->exists()) {
 
-
+            $speaker = speaker::find($id);
             $pdf = PDF::loadview('Speaker/pdf', compact('speaker'));
-
             return $pdf->stream('Speaker.pdf');
             // The record exists in the database
         } else {
