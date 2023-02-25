@@ -54,7 +54,7 @@
                     </button>
                     <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
                       <i class="fa fa-download mg-r-10"></i> 
-                      <a href="{{ action('App\Http\Controllers\Form\SpeakerController@pdf', $program->id) }}">Download</a>
+                      <a href="{{ action('App\Http\Controllers\Form\ProgramController@pdf', $program->id) }}" target="_blank">Download</a>
                     </button>
                   </div>
                 </td>

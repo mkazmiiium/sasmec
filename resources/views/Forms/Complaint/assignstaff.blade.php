@@ -3,154 +3,155 @@
 @section('content')
 
 <div class="sl-mainpanel">
-  <nav class="breadcrumb sl-breadcrumb">
-    <a class="breadcrumb-item" href="/dashboard">Dashboard</a>
-    <a class="breadcrumb-item" href="#">View Report</a>
-    <span class="breadcrumb-item active">Complaint Details</span>
-  </nav>
+    <nav class="breadcrumb sl-breadcrumb">
+        <a class="breadcrumb-item" href="/dashboard">Dashboard</a>
+        <a class="breadcrumb-item" href="#">View Report</a>
+        <span class="breadcrumb-item active">Complaint Details</span>
+    </nav>
 
-  <div class="sl-pagebody">
-    <div class="sl-page-title">
-      <h5>Complaint Details</h5>
-    </div><!-- sl-page-title -->
+    <div class="sl-pagebody">
+        <div class="sl-page-title">
+            <h5>Complaint Details</h5>
+        </div><!-- sl-page-title -->
 
-    <div class="card pd-20 pd-sm-40">
-          <h6 class="card-body-title mg-b-20 mg-sm-b-30" style="font-size: 20px;">Complaint {{ $complaint->id }}</h6>
+        <div class="card pd-20 pd-sm-40">
+            <h6 class="card-body-title mg-b-20 mg-sm-b-30" style="font-size: 20px;">Complaint {{ $complaint->id }}</h6>
 
-              <div class="row">
+            <div class="row">
                 <h6 class="card-body-title col-sm-2 form-control-label">Name:</h6>
                 <div class="card-info col-sm-4 mg-t-10 mg-sm-t-0">
-                {{ $complaint->complainant_name }}
+                    {{ $complaint->complainant_name }}
                 </div>
                 <h6 class="card-body-title col-sm-2 form-control-label">Phone Number:</h6>
                 <div class="card-info col-sm-4 mg-t-10 mg-sm-t-0">
-                {{ $complaint->phone_no }}
+                    {{ $complaint->phone_no }}
                 </div>
-              </div><!-- row -->
-              <div class="row">
+            </div><!-- row -->
+            <div class="row">
                 <h6 class="card-body-title col-sm-2 form-control-label">Department:</h6>
                 <div class="card-info col-sm-4 mg-t-10 mg-sm-t-0">
-                {{ $complaint->department }}
+                    {{ $complaint->department }}
                 </div>
                 <h6 class="card-body-title col-sm-2 form-control-label">Date:</h6>
                 <div class="card-info col-sm-4 mg-t-10 mg-sm-t-0">
-                {{ $complaint->complaint_date }}
+                    {{ $complaint->complaint_date }}
                 </div>
-              </div><!-- row -->
-              <div class="row">
+            </div><!-- row -->
+            <div class="row">
                 <h6 class="card-body-title col-sm-2 form-control-label">Type of complaint:</h6>
                 <div class="card-info col-sm-4 mg-t-10 mg-sm-t-0">
-                {{ $complaint->complaint_type }}
+                    {{ $complaint->complaint_type }}
                 </div>
                 <h6 class="card-body-title col-sm-2 form-control-label">Details:</h6>
                 <div class="card-info col-sm-4 mg-t-10 mg-sm-t-0">
-                {{ $complaint->details }}
+                    {{ $complaint->details }}
                 </div>
-              </div><!-- row -->
-              <hr>
-              <div class="row">
+            </div><!-- row -->
+            <hr>
+            <div class="row">
                 <h6 class="card-body-title col-sm-2 form-control-label">Received by:</h6>
                 <div class="col-sm-4 mg-t-10 mg-sm-t-0">
-                        @if($complaint->received_by != NULL)
-                            {{ $received_by }}
-                        @else
-                        @endif
+                    @if($complaint->received_by != NULL)
+                    {{ $received_by }}
+                    @else
+                    @endif
 
-                        @php
-                            $assignstaff = (auth()->user()->assignstaff == 1);
-                        @endphp
+                    @php
+                    $assignstaff = (auth()->user()->assignstaff == 1);
+                    @endphp
 
-                        @if($assignstaff == 1)
-                        @if($complaint->received_by == NULL)
-                        <form action="{{ url('complaint/assign-staff/store/'.$complaint->id) }}" method="POST">
-                            @csrf
-                            <select class="form-control select2" data-placeholder="Assign to" style="height: 15%;">
-                            <option label="Assign to" ></option>
+                    @if($assignstaff == 1)
+                    @if($complaint->received_by == NULL)
+                    <form action="{{ url('complaint/assign-staff/store/'.$complaint->id) }}" method="POST" id="complaint_edit">
+                        <!-- get the staff id with js -->
+                        @csrf
+                        <select class="form-control select2" data-placeholder="Assign to" style="height: 15%;" form="complaint_edit" name="review_staff" required>
+                            <option label="Assign to"></option>
                             @foreach($staffs as $staff)
-                            <option value= "{{ $staff->id }}">
-                                    <span>{{ $staff->id }}</span>
-                                    <div class="block">
-                                        <strong class="block">{{ $staff->name }}</strong>
-                                        <span class="block">{{ $staff->email }}</span>
-                                    </div>
-                            </option> 
+                            <option value="{{ $staff->id }}">
+                                <span>{{ $staff->id }}</span>
+                                <div class="block">
+                                    <strong class="block">{{ $staff->name }}</strong>
+                                    <span class="block">{{ $staff->email }}</span>
+                                </div>
+                            </option>
                             @endforeach
-                            </select>
+                        </select>
 
-                            <div class="col-sm-6 col-md-3">
-                                <div class="btn-demo">
-                                    <button type="submit" class="btn btn-outline-primary btn-block mg-b-10">Assign staff</button>
-                                </div><!-- btn-demo -->
-                            </div><!-- col-sm-3 -->
-                        
-                        </form> 
+                        <div class="col-sm-6 col-md-3">
+                            <div class="btn-demo">
+                                <button type="submit" class="btn btn-outline-primary btn-block mg-b-10">Assign staff</button>
+                            </div><!-- btn-demo -->
+                        </div><!-- col-sm-3 -->
 
-                        @else
-                            {{ $received_by }}
-                        @endif
-                        @else
-                        @endif
+                    </form>
+
+                    @else
+                    {{ $received_by }}
+                    @endif
+                    @else
+                    @endif
 
 
                 </div>
-           
+
                 <h6 class="card-body-title col-sm-2 form-control-label">Received date:</h6>
                 <div class="card-info col-sm-4 mg-t-10 mg-sm-t-0">
-                {{ $complaint->received_date }}
+                    {{ $complaint->received_date }}
                 </div>
-              </div><!-- row -->
-              <hr>
-              <div class="row">
+            </div><!-- row -->
+            <hr>
+            <div class="row">
                 <h6 class="card-body-title col-sm-4 form-control-label" style="text-decoration:underline;">A. Investigation and Root Cause</h6>
-              </div><!-- row -->
-              <br>
-              <div class="row">
+            </div><!-- row -->
+            <br>
+            <div class="row">
                 <h6 class="card-body-title col-sm-4 form-control-label">Investigation details:</h6>
                 <div class="card-info col-sm-6 mg-t-10 mg-sm-t-0">
-                {{ $complaint->investigation }}
+                    {{ $complaint->investigation }}
                 </div>
-              </div><!-- row -->
-              <hr>
-              <div class="row">
+            </div><!-- row -->
+            <hr>
+            <div class="row">
                 <h6 class="card-body-title col-sm-4 form-control-label" style="text-decoration:underline;">B. Corrective Action Taken</h6>
-              </div><!-- row -->
-              <br>
-              <div class="row">
+            </div><!-- row -->
+            <br>
+            <div class="row">
                 <h6 class="card-body-title col-sm-2 form-control-label">Immediate Action:</h6>
                 <div class="card-info col-sm-4 mg-t-10 mg-sm-t-0">
                     <div class="row">
-                    Action: 
-                    {{ $complaint->immediate_action }}
+                        Action:
+                        {{ $complaint->immediate_action }}
                     </div>
                     <br>
                     <div class="row">
-                    Completion date:
-                    {{ $complaint->immediate_completion }}
+                        Completion date:
+                        {{ $complaint->immediate_completion }}
                     </div>
                 </div>
                 <h6 class="card-body-title col-sm-2 form-control-label">Long-term Action:</h6>
                 <div class="card-info col-sm-4 mg-t-10 mg-sm-t-0">
                     <div class="row">
-                    Action: 
-                    {{ $complaint->longterm_action }}
+                        Action:
+                        {{ $complaint->longterm_action }}
                     </div>
                     <br>
                     <div class="row">
-                    Completion date:
-                    {{ $complaint->longterm_completion }}
+                        Completion date:
+                        {{ $complaint->longterm_completion }}
                     </div>
                 </div>
-              </div><!-- row -->
-              
+            </div><!-- row -->
+
         </div><!-- card -->
 
 
-   </div><!-- sl-pagebody -->
-   
-    
+    </div><!-- sl-pagebody -->
+
+
 </div><!-- sl-mainpanel -->
 
-  <!-- <div class="-my-2 w-full mx-auto overflow-x-auto sm:-mx-6 lg:-mx-8">
+<!-- <div class="-my-2 w-full mx-auto overflow-x-auto sm:-mx-6 lg:-mx-8">
     <div class="align-middle inline-block min-w-full sm:px-6 lg:px-8">
 
       <div class="px-3 text-2xl font-bold">

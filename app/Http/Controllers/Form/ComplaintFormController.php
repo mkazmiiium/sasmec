@@ -47,7 +47,7 @@ class ComplaintFormController extends Controller
 
         $notification = array(
             'message' => 'Your complaint form is successfully submitted.',
-              'alert-type' => 'success',
+            'alert-type' => 'success',
             'alert-class' => 'bg-success text-white'
         );
 
@@ -80,18 +80,14 @@ class ComplaintFormController extends Controller
 
     public function storeAssignStaff(Request $request, $id)
     {
-
-        // $received_staff = DB::table('users')
-        //                     ->select('name')
-        //                     ->where('id', '=', $request->review_staff)
-        //                     ->get();
-
         ComplaintForm::findOrFail($id)->update([
             'scu_id' => $request->review_staff,
             'received_by' => DB::table('users')
                 ->select('name')
                 ->where('id', '=', $request->review_staff)
-                ->get(),
+                ->get()
+                ->first()
+                ->name,
             'received_date' => Carbon::now(),
             'status' => "In review",
         ]);

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Form;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -34,7 +35,8 @@ class ClinicController extends Controller
         return view('Clinic.create_report');
     }
 
-    public function viewAll(){      
+    public function viewAll()
+    {
 
         // $clinic = DB::table('clinics')->latest()->latest()->get();
         // $staffData= DB::table('users')
@@ -44,7 +46,7 @@ class ClinicController extends Controller
         //$clinics = DB::select('select * from clinics')->latest()->latest()->get();
         $clinics = DB::table('clinics')->latest()->get();
 
-        return view('ManageReports.all-clinic', ['clinics'=>$clinics]);
+        return view('ManageReports.all-clinic', ['clinics' => $clinics]);
     }
 
     /**
@@ -55,7 +57,7 @@ class ClinicController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         //     $clinic = new Clinic;
         //     $clinic->issue = request('issue');
         //     $clinic->comment = request('comment');
@@ -63,37 +65,39 @@ class ClinicController extends Controller
         //     $clinic->followup = request('followup');
         //     $current_time = new Carbon();
         //     $clinic->save();
-        
+
         // return redirect('/clinic/create')->with('message','Data is added successfully!');
         // return redirect()->route('dashboard');
 
         Clinic::insert([
             'issue' => $request->issue,
             'received_date' => Carbon::now(),
+            'created_at' => Carbon::now(),
             'status' => "Pending",
         ]);
 
         $notification = array(
             'message' => 'Report submitted successfully!',
-              'alert-type' => 'success',
+            'alert-type' => 'success',
             'alert-class' => 'bg-success text-white'
         );
 
         return redirect()->route('dashboard')->with($notification);
-        
     }
 
-    public function assignStaff($id){
+    public function assignStaff($id)
+    {
 
         $clinic = Clinic::findOrFail($id);
-        $staffs= DB::table('users')
-                         ->where('reviewreport', '=', 1)
-                         ->get();
+        $staffs = DB::table('users')
+            ->where('reviewreport', '=', 1)
+            ->get();
 
         return view('Clinic.assignstaff', compact('clinic', 'staffs'));
     }
 
-    public function storeAssignStaff(Request $request, $id){
+    public function storeAssignStaff(Request $request, $id)
+    {
 
         // $received_staff = DB::table('users')
         //                     ->select('name')
@@ -103,25 +107,26 @@ class ClinicController extends Controller
         Clinic::findOrFail($id)->update([
             'scu_id' => $request->review_staff,
             'received_by' => DB::table('users')
-                                ->select('name')
-                                ->where('id', '=', $request->review_staff)
-                                ->get(),
+                ->select('name')
+                ->where('id', '=', $request->review_staff)
+                ->get(),
             'received_date' => Carbon::now(),
             'status' => "In review",
         ]);
 
         return redirect()->route('Clinic.view-all');
-
     }
 
-    public function commentClinic($id){
+    public function commentClinic($id)
+    {
 
         $clinic = Clinic::findOrFail($id);
 
         return view('Clinic.comment_clinic', compact('clinic'));
     }
 
-    public function storeComment(Request $request, $id){
+    public function storeComment(Request $request, $id)
+    {
 
         Clinic::findOrFail($id)->update([
             'comment' => $request->comment,
@@ -142,7 +147,7 @@ class ClinicController extends Controller
     public function show()
     {
         $clinics = DB::select('select * from clinics');
-        return view('clinic.show_report',['clinics'=>$clinics]);
+        return view('clinic.show_report', ['clinics' => $clinics]);
     }
 
     /**
@@ -155,8 +160,7 @@ class ClinicController extends Controller
     {
         $clinic = clinic::find($id);
 
-        return view('Clinic.edit')->with('clinic',$clinic);
-        
+        return view('Clinic.edit')->with('clinic', $clinic);
     }
 
     /**
@@ -190,24 +194,28 @@ class ClinicController extends Controller
     //     $pdf->stream();
     // }
 
-    public function view($id) {
+    public function view($id)
+    {
         $clinic = clinic::find($id);
-        
-        return view('Clinic.view',compact('clinic'));
+
+        return view('Clinic.view', compact('clinic'));
     }
 
-    public function pdf($id) {
+    public function pdf($id)
+    {
+
         $clinic = clinic::find($id);
-        $pdf = PDF::loadView('Clinic/pdf', compact('clinic'));
+    
+
         
+        $pdf = PDF::loadView('Clinic/pdf', compact('clinic'));
+
         return $pdf->stream('Clinic.pdf');
     }
 
     public function manage()
     {
         $clinics = DB::select('select * from clinics');
-        return view('clinic.show_report',['clinics'=>$clinics]);
+        return view('clinic.show_report', ['clinics' => $clinics]);
     }
-
-
 }
