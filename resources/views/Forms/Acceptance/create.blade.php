@@ -77,22 +77,22 @@
 
                             <label for="section0">I: </label>
 
-                            <select name="section0list" id="section0" form="xyzform" style="width: 150px; height: 35px;">
-                                <option value="accept">Accept</option>
-                                <option value="not accept">Do not Accept</option>
+                            <select form="xyzform" style="width: 150px; height: 35px;" name="acceptance" required>
+                                <option value="Accept">Accept</option>
+                                <option value="Do not accept">Do not Accept</option>
                             </select>
                             <label for="section01"> an invitation as: </label>
 
-                            <select name="section01list" id="section01" form="xyzform" style="width: 150px; height: 35px;">
-                                <option value="speaker">Speaker</option>
-                                <option value="moderator">Moderator</option>
-                                <option value="facilitator">Facilitator</option>
-                                <option value="instructor">Instructor</option>
-                                <option value="panelist">Panelist</option>
+                            <select name="job" form="xyzform" style="width: 150px; height: 35px;" required>
+                                <option value="Speaker">Speaker</option>
+                                <option value="Moderator">Moderator</option>
+                                <option value="Facilitator">Facilitator</option>
+                                <option value="Instructor">Instructor</option>
+                                <option value="Panelist">Panelist</option>
                                 <option type="text">Others</option>
                             </select>
 
-                            <input type="text" id="entry1" name="entry1" placeholder="If others please specify " class="form-control" style="margin: 12px">
+                            <input type="text" placeholder="If others please specify " class="form-control" style="margin: 12px" name="others">
                         </div>
 
 
@@ -100,29 +100,29 @@
 
                             <label for="section1">I: </label>
 
-                            <select name="section0list" id="section0" form="xyzform" style="width: 150px; height: 35px;">
-                                <option value="allow">Allow</option>
-                                <option value="dallow">Do Not Allow</option>
+                            <select form="xyzform" style="width: 150px; height: 35px;" name="acceptance2" required>
+                                <option value="Allow">Allow</option>
+                                <option value="Do not allow">Do Not Allow</option>
                             </select>
                             <label for="section01"> the committe to distrube my resources for the public reading and knowledge purposes. </label>
 
 
                             <label for="resources"> Resources category allowed (Please tick): </label>
 
-                            <select name="section01list" id="section01" form="xyzform" style="width: 300px; height: 35px;">
-                                <option value="slide presentation">Slide Presentation in PDF format</option>
-                                <option value="video recording">Video recording</option>
+                            <select form="xyzform" style="width: 300px; height: 35px;" name="resources" required>
+                                <option value="Slide presentation">Slide Presentation in PDF format</option>
+                                <option value="Video recording">Video recording</option>
                                 <option type="text">Others</option>
                             </select>
-                            <input type="text" id="entry1" name="entry1" placeholder="If others is selected " class="form-control" style="margin-top: 15px; margin-left: 10px;">
+                            <input type="text" placeholder="If others is selected " class="form-control" style="margin-top: 15px; margin-left: 10px;" name="others2">
                         </div>
 
 
                         <div class="row mg-t-25">
                             <div class="col-lg-10">
-                            <p id="checkbox_msg" style="color: red;"></p>
+                                <p id="checkbox_msg" style="color: red;"></p>
                                 <label class="ckbox">
-                                    <input type="checkbox" id="input_box" required><span>I hereby declare that
+                                    <input type="checkbox" id="input_box"><span>I hereby declare that
                                         the information given in this application is true and
                                         correct to the best of my knowledge and belief. In case any information
                                         given in this application proves to be false or incorrect, I shall be
