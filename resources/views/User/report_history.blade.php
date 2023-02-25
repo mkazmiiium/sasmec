@@ -57,7 +57,7 @@
                     @if($complaint->received_by == NULL)
                     No SCU assigned
                     @else
-                    {{ $received_by }}
+                    {{ $complaint->$received_by }}
                   @endif
                   </td> --}}
                   <td>
@@ -95,7 +95,7 @@
               </thead>
               <tbody>
 
-              <span hidden> {{ $count = 1; }}</span>
+                <span hidden> {{ $count = 1; }}</span>
                 @foreach($food_premises as $food_premises)
                 <tr>
 
@@ -108,7 +108,7 @@
                         <i class="fa fa-eye mg-r-10"></i>
                         <a href="{{ url('food/create') }}">Edit</a>
                       </button>
-                    
+
                       <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
                         <i class="fa fa-download mg-r-10"></i>
                         <a href="#">Download</a>
@@ -491,12 +491,9 @@
                     <div class="btn-group table-action" role="group">
                       <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
                         <i class="fa fa-eye mg-r-10"></i>
-                        <a href="{{ action('App\Http\Controllers\Form\AcceptanceController@view', $acceptance->id) }}">Show</a>
+                        <a href="{{ action('App\Http\Controllers\Form\AcceptanceController@pdf', $acceptance->id) }}">Show</a>
                       </button>
-                      <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
-                        <i class="fa fa-download mg-r-10"></i>
-                        <a href="{{ action('App\Http\Controllers\Form\AcceptanceController@pdf', $acceptance->id) }}">Download</a>
-                      </button>
+
                     </div>
                   </td>
                 </tr>
