@@ -49,7 +49,15 @@ class DocumentReviewController extends Controller
             'status' => "Pending"
         ]);
 
-        return redirect()->route('dashboard');
+
+        $notification = array(
+            'message' => 'Document Review Form Submitted Successfully',
+              'alert-type' => 'success',
+            'alert-class' => 'bg-success text-white'
+        );
+
+
+        return redirect()->route('dashboard')->with($notification);
 
     }
 

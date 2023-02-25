@@ -18,7 +18,7 @@ class DashboardController extends Controller
             return view('User.ndsc_index');
         }
 
-        // return view('layouts.app');
+        
 
     }
 }

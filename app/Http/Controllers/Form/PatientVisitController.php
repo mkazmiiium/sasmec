@@ -53,8 +53,9 @@ class PatientVisitController extends Controller
         ]);
 
         $notification = array(
-            'message' => 'Your complaint form is successfully submitted.',
-            'alert-type' => 'success'
+            'message' => 'Patient Visit form is successfully submitted.',
+              'alert-type' => 'success',
+            'alert-class' => 'bg-success text-white'
         );
 
         return redirect()->route('dashboard')->with($notification);

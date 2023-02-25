@@ -53,7 +53,14 @@ class TermsController extends Controller
         $terms->declaration = request('declaration');
         $terms->save();
 
-        return redirect('/dashboard')->with('message', 'Data is added successfully!');
+        $notification = array(
+            'message' => 'Terms and Condition submitted Sucessfully!',
+              'alert-type' => 'success',
+            'alert-class' => 'bg-success text-white'
+        );
+
+
+        return redirect('/dashboard')->with($notification);
     }
 
     /**

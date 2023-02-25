@@ -36,7 +36,15 @@ class SLOMonthlyController extends Controller
             'status' => "Pending",
         ]);
 
-        return redirect()->route('dashboard');
+
+        $notification = array(
+            'message' => 'Your SLO monthly report is successfully submitted.',
+              'alert-type' => 'success',
+            'alert-class' => 'bg-success text-white'
+        );
+
+
+        return redirect()->route('dashboard')->with($notification);
 
     }
 

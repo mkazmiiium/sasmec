@@ -149,7 +149,14 @@ class FoodPremiseController extends Controller
             'correctiveaction' => $request->correctiveaction,
         ]);
 
-        return redirect()->route('dashboard');
+
+        $notification = array(
+            'message' => 'Food Premises Inspection Report Submitted Successfully',
+              'alert-type' => 'success',
+            'alert-class' => 'bg-success text-white'
+        );
+
+        return redirect()->route('dashboard')->with($notification);
     }
 
     /**

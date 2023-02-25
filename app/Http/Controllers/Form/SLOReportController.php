@@ -35,7 +35,14 @@ class SLOReportController extends Controller
             'status' => "Pending",
         ]);
 
-        return redirect()->route('dashboard');
+        $notification = array(
+            'message' => 'Your SLO report is successfully submitted.',
+              'alert-type' => 'success',
+            'alert-class' => 'bg-success text-white'
+        );
+
+
+        return redirect()->route('dashboard')->with($notification);
 
     }
 

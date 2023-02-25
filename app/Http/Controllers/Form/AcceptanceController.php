@@ -39,7 +39,15 @@ class AcceptanceController extends Controller
         $acceptance->others2 = request('others2');
         $acceptance->save();
 
-        return redirect('/dashboard')->with('message','Data is added successfully!');
+
+        $notification = array(
+            'message' => 'Acceptance Consent form submitted successfully!',
+              'alert-type' => 'success',
+            'alert-class' => 'bg-success text-white'
+        );
+
+
+        return redirect('/dashboard')->with($notification);
         
     }
 

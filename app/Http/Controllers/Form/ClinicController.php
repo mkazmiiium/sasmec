@@ -74,8 +74,9 @@ class ClinicController extends Controller
         ]);
 
         $notification = array(
-            'message' => 'Your complaint form is successfully submitted.',
-            'alert-type' => 'success'
+            'message' => 'Report submitted successfully!',
+              'alert-type' => 'success',
+            'alert-class' => 'bg-success text-white'
         );
 
         return redirect()->route('dashboard')->with($notification);

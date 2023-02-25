@@ -55,7 +55,8 @@ class AdminController extends Controller
 
         $notification = array(
             'message' => "User access updated successfully",
-            'alert-type' => 'success'
+              'alert-type' => 'success',
+            'alert-class' => 'bg-success text-white'
         );
 
         return redirect()->route('User.view')->with($notification);

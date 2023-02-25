@@ -55,25 +55,6 @@ class ProgramController extends Controller
      */
     public function store(Request $request)
     {
-        // $program = new Program;
-
-        // $program->name = request('name');
-        // $program->date = request('date');
-        // $program->organizer = request('organizer');
-        // $program->pic = request('pic');
-        // $program->program_details = request('program_details');
-        // $program->attachment = request('attachment');
-        // $program->briefing_date = request('briefing_date');
-        // $program->briefing_time = request('briefing_time');
-        // $program->briefing_person = request('briefing_person');
-        // $program->advise_date = request('advise_date');
-        // $program->advise_time = request('advise_time');
-        // $program->advise_details = request('advise_details');
-        // $program->during_prog_report = request('during_prog_report');
-        // $program->corrective_action = request('corrective_action');
-        // $program->save();
-
-        // return redirect('/program/create')->with('message','Data is added successfully!');
 
         Program::insert([
             // 'programid' => Auth::user()->id,
@@ -82,14 +63,24 @@ class ProgramController extends Controller
             'organizer' => $request->organizer,
             'pic' => $request->pic,
             'program_details' => $request->program_details,
+            'briefing_date' => $request->briefing_date,
+            'briefing_time' => $request->briefing_time,
+            'briefing_person' => $request->briefing_person,
+            'advise_date' => $request->advise_date,
+            'advise_time' => $request->advise_time,
+            'advise_details' => $request->advise_details,
+            'during_prog_report' => $request->during_prog_report,
+            'corrective_action' => $request->corrective_action,
             'attachment' => $request->attachment,
             'received_date' => Carbon::now(),
+            'created_at' => Carbon::now(),
             'status' => "Pending",
         ]);
 
         $notification = array(
             'message' => 'Your program monitoring form is successfully submitted.',
-            'alert-type' => 'success'
+              'alert-type' => 'success',
+            'alert-class' => 'bg-success text-white'
         );
 
         return redirect()->route('dashboard')->with($notification);
@@ -125,7 +116,6 @@ class ProgramController extends Controller
         ]);
 
         return redirect()->route('program.view-all');
-
     }
 
     public function commentProgram($id)

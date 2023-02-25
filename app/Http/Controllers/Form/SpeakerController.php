@@ -41,7 +41,7 @@ class SpeakerController extends Controller
     public function store(Request $request)
     {
         $speaker = new Speaker;
-        
+
         $speaker->programname = request('programname');
         $speaker->date = request('date');
         $speaker->speakername = request('speakername');
@@ -49,7 +49,14 @@ class SpeakerController extends Controller
         $speaker->agreement = request('agreement');
         $speaker->save();
 
-        return redirect('/dashboard')->with('message','Data is added successfully!');
+        $notification = array(
+            'message' => 'Speaker Consent Form Created Successfully!',
+              'alert-type' => 'success',
+            'alert-class' => 'bg-success text-white'
+        );
+
+
+        return redirect('/dashboard')->with($notification);
     }
 
     /**
@@ -67,7 +74,7 @@ class SpeakerController extends Controller
     public function viewAll(Speaker $speaker)
     {
         $speaker = DB::select('select * from speakers');
-        return view('ManageReports.all-speaker',['speakers'=>$speaker]);
+        return view('ManageReports.all-speaker', ['speakers' => $speaker]);
     }
 
     /**
@@ -80,7 +87,7 @@ class SpeakerController extends Controller
     {
         $speaker = Speaker::find($id);
 
-        return view('Speaker.edit')->with('speaker',$speaker);
+        return view('Speaker.edit')->with('speaker', $speaker);
     }
 
     /**
@@ -106,16 +113,31 @@ class SpeakerController extends Controller
         //
     }
 
-    public function view($id) {
+    public function view($id)
+    {
         $speaker = speaker::find($id);
-        
-        return view('Speaker.view',compact('speaker'));
+
+        return view('Speaker.view', compact('speaker'));
     }
 
-    public function pdf($id) {
-        $speaker = speaker::find($id);
-        $pdf = PDF::loadview('Speaker/pdf', compact('speaker'));
-        
-        return $pdf->stream('Speaker.pdf');
+    public function pdf($id)
+    {
+        if (speaker::where('id', $id)->exists()) {
+
+
+            $pdf = PDF::loadview('Speaker/pdf', compact('speaker'));
+
+            return $pdf->stream('Speaker.pdf');
+            // The record exists in the database
+        } else {
+            $notification = array(
+                'message' => 'No Data Found!',
+                'alert-type' => 'error',
+                'alert-class' => 'bg-danger text-white'
+            );
+
+            return redirect('/dashboard')->with($notification);
+            // The record was not found in the database
+        }
     }
 }
