@@ -190,6 +190,8 @@
                       <th class="wd-15p">Date</th>
                       <th class="wd-15p">PIC</th>
                       <th class="wd-20p">Organizer</th>
+                      <th class="wd-20p">scu-in-charge</th>
+                      
                       <th class="wd-25p">Actions</th>
                     </tr>
                   </thead>
@@ -202,13 +204,13 @@
                       <td>{{ $program->date }}</td>
                       <td>{{ $program->pic }}</td>
                       <td>{{ $program->organizer }}</td>
-                      {{-- <td>
-                        @if($complaint->received_by == NULL)
+                      <td>
+                        @if($program->received_by == NULL)
                         No SCU assigned
                         @else
-                        {{ $received_by }}
+                        {{ $program->received_by }}
                       @endif
-                      </td> --}}
+                      </td>
                       <td>
                         <div class="btn-group table-action" role="group">
 
@@ -243,6 +245,8 @@
                   <th class="wd-15p">Complainant Name</th>
                   <th class="wd-15p">Complaint Type</th>
                   <th class="wd-15p">Complaint Date</th>
+                  <th class="wd-15p">scu-in-charge</th>
+                  
                   <th class="wd-25p">Actions</th>
                 </tr>
               </thead>
@@ -254,13 +258,13 @@
                   <td>{{ $complaint->complainant_name }}</td>
                   <td>{{ $complaint->complaint_type }}</td>
                   <td>{{ $complaint->complaint_date }}</td>
-                  {{-- <td>
+                  <td>
                     @if($complaint->received_by == NULL)
                     No SCU assigned
                     @else
-                    {{ $received_by }}
+                    {{ $complaint->received_by }}
                   @endif
-                  </td> --}}
+                  </td> 
                   <td>
                     <div class="btn-group table-action" role="group">
                       <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">

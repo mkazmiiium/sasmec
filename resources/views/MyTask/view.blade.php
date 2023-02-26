@@ -58,10 +58,7 @@
                       <td>{{ $document->status }}</td>
                       <td>
                         <div class="btn-group table-action" role="group">
-                          <!-- <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
-                              <i class="fa fa-eye mg-r-10"></i>
-                              <a href="{{ url('document-review/details/'.$document->id) }}">Edit</a>
-                            </button> -->
+
                           <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
                             <i class="fa fa-eye mg-r-10"></i>
                             <a href="/{{ $document->document_file}}" target="_blank">Show</a>
@@ -98,7 +95,9 @@
                       <th class="wd-15p">Date</th>
                       <th class="wd-15p">Organizer</th>
                       <th class="wd-20p">Status</th>
-                      <th class="wd-25p">Actions</th>
+                      <th class="wd-20p">SCU-IN-CHARGE</th>
+                      
+                      <th class="wd-20p">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -110,6 +109,7 @@
                       <td>{{ $program->date }}</td>
                       <td>{{ $program->organizer }}</td>
                       <td>{{ $program->status }}</td>
+                      <td>{{ $program->received_by }}</td>
                       <td>
                         <div class="btn-group table-action" role="group">
                           <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
@@ -148,6 +148,8 @@
                   <th class="wd-15p">Complaint Type</th>
                   <th class="wd-15p">Complaint Date</th>
                   <th class="wd-20p">Status</th>
+                  <th class="wd-20p">SCU-IN-CHARGE</th>
+                  
                   <th class="wd-25p">Actions</th>
                 </tr>
               </thead>
@@ -160,6 +162,7 @@
                   <td>{{ $complaint->complaint_type }}</td>
                   <td>{{ $complaint->complaint_date }}</td>
                   <td>{{ $program->status }}</td>
+                  <td>{{ $complaint->received_by }}</td>
                   <td>
                     <div class="btn-group table-action" role="group">
                       <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
