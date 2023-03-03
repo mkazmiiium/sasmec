@@ -179,6 +179,19 @@
                     </div>
                 </div>
 
+
+
+                <div class="col-sm-4 py-2">
+                    <div class="card h-100 text-white " style="background-color:#0d8368">
+                        <div class="card-body">
+                            <h3 class="card-title">Acceptance Form</h3>
+                            <p class="card-text">IIUM-IIUMMC-SHAR-F01?</p>
+                            <a href="{{ route('acceptance.create') }}" class="btn btn-outline-light">Create Report</a>
+                            <a href="{{ route('acceptance.view-all') }}" class="btn btn-outline-light">Manage Reports</a>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-sm-4 py-2">
                     <div class="card h-100 text-white " style="background-color:#0d8368">
                         <div class="card-body">
