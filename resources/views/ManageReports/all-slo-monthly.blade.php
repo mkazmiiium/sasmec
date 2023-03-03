@@ -22,12 +22,12 @@
           <thead>
             <tr>
               <th class="wd-10p">No</th>
-              <th class="wd-15p">Program</th>
-              <th class="wd-15p">Date</th>
-              <th class="wd-15p">Name</th>
-              {{-- <th class="wd-15p">Status</th>
-              <th class="wd-20p">SCU in-charge</th> --}}
-              <th class="wd-25p">Actions</th>
+              <th class="wd-15p">slo officer name</th>
+              <th class="wd-15p">department</th>
+              <th class="wd-15p">date</th>
+              <th class="wd-15p">action</th>
+
+
             </tr>
           </thead>
           <tbody>
@@ -38,18 +38,12 @@
               <td>{{ $slomonthly->slo_name }}</td>
               <td>{{ $slomonthly->dept }}</td>
               <td>{{ $slomonthly->date }}</td>
-              {{-- <td>
-                @if($complaint->received_by == NULL)
-                No SCU assigned
-                @else
-                {{ $received_by }}
-              @endif
-              </td> --}}
               <td>
 
-                <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
-                  <i class="fa fa-eye mg-r-10"></i>
-                  <a href="{{ action('App\Http\Controllers\Form\SLOMonthlyController@pdf', $slomonthly->id) }}" target="_blank">Show</a>
+                <button class="btn btn-outline-primary btn-block wd-xs-15p m-0 mr-1">
+                  <i class="fa fa-eye mg-r-5"></i>
+                  <a href="{{ action('App\Http\Controllers\Form\SLOMonthlyController@pdf', $slomonthly->id) }}"
+                    target="_blank">Show</a>
                 </button>
       </div>
       </td>
@@ -64,7 +58,7 @@
 </div><!-- sl-mainpanel -->
 
 <script>
-  $(function() {
+  $(function () {
     'use strict';
 
     $('#datatable1').DataTable({

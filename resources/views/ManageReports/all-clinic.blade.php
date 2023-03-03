@@ -6,12 +6,12 @@
   <nav class="breadcrumb sl-breadcrumb">
     <a class="breadcrumb-item" href="/dashboard">Dashboard</a>
     <a class="breadcrumb-item" href="#">Manage Report</a>
-    <span class="breadcrumb-item active">Speaker Consent Form</span>
+    <span class="breadcrumb-item active">Shariah Clinic Form</span>
   </nav>
 
   <div class="sl-pagebody">
     <div class="sl-page-title">
-      <h5>Speaker Consent Form</h5>
+      <h5>Shariah Clinic Form</h5>
     </div><!-- sl-page-title -->
 
     <div class="card pd-20 pd-sm-40">
@@ -23,8 +23,8 @@
             <tr>
               <th class="wd-10p">No</th>
               <th class="wd-15p">Issue</th>
+              <th class="wd-15p">Comments</th>
               <th class="wd-15p">Status</th>
-              <th class="wd-20p">SCU in-charge</th>
               <th class="wd-25p">Actions</th>
             </tr>
           </thead>
@@ -34,14 +34,9 @@
             <tr>
               <td>{{ $count}}</td>
               <td>{{ $clinic->issue }}</td>
+              <td>{{ $clinic->comment }}</td>
               <td>{{ $clinic->status }}</td>
-              <td>
-                {{-- @if($complaint->received_by == NULL)
-                    No SCU assigned
-                  @else
-                    {{ $received_by }}
-                @endif --}}
-              </td>
+             
               <td>
                 <div class="btn-group table-action" role="group">
                   <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">

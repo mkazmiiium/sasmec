@@ -58,19 +58,11 @@ class ClinicController extends Controller
     public function store(Request $request)
     {
 
-        //     $clinic = new Clinic;
-        //     $clinic->issue = request('issue');
-        //     $clinic->comment = request('comment');
-        //     $clinic->correctiveaction = request('correctiveaction');
-        //     $clinic->followup = request('followup');
-        //     $current_time = new Carbon();
-        //     $clinic->save();
-
-        // return redirect('/clinic/create')->with('message','Data is added successfully!');
-        // return redirect()->route('dashboard');
-
         Clinic::insert([
             'issue' => $request->issue,
+            'comment' => $request->comment,
+            'correctiveaction' => $request->correctiveaction,
+            'followup' => $request->followup,
             'received_date' => Carbon::now(),
             'created_at' => Carbon::now(),
             'status' => "Pending",
@@ -205,9 +197,9 @@ class ClinicController extends Controller
     {
 
         $clinic = clinic::find($id);
-    
 
-        
+
+
         $pdf = PDF::loadView('Clinic/pdf', compact('clinic'));
 
         return $pdf->stream('Clinic.pdf');

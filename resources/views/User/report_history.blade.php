@@ -191,7 +191,7 @@
                       <th class="wd-15p">PIC</th>
                       <th class="wd-20p">Organizer</th>
                       <th class="wd-20p">scu-in-charge</th>
-                      
+
                       <th class="wd-25p">Actions</th>
                     </tr>
                   </thead>
@@ -209,7 +209,7 @@
                         No SCU assigned
                         @else
                         {{ $program->received_by }}
-                      @endif
+                        @endif
                       </td>
                       <td>
                         <div class="btn-group table-action" role="group">
@@ -246,7 +246,7 @@
                   <th class="wd-15p">Complaint Type</th>
                   <th class="wd-15p">Complaint Date</th>
                   <th class="wd-15p">scu-in-charge</th>
-                  
+
                   <th class="wd-25p">Actions</th>
                 </tr>
               </thead>
@@ -263,8 +263,8 @@
                     No SCU assigned
                     @else
                     {{ $complaint->received_by }}
-                  @endif
-                  </td> 
+                    @endif
+                  </td>
                   <td>
                     <div class="btn-group table-action" role="group">
                       <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
@@ -382,6 +382,8 @@
                 <tr>
                   <th class="wd-10p">NO</th>
                   <th class="wd-40p">Issue</th>
+                  <th class="wd-40p">Comments</th>
+                  <th class="wd-40p">date</th>
                   <th class="wd-25p">Actions</th>
                 </tr>
               </thead>
@@ -391,13 +393,9 @@
                 <tr>
                   <td>{{ $count }}</td>
                   <td>{{ $clinics->issue }}</td>
-                  {{-- <td>
-                    @if($complaint->received_by == NULL)
-                    No SCU assigned
-                    @else
-                    {{ $received_by }}
-                  @endif
-                  </td> --}}
+                  <td>{{ $clinics->comment}}</td>
+                  <td>{{ $clinics->created_at}}</td>
+
                   <td>
                     <div class="btn-group table-action" role="group">
 
@@ -516,7 +514,7 @@
                   <th class="wd-10p">NO</th>
                   <th class="wd-15p">SLO Officer Name</th>
                   <th class="wd-15p">Department</th>
-                  <th class="wd-15p">Month</th>
+
                   <th class="wd-15p">Date</th>
                   <th class="wd-25p">Actions</th>
                 </tr>
@@ -528,7 +526,7 @@
                   <td>{{ $count }}</td>
                   <td>{{ $slomonthly->slo_name }}</td>
                   <td>{{ $slomonthly->dept }}</td>
-                  <td>{{ $slomonthly->month }}</td>
+
                   <td>{{ $slomonthly->date }}</td>
                   {{-- <td>
                     @if($complaint->received_by == NULL)

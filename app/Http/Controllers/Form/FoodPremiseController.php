@@ -204,4 +204,10 @@ class FoodPremiseController extends Controller
     {
         //
     }
+
+    public function viewAll ()
+    {
+        $food = DB::select('select * from food_premises');
+        return view('ManageReports.all-food',['food_premises'=>$food]);
+    }
 }

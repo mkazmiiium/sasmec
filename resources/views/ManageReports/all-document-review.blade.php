@@ -11,7 +11,7 @@
 
   <div class="sl-pagebody">
     <div class="sl-page-title">
-      <h5>Manage Program Monitoring Reports</h5>
+      <h5>Manage Document Review Reports</h5>
     </div><!-- sl-page-title -->
 
     <div class="card pd-20 pd-sm-40">

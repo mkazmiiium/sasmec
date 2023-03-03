@@ -85,7 +85,7 @@
                             <h3 class="card-title">Food Premise Inspection</h3>
                             <p class="card-text">IIUM-IIUMMC-SHAR-F002</p>
                             <a href="{{ route('food.create') }}" class="btn btn-outline-light">Create Report</a>
-                            <a href="{{ route('referral.view-all') }}" class="btn btn-outline-light">Manage Reports</a>
+                            <a href="{{ route('food.view-all') }}" class="btn btn-outline-light">Manage Reports</a>
                         </div>
                     </div>
                 </div>
@@ -117,8 +117,8 @@
                         <div class="card-body">
                             <h3 class="card-title">Activity Monitoring Form</h3>
                             <p class="card-text">IIUM-IIUMMC-SHAR-F007</p>
-                            <a href="{{ route('document-review.create') }}" class="btn btn-outline-light">Create Report</a>
-                            <a href="{{ route('referral.view-all') }}" class="btn btn-outline-light">Manage Reports</a>
+                            <a href="#" class="btn btn-outline-light">Create Report</a>
+                            <a href="#" class="btn btn-outline-light">Manage Reports</a>
                         </div>
                     </div>
                 </div>
@@ -173,8 +173,8 @@
                         <div class="card-body">
                             <h3 class="card-title">Speaker Consent Form</h3>
                             <p class="card-text">IIUM-IIUMMC-SHAR-F012</p>
-                            <a href="{{ route('acceptance.create') }}" class="btn btn-outline-light">Create Report</a>
-                            <a href="{{ route('acceptance.view-all') }}" class="btn btn-outline-light">Manage Reports</a>
+                            <a href="{{ route('speaker.create') }}" class="btn btn-outline-light">Create Report</a>
+                            <a href="{{ route('speaker.view-all') }}" class="btn btn-outline-light">Manage Reports</a>
                         </div>
                     </div>
                 </div>
