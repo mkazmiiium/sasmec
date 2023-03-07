@@ -48,13 +48,13 @@
                         </tr>
                         <tr>
                             <td>CONTACT NO</td>
-                            <td>{{ $referral->contact_no }}</td>
+                            <td>{{ $referral->phone_no }}</td>
                             <td>GENDER</td>
                             <td>{{ $referral->gender }}</td>
                         </tr>
                         <tr>
                             <td>RN/STAFF NO</td>
-                            <td>{{ $referral->ref_no }}</td>
+                            <td>{{ $referral->doc_id }}</td>
                             <td>NRIC</td>
                             <td>{{ $referral->nric }}</td>
                         </tr>
@@ -62,7 +62,7 @@
                             <td>CLINIC/WARD/DEPARTMENT</td>
                             <td>{{ $referral->dept }}</td>
                             <td>DATE</td>
-                            <td>{{ $referral->ref_date }}</td>
+                            <td>{{ $referral->report_date }}</td>
                         </tr>
                     </table>
                </div>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="mb-2 md:mb-1 md:flex items-center">
 					<div class="flex-1 text-lg">
-                        Discipline / Expertise :
+                        Discipline / Expertise:
                         {{ $referral->doc_expertise }}
 					</div>
 				</div>
@@ -116,12 +116,9 @@
             <div style="position: absolute; left: 10px;">
                 <div>
                 <div>
-                    Referred by :
+                    Referred by: {{ $doc_name }} 
                 </div>   
-                <br>
-                <div>
-                    {{ $referral->doc_id }} 
-                </div>                
+
             </div>
             
             

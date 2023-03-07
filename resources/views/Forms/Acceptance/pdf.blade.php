@@ -26,6 +26,9 @@
     </div>
   </div>
 
+  <div class="boxed">
+    SPEAKER'S DETAILS
+  </div><br>
   <div class="col-span-6 sm:col-span-10">
     <div class="col-sm-9">
       <label class="form-check-label" for="declaration" style="text-align: justify">
@@ -40,7 +43,7 @@
   <span style="color: white;"> {{ $acceptance->resources === null ? $resources = $acceptance->others2 : $resources = $acceptance->resources; }}</span>
 
   <div class="boxed">
-    TERMS AND CONDITION
+    SPEAKER'S CONSENT
   </div><br>
 
   <div class="col-span-6 sm:col-span-10">
@@ -57,13 +60,29 @@
 
       </label>
       <br>
-
-      <label class="checkbox-inline">I acknowledge that I have observed the content of my presentation including copyright issues. <br>
-        I acknowledge that Sultan Ahmad Shah Medical Centre @ IIUM will not responsible to the content of
-        presentation and cannot be held liable to any breach of Copyright and Data Protection made by the
-        speaker.</label>
+      
     </div>
+
   </div>
+
+
+  <div class="boxed">
+    TERMS AND CONDITIONS
+  </div><br>
+  <div class="col-span-6 sm:col-span-10">
+        <div class="col-sm-9">
+        <input class="form-check-input" >
+        <label class="form-check-label" for="agreement">
+          I allow the committee to distribute my slide presentation in pdf format
+          and video recording to the program/training participants.<br><br>
+            
+          I acknowledge that I have observed the content of my presentation including copyright issues.<br>
+          
+          I acknowledge that Sultan Ahmad Shah Medical Centre @IIUM will not responsible to the content of
+          presentation and cannot be held liable to any breach of Copyright and Data Protection made by the Speaker.
+        </label>
+        </div>
+    </div>
 
 </body>
 

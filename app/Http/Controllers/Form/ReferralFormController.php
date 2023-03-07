@@ -58,14 +58,16 @@ class ReferralFormController extends Controller
     public function viewReferralDetails($case_no)
     {
 
-        $referral = ReferralForm::findOrFail($case_no);
+        $referral = DB::table('referral_forms')->where('case_no', $case_no)->first();
         return view('ManageReports.view-referral-details', compact('referral'));
     }
 
     public function pdf($id)
     {
-        $referral = ReferralForm::find($id);
-        $pdf = PDF::loadView('Forms/referral/pdf', compact('referral'));
+        $referral = DB::table('referral_forms')->where('case_no', $id)->first();
+        $doc_name = DB::table('users')->where('id', $id)->value('name');
+        error_log($doc_name);
+        $pdf = PDF::loadView('Forms/Referral/pdf', compact('referral', 'doc_name'));
 
         return $pdf->stream('referral.pdf');
     }

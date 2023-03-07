@@ -36,17 +36,14 @@
                 <td>{{ $referral->name }}</td>
                 <td>{{ $referral->case_type }}</td>
                 <td>{{ $referral->purpose }}</td>
-                <td>{{ $referral->purpose }}</td>
+                
                 <td>{{ $referral->case_status }}</td>
                 <td>
                   <div class="btn-group table-action" role="group">
-                    <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
-                      <i class="fa fa-eye mg-r-10"></i>
-                      <a href="{{ url('/referral/details/'.$referral->id) }}">Show</a>
-                    </button>
+                  
                     <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
                       <i class="fa fa-download mg-r-10"></i> 
-                      <a href="{{ url('/referral/pdf/'.$referral->id) }}">Download</a>
+                      <a href="{{ url('/referral/pdf/'.$referral->case_no) }}">Download</a>
                     </button>
                   </div>
                 </td>
