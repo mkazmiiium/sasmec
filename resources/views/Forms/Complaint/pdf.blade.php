@@ -32,7 +32,7 @@
                 <table class="pt-info">
                         <tr>
                             <th style="text-align: left; padding: 5px;">NAME</th>
-                            <td style="text-align: left; padding: 5px;">{{ $complaint->complainant }}</td>
+                            <td style="text-align: left; padding: 5px;">{{ $complaint->complainant_name }}</td>
                             <th style="text-align: left; padding: 5px;">DATE</th>
                             <td style="text-align: left; padding: 5px;">{{ $complaint->complaint_date }}</td>
                         </tr>
@@ -51,22 +51,22 @@
                 <div>
 					<div>
                         <h4>TYPE OF COMPLAINT :</h4>
-                        <br>
+                        
                         {{ $complaint->complaint_type }}
 					</div>
 				</div>
-                <br><br><br>
+                <br>
 				<div>
 					<h4>Details :</h4>
-                    <br>
+                    
                     <div>
                         {{ $complaint->details }}
                     </div>
 				    </div>
-                <br><br><br><br><br>
+                <br><br><br><br><br> <br> <br>
 				        <div style="position: absolute; left: 10px;">
                     <h5>This is an auto-generated signature</h5>
-                    <div>Name : {{ $complaint->complainant }}</div>
+                    <div>Name : {{ $complaint->complainant_name }}</div>
                     <div>Date : {{ $complaint->complaint_date }}</div>
                 </div>
 
