@@ -12,27 +12,22 @@ use PDF;
 //use DB;
 
 class ReferralFormController extends Controller
-{      
-    public function viewAll(){      
+{
+    public function viewAll()
+    {
 
         $referrals = DB::table('referral_forms')->latest()->latest()->get();
 
         return view('ManageReports.all-referral', compact('referrals'));
     }
 
-    public function create(){
+    public function create()
+    {
         return view('Forms.Referral.create');
     }
 
-    public function store(Request $request){
-
-        if(!empty($request->input('purpose'))){
-            $getPurpose = join(', ', $request->input('purpose'));   
-        }
-        else{
-            $getPurpose = '';
-        }
- 
+    public function store(Request $request)
+    {
         ReferralForm::insert([
             'name' => $request->name,
             'address' => $request->address,
@@ -44,31 +39,34 @@ class ReferralFormController extends Controller
             'doc_expertise' => $request->doc_expertise,
             'pt_diagnosis' => $request->pt_diagnosis,
             'case_type' => $request->case_type,
-            'purpose' => $getPurpose,
+            'purpose' => $request->purpose,
             'details' => $request->details,
             'doc_id' => Auth::user()->id,
             'report_date' => Carbon::now(),
             'case_status' => 'Pending',
         ]);
 
-        return redirect()->route('dashboard');
+        $notification = array(
+            'message' => "Referral form is created successfully",
+            'alert-type' => 'success',
+            'alert-class' => 'bg-success text-white'
+        );
 
+        return redirect()->route('dashboard')->with($notification);
     }
 
-    public function viewReferralDetails($case_no){
+    public function viewReferralDetails($case_no)
+    {
 
         $referral = ReferralForm::findOrFail($case_no);
-        // $staff = ReferralForm::join('users', 'users.id', '=', 'referral_forms.doc_id')
-        //                     ->where('users.id', 'referral_forms.doc_id')
-        //                     ->get(['users.name', 'users.position', 'users.dept']); JOIN TABLE
-
         return view('ManageReports.view-referral-details', compact('referral'));
     }
 
-    public function pdf($id) {
+    public function pdf($id)
+    {
         $referral = ReferralForm::find($id);
         $pdf = PDF::loadView('Forms/referral/pdf', compact('referral'));
-        
-        return $pdf->download('referral.pdf');
+
+        return $pdf->stream('referral.pdf');
     }
 }

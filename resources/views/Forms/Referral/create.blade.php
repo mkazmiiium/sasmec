@@ -14,7 +14,7 @@
             <h5>Referral From</h5>
         </div><!-- sl-page-title -->
 
-        <form class="form-horizontal form-wizard form" action="#" method="POST" method="post">
+        <form class="form-horizontal form-wizard form" action="/referral/store" method="POST">
             @csrf
             <div class=" form-content col-md-8 col-md-offset-2">
                 <div class="wizard-header">
@@ -28,13 +28,6 @@
 
                 <hr>
                 <div class="box row-fluid">
-
-
-
-
-
-
-
 
 
                     <section class="step">
@@ -51,20 +44,20 @@
                                             <label for="name" class="form-label">Name <span style="color:red">*</label>
                                         </div>
 
-                                        <input type="text" id="name" name="name" placeholder="Name" class="form-control" required minlength="5">
+                                        <input type="text" name="name" placeholder="Name" class="form-control" required minlength="5">
 
                                         <div class="mg-t-25">
                                             <label for="address" class="form-label">Address <span style="color:red">*</label>
                                         </div>
 
-                                        <input type="text" id="address" name="address" placeholder="Address" class="form-control" autofocus required>
+                                        <input type="text" name="address" placeholder="Address" class="form-control" autofocus required>
 
 
                                         <div class="mg-t-25">
                                             <label for="contactnumber" class="form-label">Contact number <span style="color:red">*</span></label>
                                         </div>
 
-                                        <input type="number" id="contactnumber" name="contactnumber" placeholder="Contact Number" class="form-control" autofocus required>
+                                        <input type="number" name="phone_no" placeholder="Contact Number" class="form-control" autofocus required>
 
 
                                         <div class="mg-t-25">
@@ -73,12 +66,12 @@
 
 
                                         <label class="radio-inline">
-                                            <input type="radio" id="female" name="gender" value="female" required>Female
+                                            <input type="radio" name="gender" value="female" required>Female
                                         </label>
 
 
                                         <label class="radio-inline">
-                                            <input type="radio" id="male" name="gender" value="male" required>Male
+                                            <input type="radio" name="gender" value="male" required>Male
                                         </label>
 
 
@@ -91,10 +84,10 @@
 
 
                                         <div class="mg-t-25">
-                                            <label for="additionalrequirements" class="form-label">Additional
+                                            <label for="dept" class="form-label">Additional
                                                 Requirements </label>
                                         </div>
-                                        <input type="text" id="additionalrequirements" name="additionalrequirements" placeholder="Additional Requirements" class="form-control" autofocus>
+                                        <input type="text" name="dept" placeholder="Additional Requirements" class="form-control" autofocus>
 
 
 
@@ -126,7 +119,7 @@
                                             <label for="name" class="form-label">Patient Diagnosis <span style="color:red">*</label>
                                         </div>
 
-                                        <input type="text" id="" name="pt_diagnosis" placeholder="Patient Diagnosis" class="form-control" required minlength="5">
+                                        <input type="text" name="pt_diagnosis" placeholder="Patient Diagnosis" class="form-control" required minlength="5">
 
                                         <div class="mg-t-25">
 
@@ -136,14 +129,14 @@
 
                                         <!-- create a check box with the following 1. elective case 2. urgent case -->
 
-                                        <input type="checkbox" name="case_type" value="Elective Case" onclick="onlyOne(this)" style="size: 50%">
+                                        <input type="checkbox" name="case_type" value="Elective Case" onclick="onlyOne(this)" style="size: 50%" required>
                                         <label for="casetype" style="font-weight: lighter;"> Elective case</label><br>
-                                        <input type="checkbox" name="case_type" value="Urgent Case" onclick="onlyOne(this)">
+                                        <input type="checkbox" name="case_type" value="Urgent Case" onclick="onlyOne(this)" required>
                                         <label for="vehicle3" style="font-weight: lighter;"> Urgent case</label><br><br>
 
 
                                         <script>
-                                            function onlyOne(checkbox) {
+                                            const onlyOne = (checkbox) => {
                                                 var checkboxes = document.getElementsByName('case_type')
                                                 checkboxes.forEach((item) => {
                                                     if (item !== checkbox) item.checked = false
@@ -168,25 +161,25 @@
                                     <div class="col-lg-10">
                                         <div class="mg-t-25">
 
-                                            <label for="case_type" class="form-label">Supportive Therapy <span style="color:red">*</label>
+                                            <label for="purpose" class="form-label">Supportive Therapy <span style="color:red">*</label>
                                             <br>
                                         </div>
 
-                                        <input type="checkbox" name="purpose_1" value="Supportive Therapyt - Spiritual" onclick="onlyOne_1(this)" style="size: 50%">
+                                        <input type="checkbox" name="purpose" value="Supportive Therapyt - Spiritual" onclick="onlyOne_1(this)" style="size: 50%" required>
                                         <label for="" style="font-weight: lighter;"> Spiritual</label><br>
-                                        <input type="checkbox" name="purpose_1" value="Supportive Therapyt - Moral / Motivation" onclick="onlyOne_1(this)">
+                                        <input type="checkbox" name="purpose" value="Supportive Therapyt - Moral / Motivation" onclick="onlyOne_1(this)" required>
                                         <label for="" style="font-weight: lighter;"> Moral / Motivation </label><br><br>
 
 
                                         <div class="mg-t-25">
 
-                                            <label for="case_type" class="form-label">Practical Assistance <span style="color:red">*</label>
+                                            <label for="purpose" class="form-label">Practical Assistance <span style="color:red">*</label>
                                             <br>
                                         </div>
 
-                                        <input type="checkbox" name="purpose_2" value="Practical Assistance - Perform Ibadah" onclick="onlyOne_2(this)" style="size: 50%">
-                                        <label for="" style="font-weight: lighter;"> Perform Ibadah</label><br>
-                                        <input type="checkbox" name="purpose_2" value="Practical Assistance - Others" onclick="onlyOne_2(this)">
+                                        <input type="checkbox" name="purpose" value="Practical Assistance - Perform Ibadah" onclick="onlyOne_1(this)" style="size: 50%" required>
+                                        <label for="purpose" style="font-weight: lighter;"> Perform Ibadah</label><br>
+                                        <input type="checkbox" name="purpose" value="Practical Assistance - Others" onclick="onlyOne_1(this)" required>
                                         <label for="" style="font-weight: lighter;"> Others </label><br>
 
                                         <div class="mg-t-25">
@@ -194,24 +187,17 @@
                                             <label for="name" class="form-label">Details </label>
                                         </div>
 
-                                        <input type="text" name="details" placeholder="Details" class="form-control" required minlength="5">
+                                        <input type="text" name="details" placeholder="Details" class="form-control" minlength="5">
 
 
                                         <script>
-                                            function onlyOne_1(checkbox) {
-                                                var checkboxes = document.getElementsByName("purpose_1")
+                                            const onlyOne_1 = (checkbox) => {
+                                                var checkboxes = document.getElementsByName("purpose")
                                                 checkboxes.forEach((item) => {
                                                     if (item !== checkbox) item.checked = false
                                                 })
                                             }
 
-
-                                            function onlyOne_2(checkbox) {
-                                                var checkboxes = document.getElementsByName("purpose_2")
-                                                checkboxes.forEach((item) => {
-                                                    if (item !== checkbox) item.checked = false
-                                                })
-                                            }
                                         </script>
 
 
