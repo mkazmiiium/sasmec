@@ -10,7 +10,7 @@ class SCCPController extends Controller
     public function index(){
 
         if(Auth::user()->hasRole('admin')){
-            return view('admin.sccp');
+            return view('Admin.sccp');
         }
 
     }

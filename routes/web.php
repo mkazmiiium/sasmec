@@ -2,24 +2,8 @@
 
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\SCCPController;
-use App\Http\Controllers\Form\DocumentReviewController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Form\FoodPremiseController;
-use App\Http\Controllers\Form\ProgramController;
-use App\Http\Controllers\Form\ActivityMonitoringController;
-use App\Http\Controllers\Form\ReferralFormController;
-use App\Http\Controllers\Form\ComplaintFormController;
-use App\Http\Controllers\Form\TermsController;
-use App\Http\Controllers\Form\SpeakerController;
-use App\Http\Controllers\Form\SLOReportController;
-use App\Http\Controllers\Form\SLOMonthlyController;
-use App\Http\Controllers\Form\ClinicController;
-use App\Http\Controllers\Form\PatientVisitController;
-use App\Http\Controllers\AcceptanceController;
-use App\Http\Controllers\ManageReportController;
-use App\Http\Controllers\Form\MyTaskController;
 
 
 /*
@@ -33,21 +17,12 @@ use App\Http\Controllers\Form\MyTaskController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('auth.login');
-// })->middleware(['auth'])->name('login');
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
 
 Route::get('/', 'App\Http\Controllers\DashboardController@index')->middleware(['auth'])->name('login');
 
 //auth route for all
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
-
-
 
     //Manage My Report
     Route::get('/my-report-history', 'App\Http\Controllers\Form\ManageReportController@viewReportHistory')->name('report.history');
@@ -75,21 +50,17 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
     //My Task
     Route::get('/my-task', 'App\Http\Controllers\Form\MyTaskController@viewTask')->name('view.task');
-
 });
 
 // routes for dsc and ndsc
 Route::group(['middleware' => ['auth', 'role:dsc']], function () {
 
-    // //Manage My Report
-    // Route::get('/my-report-history', 'App\Http\Controllers\Form\ManageReportController@viewReportHistory')->name('report.history');
-    // //Route::get('/my-report-history', 'App\Http\Controllers\Form\ManageReportController@show')->name('report.history');
-
-
+    // registration
+    Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+    Route::post('/register', [RegisteredUserController::class, 'store']);
 
     //My Task
     Route::get('/my-task', 'App\Http\Controllers\Form\MyTaskController@viewTask')->name('view.task');
-
 
     //Document Review
     Route::get('/document-review/create', 'App\Http\Controllers\Form\DocumentReviewController@create')->name('document-review.create');
@@ -103,11 +74,8 @@ Route::group(['middleware' => ['auth', 'role:dsc']], function () {
     Route::post('/food/store', 'App\Http\Controllers\Form\FoodPremiseController@store')->name('food.store');
     Route::get('/food/show', 'App\Http\Controllers\Form\FoodPremiseController@show')->name('food.show');
     Route::get('/manage-food/view/all', 'App\Http\Controllers\Form\FoodPremiseController@viewAll')->name('food.view-all');
-    // Route::get('/food/details/{id}', 'App\Http\Controllers\Form\FoodPremiseController@show')->name('food.details');
     Route::get('/food/details/{id}', [FoodPremiseController::class, 'show']);
     Route::post('food', 'App\Http\Controllers\Form\FoodPremiseController@store')->name('food.store');
-    // Route::post('food', 'App\Http\Controllers\Form\FoodPremiseController@store');
-    // Route::post('/food/store', 'FoodPremiseController@store');
 
     //Program Monitoring
     Route::get('/program/create', 'App\Http\Controllers\Form\ProgramController@create')->name('program.create');
@@ -120,9 +88,6 @@ Route::group(['middleware' => ['auth', 'role:dsc']], function () {
     Route::post('/program/comment/store/{id}', 'App\Http\Controllers\Form\ProgramController@storeComment');
     Route::get('/program/pdf/{id}', 'App\Http\Controllers\Form\ProgramController@pdf')->name('program.pdf');
     Route::get('/program/view/{id}', 'App\Http\Controllers\Form\ProgramController@view')->name('program.view');
-    // Route::post('program', 'App\Http\Controllers\Form\ProgramController@store')->name('program.store');
-    // Route::post('program', 'App\Http\Controllers\Form\ProgramController@store');
-    // Route::post('/program/store', 'ProgramController@store');
 
     //Activity MonitoringActivityMonitoringController
     Route::get('/activity-monitoring/create', 'App\Http\Controllers\Form\@create')->name('activity-monitor.create');
@@ -140,22 +105,15 @@ Route::group(['middleware' => ['auth', 'role:dsc']], function () {
     Route::get('/referral/pdf/{id}', 'App\Http\Controllers\Form\ReferralFormController@pdf')->name('referral.pdf');
 
     //Complaint
-    // Route::get('/complaint/create', 'App\Http\Controllers\Form\ComplaintFormController@create')->name('complaint.create');
-    // Route::post('/complaint/store', 'App\Http\Controllers\Form\ComplaintFormController@storeReport')->name('complaint.store');
     Route::get('/manage-complaint/view/all', 'App\Http\Controllers\Form\ComplaintFormController@viewAll')->name('complaint.view-all');
-    // Route::get('/complaint/details/{id}', 'App\Http\Controllers\Form\ComplaintFormController@viewComplaintDetails');
     Route::get('/complaint/assign-staff/{id}', 'App\Http\Controllers\Form\ComplaintFormController@assignStaff')->name('complaint.assign');
     Route::post('/complaint/assign-staff/store/{id}', 'App\Http\Controllers\Form\ComplaintFormController@storeAssignStaff')->name('complaint.store.assign');
     Route::get('/complaint/investigate/{id}', 'App\Http\Controllers\Form\ComplaintFormController@investigateComplaint');
     Route::post('/complaint/investigate/store/{id}', 'App\Http\Controllers\Form\ComplaintFormController@storeInvestigation');
-    // Route::get('/complaint/show', 'App\Http\Controllers\Form\ComplaintFormController@show')->name('complaint.show');
-    // Route::get('/complaint/pdf/{id}','App\Http\Controllers\Form\ComplaintFormController@pdf')->name('complaint.pdf');
-    // Route::get('/complaint/view/{id}','App\Http\Controllers\Form\ComplaintFormController@view')->name('complaint.view');
 
     //T&C
     Route::get('/terms/create', 'App\Http\Controllers\Form\TermsController@create')->name('terms.create');
     Route::post('/terms/store', 'App\Http\Controllers\Form\TermsController@store')->name('terms.store');
-    // Route::get('/manage-terms/view/all', 'App\Http\Controllers\Form\TermsController@show')->name('terms.view-all');
     Route::get('/manage-terms/view/all', 'App\Http\Controllers\Form\TermsController@viewAll')->name('terms.view-all');
     Route::get('/terms/edit', 'App\Http\Controllers\Form\TermsController@edit')->name('terms.edit');
     Route::get('/terms/show', 'App\Http\Controllers\Form\TermsController@show')->name('terms.show');
@@ -168,7 +126,6 @@ Route::group(['middleware' => ['auth', 'role:dsc']], function () {
     //Speaker Consent Form
     Route::get('/speaker/create', 'App\Http\Controllers\Form\SpeakerController@create')->name('speaker.create');
     Route::post('/speaker/store', 'App\Http\Controllers\Form\SpeakerController@store')->name('speaker.store');
-    // Route::get('/manage-speaker/view/all', 'App\Http\Controllers\Form\SpeakerController@show')->name('speaker.view-all');
     Route::get('/manage-speaker/view/all', 'App\Http\Controllers\Form\SpeakerController@viewAll')->name('speaker.view-all');
     Route::get('/speaker/edit', 'App\Http\Controllers\Form\SpeakerController@edit')->name('speaker.edit');
     Route::get('/speaker/show', 'App\Http\Controllers\Form\SpeakerController@show')->name('speaker.show');
@@ -200,15 +157,6 @@ Route::group(['middleware' => ['auth', 'role:dsc']], function () {
     Route::post('/clinic/assign-staff/store/{id}', 'App\Http\Controllers\Form\ClinicController@storeAssignStaff')->name('clinic.store.assign');
     Route::get('/clinic/comment/{id}', 'App\Http\Controllers\Form\ClinicController@commentClinic');
     Route::post('/clinic/comment/store/{id}', 'App\Http\Controllers\Form\ClinicController@storeComment');
-    // Route::post('clinic', 'App\Http\Controllers\Form\ClinicController@store')->name('clinic.store');
-    // Route::post('clinic', 'App\Http\Controllers\Form\ClinicController@store');
-    // Route::post('/clinic/store', 'ClinicController@store');
-    // Route::get('/clinic/list', 'ClinicController@index')->name('clinic.index');
-    // Route::get('clinic/list', 'ClinicController@index')->name('clinic.index');
-    // Route::get('/clinic/list', 'App\Http\Controllers\Form\ClinicController@index')->name('clinic.index');
-    // Route::get('clinic/list', 'App\Http\Controllers\Form\ClinicController@index')->name('clinic.index');
-    // Route::get('edit/{id}', ['App\Http\Controllers\Form\StudentController::class', 'edit']);
-    // Route::post('clinic/edit/{id}','App\Http\Controllers\Form\ClinicController@edit');
 
     //SLO Monthly report
     Route::get('/slo-monthly/create', 'App\Http\Controllers\Form\SLOMonthlyController@create')->name('slo-monthly.create');
@@ -247,7 +195,6 @@ Route::group(['middleware' => ['auth', 'role:dsc']], function () {
 
 // routes for ndsc
 Route::group(['middleware' => ['auth', 'role:ndsc']], function () {
-
 });
 
 require __DIR__ . '/auth.php';

@@ -27,6 +27,8 @@ class ComplaintFormController extends Controller
 
     public function create()
     {
+        error_log("auth users");
+        error_log(Auth::user());
         return view('Forms.Complaint.create');
     }
 

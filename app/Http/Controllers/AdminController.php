@@ -59,6 +59,6 @@ class AdminController extends Controller
             'alert-class' => 'bg-success text-white'
         );
 
-        return redirect()->route('User.view')->with($notification);
+        return redirect()->route('dashboard')->with($notification);
     }
 }
