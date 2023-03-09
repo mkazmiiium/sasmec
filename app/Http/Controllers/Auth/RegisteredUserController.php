@@ -55,7 +55,10 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        if ($request->role_id == "admin" || $request->role_id == "dsc") {
+        if ($request->role_id == "dsc") {
+            # we need to update the user table to set allreport, assignstaff, reviewreport to 1
+            # so that the user can access the manage reports
+            # this only applies to the DSC role
             User::where('username', $user->username)->update([
                 'allreport' => 1,
                 'assignstaff' => 1,
