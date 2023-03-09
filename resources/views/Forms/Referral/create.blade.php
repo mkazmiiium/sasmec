@@ -110,10 +110,10 @@
                                     <div class="col-lg-10">
                                         <div class="mg-t-25">
 
-                                            <label for="name" class="form-label">Despline / Expertise <span style="color:red">*</label>
+                                            <label for="name" class="form-label">Discipline / Expertise <span style="color:red">*</label>
                                         </div>
 
-                                        <input type="text" name="doc_expertise" placeholder="Despline / Expertise" class="form-control" required minlength="5">
+                                        <input type="text" name="doc_expertise" placeholder="Discipline / Expertise" class="form-control" required minlength="5">
                                         <div class="mg-t-25">
 
                                             <label for="name" class="form-label">Patient Diagnosis <span style="color:red">*</label>

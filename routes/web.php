@@ -38,19 +38,19 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 // routes for admin
-Route::group(['middleware' => ['auth', 'role:admin']], function () {
+// Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
-    Route::get('/sccp/view', 'App\Http\Controllers\SCCPController@index')->name('sccp.view');
+//     Route::get('/sccp/view', 'App\Http\Controllers\SCCPController@index')->name('sccp.view');
 
-    //Manage Staff
-    Route::get('/user-list', 'App\Http\Controllers\AdminController@ViewAllUser')->name('user.view');
-    Route::post('/search-user', 'App\Http\Controllers\AdminController@SearchUser');
-    Route::get('/edit-user-access/{id}', 'App\Http\Controllers\AdminController@EditUserAccess')->name('user-access.edit');
-    Route::post('/update-user-access/{id}', 'App\Http\Controllers\AdminController@UpdateUserAccess')->name('user-access.update');
+//     //Manage Staff
+//     Route::get('/user-list', 'App\Http\Controllers\AdminController@ViewAllUser')->name('user.view');
+//     Route::post('/search-user', 'App\Http\Controllers\AdminController@SearchUser');
+//     Route::get('/edit-user-access/{id}', 'App\Http\Controllers\AdminController@EditUserAccess')->name('user-access.edit');
+//     Route::post('/update-user-access/{id}', 'App\Http\Controllers\AdminController@UpdateUserAccess')->name('user-access.update');
 
-    //My Task
-    Route::get('/my-task', 'App\Http\Controllers\Form\MyTaskController@viewTask')->name('view.task');
-});
+//     //My Task
+//     Route::get('/my-task', 'App\Http\Controllers\Form\MyTaskController@viewTask')->name('view.task');
+// });
 
 // routes for dsc and ndsc
 Route::group(['middleware' => ['auth', 'role:dsc']], function () {

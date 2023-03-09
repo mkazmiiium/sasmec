@@ -55,6 +55,14 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        if ($request->role_id == "admin" || $request->role_id == "dsc") {
+            User::where('username', $user->username)->update([
+                'allreport' => 1,
+                'assignstaff' => 1,
+                'reviewreport' => 1,
+            ]);
+        }
+
         $user->attachRole($request->role_id);
 
         event(new Registered($user));

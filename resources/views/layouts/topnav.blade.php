@@ -18,8 +18,8 @@
                             this.closest('form').submit();">
                   <i class="icon ion-power"></i> Sign Out</a>
 
-              <li style="background-color: blue; "><a href="{{ route('register') }}" >
-                  <i class="icon ion-register"></i> Register New User</a>
+              {{-- <li style="background-color: blue; "><a href="{{ route('register') }}" >
+                  <i class="icon ion-register"></i> Register New User</a> --}}
             </form>
             </li>
           </ul>
