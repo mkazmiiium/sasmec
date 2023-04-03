@@ -34,7 +34,7 @@ $route = Route::current()->getName();
       <li class="nav-item"><a href="{{ route('food.create') }}" class="nav-link">Food Premise Inspection</a></li>
       <li class="nav-item"><a href="{{ route('referral.create') }}" class="nav-link">Referral Form</a></li>
       <li class="nav-item"><a href="{{ route('program.create') }}" class="nav-link">Program Monitoring</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Activity Monitoring</a></li>
+      <li class="nav-item"><a href="{{ route('activity-monitor.create') }}" class="nav-link">Activity Monitoring</a></li>
       <li class="nav-item"><a href="{{ route('complaint.create') }}" class="nav-link">Complaint Form</a></li>
       <li class="nav-item"><a href="{{ route('terms.create') }}" class="nav-link">Terms and Condition</a></li>
 
@@ -74,7 +74,7 @@ $route = Route::current()->getName();
       <li class="nav-item"><a href="{{ route('food.view-all') }}" class="nav-link">Food Premise Inspection</a></li>
       <li class="nav-item"><a href="{{ route('referral.view-all') }}" class="nav-link">Referral Form</a></li>
       <li class="nav-item"><a href="{{ route('program.view-all') }}" class="nav-link">Program Monitoring</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Activity Monitoring</a></li>
+      <li class="nav-item"><a href="{{ route('activity-monitor.view') }}" class="nav-link">Activity Monitoring</a></li>
       <li class="nav-item"><a href="{{ route('complaint.view-all') }}" class="nav-link">Complaint Form</a></li>
       <li class="nav-item"><a href="{{ route('terms.view-all') }}" class="nav-link">Terms and Condition</a></li>
       <li class="nav-item"><a href="{{ route('slo-report.view-all') }}" class="nav-link">SLO Report</a></li>
@@ -100,7 +100,7 @@ $route = Route::current()->getName();
     <a href="{{ route('report.history') }}" class="sl-menu-link">
       <div class="sl-menu-item">
         <i class="menu-item-icon icon ion-ios-paper tx-22"></i>
-        <span class="menu-item-label">My Report Histories</span>
+        <span class="menu-item-label">My Report History</span>
       </div><!-- menu-item -->
     </a><!-- sl-menu-link -->
 

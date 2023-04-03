@@ -117,8 +117,8 @@
                         <div class="card-body">
                             <h3 class="card-title">Activity Monitoring Form</h3>
                             <p class="card-text">IIUM-IIUMMC-SHAR-F007</p>
-                            <a href="#" class="btn btn-outline-light">Create Report</a>
-                            <a href="#" class="btn btn-outline-light">Manage Reports</a>
+                            <a href="{{ route('activity-monitor.create') }}" class="btn btn-outline-light">Create Report</a>
+                            <a href="{{ route('activity-monitor.view') }}" class="btn btn-outline-light">Manage Reports</a>
                         </div>
                     </div>
                 </div>

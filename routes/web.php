@@ -89,9 +89,11 @@ Route::group(['middleware' => ['auth', 'role:dsc']], function () {
     Route::get('/program/pdf/{id}', 'App\Http\Controllers\Form\ProgramController@pdf')->name('program.pdf');
     Route::get('/program/view/{id}', 'App\Http\Controllers\Form\ProgramController@view')->name('program.view');
 
-    //Activity MonitoringActivityMonitoringController
-    Route::get('/activity-monitoring/create', 'App\Http\Controllers\Form\@create')->name('activity-monitor.create');
+    //Activity MonitoringActivityController
+    Route::get('/activity-monitoring/create', 'App\Http\Controllers\Form\ActivityMonitoringController@create')->name('activity-monitor.create');
     Route::post('/activity-monitoring/store', 'App\Http\Controllers\Form\ActivityMonitoringController@store')->name('activity-monitor.store');
+    Route::get('/activity-monitoring/view', 'App\Http\Controllers\Form\ActivityMonitoringController@view')->name('activity-monitor.view');
+    Route::get('/activity-monitoring/pdf/{id}', 'App\Http\Controllers\Form\ActivityMonitoringController@pdf')->name('activity-monitor.pdf');
 
     //Referral
     Route::get('/referral/create', 'App\Http\Controllers\Form\ReferralFormController@create')->name('referral.create');

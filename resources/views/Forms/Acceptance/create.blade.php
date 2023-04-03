@@ -152,6 +152,7 @@
                             } else {
                                 document.getElementById('checkbox_msg').innerHTML = "Please check the box";
                                 return false;
+                                
                             }
                         }
                     </script>

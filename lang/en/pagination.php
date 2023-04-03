@@ -1,5 +1,6 @@
 <?php
 
+
 return [
 
     /*
@@ -17,3 +18,5 @@ return [
     'next' => 'Next &raquo;',
 
 ];
+
+

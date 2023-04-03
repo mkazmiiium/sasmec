@@ -15,7 +15,16 @@ class CreateActivityMonitoringsTable extends Migration
     {
         Schema::create('activity_monitorings', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('activity_name');
+            $table->string('pic');
+            $table->string('department');
+            $table->string('shariah_critical_point')->nullable();
+            $table->string('shariah_non_conformity')->nullable();
+            $table->string('corrective_action')->nullable();
+            $table->string('discussion_point')->nullable();
+            $table->string('suggestion')->nullable();
+            $table->string('next_follow')->nullable();
+            $table->date('created_date');
         });
     }
 
