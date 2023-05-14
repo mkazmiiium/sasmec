@@ -104,14 +104,11 @@
                   <td>{{ $food_premises->location }}</td>
                   <td>
                     <div class="btn-group table-action" role="group">
-                      <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
-                        <i class="fa fa-eye mg-r-10"></i>
-                        <a href="{{ url('food/create') }}">Edit</a>
-                      </button>
 
                       <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
                         <i class="fa fa-download mg-r-10"></i>
-                        <a href="#">Download</a>
+                        <a href="{{ action('App\Http\Controllers\Form\FoodPremiseController@pdf', $count) }}" target="_blank">Show</a>
+
                       </button>
                     </div>
                   </td>

@@ -44,6 +44,7 @@ class FoodPremiseController extends Controller
             'location' => $request->location,
             'declaration' => $request->declaration,
             'remarks1' => $request->remarks1,
+
             'Q1' => $request->Q1,
             'remarks2' => $request->remarks2,
             'Q2' => $request->Q2,
@@ -144,9 +145,10 @@ class FoodPremiseController extends Controller
             'remarks47' => $request->remarks47,
             'Q47' => $request->Q47,
             'remarks48' => $request->remarks48,
-            'Q48' => $request->Q48,
+            'Q48' => $request->Q48, 
             'comment' => $request->comment,
             'correctiveaction' => $request->correctiveaction,
+            'created_at' => Carbon::now(),
         ]);
 
 
@@ -209,5 +211,25 @@ class FoodPremiseController extends Controller
     {
         $food = DB::select('select * from food_premises');
         return view('ManageReports.all-food',['food_premises'=>$food]);
+    }
+
+    public function pdf($id)
+    {
+        if (FoodPremise::where('id', $id)->exists()) {
+
+            $food = FoodPremise::find($id);
+            $pdf = PDF::loadview('Food/pdf', compact('food'));
+            return $pdf->stream('food.pdf');
+            // The record exists in the database
+        } else {
+            $notification = array(
+                'message' => 'No Data Found!',
+                'alert-type' => 'error',
+                'alert-class' => 'bg-danger text-white'
+            );
+
+            return redirect('/dashboard')->with($notification);
+            // The record was not found in the database
+        }
     }
 }

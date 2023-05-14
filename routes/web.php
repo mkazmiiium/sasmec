@@ -76,6 +76,7 @@ Route::group(['middleware' => ['auth', 'role:dsc']], function () {
     Route::get('/manage-food/view/all', 'App\Http\Controllers\Form\FoodPremiseController@viewAll')->name('food.view-all');
     Route::get('/food/details/{id}', [FoodPremiseController::class, 'show']);
     Route::post('food', 'App\Http\Controllers\Form\FoodPremiseController@store')->name('food.store');
+    Route::get('/food/pdf/{id}', 'App\Http\Controllers\Form\FoodPremiseController@pdf')->name('food.pdf');
 
     //Program Monitoring
     Route::get('/program/create', 'App\Http\Controllers\Form\ProgramController@create')->name('program.create');
