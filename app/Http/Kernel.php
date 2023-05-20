@@ -37,12 +37,20 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            // \App\Http\Middleware\DSCMiddleware::class,
+            // \App\Http\Middleware\NDSCMiddleware::class,
+            // \App\Http\Middleware\Authenticate::class,
+            // \App\Http\Middleware\AdminMiddleware::class,
         ],
 
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            // \App\Http\Middleware\DSCMiddleware::class,
+            // \App\Http\Middleware\NDSCMiddleware::class,
+            // \App\Http\Middleware\Authenticate::class,
+            // \App\Http\Middleware\AdminMiddleware::class,
         ],
     ];
 
@@ -55,6 +63,9 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
+        'dsc' => \App\Http\Middleware\DSCMiddleware::class,
+        'ndsc' => \App\Http\Middleware\NDSCMiddleware::class,
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,

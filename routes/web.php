@@ -4,7 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Form\FoodPremiseController;
-
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +16,6 @@ use App\Http\Controllers\Form\FoodPremiseController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 
 Route::get('/', 'App\Http\Controllers\DashboardController@index')->middleware(['auth'])->name('login');
 
@@ -53,11 +52,7 @@ Route::group(['middleware' => ['auth']], function () {
 // });
 
 // routes for dsc and ndsc
-Route::group(['middleware' => ['auth', 'role:dsc']], function () {
-
-    // registration
-    Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
-    Route::post('/register', [RegisteredUserController::class, 'store']);
+Route::group(['middleware' => ['auth', 'dsc']], function () {
 
     //My Task
     Route::get('/my-task', 'App\Http\Controllers\Form\MyTaskController@viewTask')->name('view.task');
@@ -196,8 +191,13 @@ Route::group(['middleware' => ['auth', 'role:dsc']], function () {
     Route::get('/acceptance/pdf/{id}', 'App\Http\Controllers\Form\AcceptanceController@pdf')->name('acceptance.pdf');
 });
 
-// routes for ndsc
-Route::group(['middleware' => ['auth', 'role:ndsc']], function () {
+// routes for admin
+Route::group(['middleware' => ['admin']], function () {
+    // registration
+    Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+    Route::post('/register', [RegisteredUserController::class, 'store']);
+
+    
 });
 
 require __DIR__ . '/auth.php';

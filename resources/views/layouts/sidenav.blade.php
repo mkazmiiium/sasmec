@@ -58,6 +58,7 @@ $route = Route::current()->getName();
     $reviewreport = (auth()->user()->reviewreport == 1);
     $reviewstatistic = (auth()->user()->reviewstatistic == 1);
     $useraccess = (auth()->user()->useraccess == 1);
+    $admin = (auth()->user()->role == 'admin');
 
     @endphp
 
@@ -107,7 +108,7 @@ $route = Route::current()->getName();
     </a><!-- sl-menu-link -->
 
 
-    @if($alluser == true )
+    @if($admin == true)
     <a href="index.html" class="sl-menu-link">
       <div class="sl-menu-item">
         <i class="menu-item-icon icon ion-ios-people tx-22"></i>
