@@ -113,8 +113,14 @@ $route = Route::current()->getName();
       <div class="sl-menu-item">
         <i class="menu-item-icon icon ion-ios-people tx-22"></i>
         <span class="menu-item-label">Manage Staff</span>
+        <i class="menu-item-arrow fa fa-angle-down"></i>
       </div><!-- menu-item -->
     </a><!-- sl-menu-link -->
+    <ul class="sl-menu-sub nav flex-column">
+      <li class="nav-item"><a href="{{ route('admin.register') }}" class="nav-link">Create Staff</a></li>
+      <li class="nav-item"><a href="{{ route('admin.view-all') }}" class="nav-link">View Staffs</a></li>
+     
+    </ul>
     @else
     @endif
 

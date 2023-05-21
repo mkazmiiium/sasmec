@@ -6,20 +6,18 @@ use App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class AdminController extends Controller
 {
-    public function ViewAllUser()
+    public function ViewAllUsers()
     {
-
-        $users = DB::table('users')
-            ->join('role_user', 'role_user.user_id', 'users.id')
-            ->join('roles', 'role_user.role_id', 'roles.id')
-            ->select('users.*', 'roles.display_name')
-            ->latest()->latest()->get();
-
-
-        return view('Admin.ManageStaff.view', compact('users'));
+        $users = DB::select('select * from users');
+        return view('Admin.ManageStaff.view-all', compact('users'));
     }
 
     public function SearchUser(Request $request)
@@ -27,20 +25,11 @@ class AdminController extends Controller
         return $request;
     }
 
-    public function EditUserAccess($id)
+    public function create()
     {
-
-        $user = User::findOrFail($id);
-
-        // $user = DB::table('users')
-        //          ->join('role_user', 'role_user.user_id', 'users.id')
-        //          ->join('roles', 'role_user.role_id', 'roles.id')
-        //          ->select('users.*', 'roles.display_name')
-        //          ->where('users.id', "=", $id)
-        //          ->get();
-
-        return view('Admin.ManageStaff.edit-access', compact('user'));
+        return view('Admin.ManageStaff.create-new-staff');
     }
+
 
     public function UpdateUserAccess(Request $request, $id)
     {
@@ -55,10 +44,64 @@ class AdminController extends Controller
 
         $notification = array(
             'message' => "User access updated successfully",
-              'alert-type' => 'success',
+            'alert-type' => 'success',
             'alert-class' => 'bg-success text-white'
         );
 
         return redirect()->route('dashboard')->with($notification);
+    }
+
+    public function store(Request $request)
+    {
+        User::insert([
+            'name' => $request->name,
+            'dept' => $request->dept,
+            'position' => $request->position,
+            'contact_no' => $request->contact_no,
+            'role' => $request->role,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $notification = array(
+            'message' => "User access updated successfully",
+            'alert-type' => 'success',
+            'alert-class' => 'bg-success text-white'
+        );
+        return redirect()->route('dashboard')->with($notification);
+    }
+
+
+    public function UpdateUser(Request $request, $id)
+    {
+        if ($request->password == null) {
+            User::find($id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'role' => $request->role,
+            ]);
+        } else {
+            User::find($id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'role' => $request->role,
+                'password' => Hash::make($request->password),
+            ]);
+        }
+
+        $notification = array(
+            'message' => "User info updated successfully",
+            'alert-type' => 'success',
+            'alert-class' => 'bg-success text-white'
+        );
+
+        return redirect()->route('dashboard')->with($notification);
+    }
+
+    public function EditUser($id)
+    {
+        $user = User::find($id);
+        return view('Admin.ManageStaff.edit-staff-info', compact('user'));
     }
 }

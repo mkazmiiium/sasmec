@@ -10,12 +10,13 @@ class DashboardController extends Controller
     public function index()
     {
 
-        if (Auth::user()->role == 'dsc') {
-            // return view('User.admin_index'); some weird route that show user info and let the user change their info themselves
+        if (Auth::user()->role == 'admin') {
+            // return view('User.admin_index'); //some weird route that show user info and let the user change their info themselves
             // return view('User.___dsc_index');  even more weird
-            return view('User.admin_dashboard'); // the real dashboard for user muhammad
+            // return view('Admin.ManageStaff.view-all'); // the real dashboard for user muhammad
             // return view('User.dashboard'); 
-            // return view('User._admin_index'); some weird statistic 
+            return view('User.dsc_index'); //some weird statistic 
+
 
             // return view('User.ndsc_index'); this trash fr
 

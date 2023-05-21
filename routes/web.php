@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Form\FoodPremiseController;
@@ -52,8 +52,20 @@ Route::group(['middleware' => ['auth']], function () {
 // });
 
 // routes for dsc and ndsc
-Route::group(['middleware' => ['auth', 'dsc']], function () {
+Route::group(['middleware' => ['auth', 'admin']], function () {
 
+    // register new users
+    Route::get('/admin/register', [AdminController::class, 'create'])->name('admin.register');
+    Route::post('/admin/register', [AdminController::class, 'store'])->name('admin.register.store');
+
+    // route for admin to view all staffs
+    Route::get('/admin/view-all', [AdminController::class, 'ViewAllUsers'])->name('admin.view-all');
+
+    // edit user info
+    Route::get('/admin/edit-user/{id}', [AdminController::class, 'EditUser'])->name('admin.edit-user');
+    Route::post('/admin/edit-user/{id}', [AdminController::class, 'UpdateUser'])->name('admin.update-user');
+    
+    
     //My Task
     Route::get('/my-task', 'App\Http\Controllers\Form\MyTaskController@viewTask')->name('view.task');
 
@@ -192,12 +204,12 @@ Route::group(['middleware' => ['auth', 'dsc']], function () {
 });
 
 // routes for admin
-Route::group(['middleware' => ['admin']], function () {
-    // registration
-    Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
-    Route::post('/register', [RegisteredUserController::class, 'store']);
+// Route::group(['middleware' => ['admin']], function () {
+//     // registration
+//     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+//     Route::post('/register', [RegisteredUserController::class, 'store']);
 
-    
-});
+
+// });
 
 require __DIR__ . '/auth.php';

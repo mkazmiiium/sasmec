@@ -22,9 +22,9 @@
                 <img class="profile-user-img img-fluid img-circle admin_picture" src="/images/admin_vector.jpg" alt="User profile picture">
               </div>
 
-              <h3 class="profile-username text-center admin_name"> $user->name </h3>
+              <h3 class="profile-username text-center admin_name"> {{ $user->name }}</h3>
 
-              <p class="text-muted text-center">$user->role</p>
+              <p class="text-muted text-center">{{ $user->role }}</p>
 
 
 
@@ -49,11 +49,12 @@
             <div class="card-body">
               <div class="tab-content">
                 <div class="active tab-pane" id="personal_info">
-                  <form class="form-horizontal" method="POST" action="#" id="AdminInfoForm">
+                  <form class="form-horizontal" method="POST" action="{{ action('App\Http\Controllers\AdminController@EditUser', $user->id) }}" id="AdminInfoForm">
+                    @csrf
                     <div class="form-group row">
                       <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name" value="$user->name" name="name">
+                        <input type="text" class="form-control" id="name" value="{{ $user->name }}" name="name">
 
                         <span class="text-danger error-text name_error"></span>
                       </div>
@@ -61,20 +62,11 @@
                     <div class="form-group row">
                       <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="email" value="$user->email" name="email">
+                        <input type="text" class="form-control" id="email" value="{{ $user->email }}" name="email">
                         <span class="text-danger error-text email_error"></span>
                       </div>
                     </div>
-                    <div class="form-group row">
-                      <label for="cpassword" class="col-sm-2 col-form-label">Role</label>
-                      <div class="col-sm-5">
-                        <select name="role" style="padding: 8px;" >
-                          <option value="admin">Admin</option>
-                          <option value="dsc">DSC</option>
-                          <option value="ndsc" selected="selected">NDSC</option>
-                        </select>
-                      </div>
-                    </div>
+                   
                     <div class="form-group row">
                       <div class="offset-sm-2 col-sm-10">
                         <button type="submit" class="btn btn-danger">Save Changes</button>
@@ -84,7 +76,8 @@
                 </div>
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="change_password">
-                  <form class="form-horizontal" action="#" method="POST" id="changePasswordAdminForm">
+                  <form class="form-horizontal" action="{{ action('App\Http\Controllers\AdminController@EditUser', $user->id) }}" method="POST" id="changePasswordAdminForm">
+                    @csrf
                     <div class="form-group row">
                       <label for="inputName" class="col-sm-2 col-form-label">Old Passord</label>
                       <div class="col-sm-10">
