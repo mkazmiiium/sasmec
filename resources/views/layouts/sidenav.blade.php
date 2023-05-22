@@ -38,7 +38,7 @@ $route = Route::current()->getName();
       <li class="nav-item"><a href="{{ route('complaint.create') }}" class="nav-link">Complaint Form</a></li>
       <li class="nav-item"><a href="{{ route('terms.create') }}" class="nav-link">Terms and Condition</a></li>
 
-      @if(Auth::user()->hasRole('dsc'))
+      @if(Auth::user()->role == 'dsc')
       <li class="nav-item"><a href="{{ route('slo-report.create') }}" class="nav-link">SLO Report</a></li>
       @else
       @endif
@@ -59,10 +59,11 @@ $route = Route::current()->getName();
     $reviewstatistic = (auth()->user()->reviewstatistic == 1);
     $useraccess = (auth()->user()->useraccess == 1);
     $admin = (auth()->user()->role == 'admin');
+    $dsc = (auth()->user()->role == 'dsc');
 
     @endphp
 
-    @if($reviewreport == true)
+    @if($admin == true || $dsc == true)
     <a href="#" class="sl-menu-link">
       <div class="sl-menu-item">
         <i class="menu-item-icon icon ion-filing tx-24"></i>
@@ -88,7 +89,7 @@ $route = Route::current()->getName();
     @else
     @endif
 
-    @if($reviewreport == true)
+    @if($admin == true || $dsc == true)
     <a href="{{ route('view.task') }}" class="sl-menu-link">
       <div class="sl-menu-item">
         <i class="menu-item-icon icon ion-ios-list tx-22"></i>

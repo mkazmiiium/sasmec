@@ -17,7 +17,7 @@ class DSCMiddleware
    */
   public function handle(Request $request, Closure $next)
   {
-    if (Auth::user()->role == 'dsc') {
+    if (Auth::user()->role == 'dsc' || Auth::user()->role == 'ndsc') {
       return $next($request);
     } else {
       return redirect()->route('login');
