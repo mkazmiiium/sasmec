@@ -1,0 +1,183 @@
+<?php
+
+use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Form\FoodPremiseController;
+use Illuminate\Support\Facades\Auth;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', 'App\Http\Controllers\DashboardController@index')->middleware(['auth'])->name('login');
+
+// routes for dsc and ndsc
+Route::group(['middleware' => ['admin', 'auth']], function () {
+    // register new users
+    Route::get('/admin/register', [AdminController::class, 'create'])->name('admin.register');
+    Route::post('/admin/register', [AdminController::class, 'store'])->name('admin.register.store');
+    
+    // route for admin to view all staffs
+    Route::get('/admin/view-all', [AdminController::class, 'ViewAllUsers'])->name('admin.view-all');
+    
+    // edit user info
+    Route::get('/admin/edit-user/{id}', [AdminController::class, 'EditUser'])->name('admin.edit-user');
+    Route::post('/admin/edit-user/{id}', [AdminController::class, 'UpdateUser'])->name('admin.update-user');
+    
+    
+    //My Task
+    Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard')->withoutMiddleware(['admin']);
+    Route::get('/my-task', 'App\Http\Controllers\Form\MyTaskController@viewTask')->name('view.task')->withoutMiddleware(['admin']);
+    Route::get('/my-report-history', 'App\Http\Controllers\Form\ManageReportController@viewReportHistory')->name('report.history')->withoutMiddleware(['admin']);
+
+    //Document Review
+    Route::get('/document-review/create', 'App\Http\Controllers\Form\DocumentReviewController@create')->name('document-review.create')->withoutMiddleware(['admin']);
+    Route::post('/document-review/store', 'App\Http\Controllers\Form\DocumentReviewController@store')->name('document-review.store')->withoutMiddleware(['admin']);
+    Route::get('/manage-document/view/all', 'App\Http\Controllers\Form\DocumentReviewController@viewAll')->name('document-review.view-all')->withoutMiddleware(['admin']);
+    Route::get('/document-review/details/{id}', 'App\Http\Controllers\Form\DocumentReviewController@viewDocumentDetails')->withoutMiddleware(['admin']);
+    Route::get('/document/pdf/{id}', 'App\Http\Controllers\Form\DocumentReviewController@pdf')->name('document.pdf')->withoutMiddleware(['admin']);
+
+    //Food Premise
+    Route::get('/food/create', 'App\Http\Controllers\Form\FoodPremiseController@create')->name('food.create')->withoutMiddleware(['admin']);
+    Route::post('/food/store', 'App\Http\Controllers\Form\FoodPremiseController@store')->name('food.store')->withoutMiddleware(['admin']);
+    Route::get('/food/show', 'App\Http\Controllers\Form\FoodPremiseController@show')->name('food.show')->withoutMiddleware(['admin']);
+    Route::get('/manage-food/view/all', 'App\Http\Controllers\Form\FoodPremiseController@viewAll')->name('food.view-all')->withoutMiddleware(['admin']);
+    Route::get('/food/details/{id}', [FoodPremiseController::class, 'show'])->withoutMiddleware(['admin']);
+    Route::post('food', 'App\Http\Controllers\Form\FoodPremiseController@store')->name('food.store')->withoutMiddleware(['admin']);
+    Route::get('/food/pdf/{id}', 'App\Http\Controllers\Form\FoodPremiseController@pdf')->name('food.pdf')->withoutMiddleware(['admin']);
+
+    //Program Monitoring
+    Route::get('/program/create', 'App\Http\Controllers\Form\ProgramController@create')->name('program.create')->withoutMiddleware(['admin']);
+    Route::post('/program/store', 'App\Http\Controllers\Form\ProgramController@store')->name('program.store')->withoutMiddleware(['admin']);
+    Route::get('/program/show', 'App\Http\Controllers\Form\ProgramController@show')->name('program.show')->withoutMiddleware(['admin']);
+    Route::get('/manage-program/view/all', 'App\Http\Controllers\Form\ProgramController@viewAll')->name('program.view-all')->withoutMiddleware(['admin']);
+    Route::get('/program/assign-staff/{id}', 'App\Http\Controllers\Form\ProgramController@assignStaff')->name('program.assign')->withoutMiddleware(['admin']);
+    Route::post('/program/assign-staff/store/{id}', 'App\Http\Controllers\Form\ProgramController@storeAssignStaff')->name('program.store.assign')->withoutMiddleware(['admin']);
+    Route::get('/program/comment/{id}', 'App\Http\Controllers\Form\ProgramController@commentProgram')->withoutMiddleware(['admin'])->withoutMiddleware(['admin']);
+    Route::post('/program/comment/store/{id}', 'App\Http\Controllers\Form\ProgramController@storeComment')->withoutMiddleware(['admin'])->withoutMiddleware(['admin']);
+    Route::get('/program/pdf/{id}', 'App\Http\Controllers\Form\ProgramController@pdf')->name('program.pdf')->withoutMiddleware(['admin'])->withoutMiddleware(['admin']);
+    Route::get('/program/view/{id}', 'App\Http\Controllers\Form\ProgramController@view')->name('program.view')->withoutMiddleware(['admin'])->withoutMiddleware(['admin']);
+
+    //Activity MonitoringActivityController
+    Route::get('/activity-monitoring/create', 'App\Http\Controllers\Form\ActivityMonitoringController@create')->name('activity-monitor.create')->withoutMiddleware(['admin']);
+    Route::post('/activity-monitoring/store', 'App\Http\Controllers\Form\ActivityMonitoringController@store')->name('activity-monitor.store')->withoutMiddleware(['admin']);
+    Route::get('/activity-monitoring/view', 'App\Http\Controllers\Form\ActivityMonitoringController@view')->name('activity-monitor.view')->withoutMiddleware(['admin']);
+    Route::get('/activity-monitoring/pdf/{id}', 'App\Http\Controllers\Form\ActivityMonitoringController@pdf')->name('activity-monitor.pdf')->withoutMiddleware(['admin']);
+
+    //Referral
+    Route::get('/referral/create', 'App\Http\Controllers\Form\ReferralFormController@create')->name('referral.create')->withoutMiddleware(['admin']);
+    Route::post('referral/store', 'App\Http\Controllers\Form\ReferralFormController@store')->name('referral.store')->withoutMiddleware(['admin']);
+    Route::get('/manage-referral/view/all', 'App\Http\Controllers\Form\ReferralFormController@viewAll')->name('referral.view-all')->withoutMiddleware(['admin']);
+    Route::get('/referral/details/{case_no}', 'App\Http\Controllers\Form\ReferralFormController@viewReferralDetails')->withoutMiddleware(['admin']);
+    Route::get('/referral/assign-staff/{case_no}', 'App\Http\Controllers\Form\ReferralFormController@assignStaff')->name('referral.assign')->withoutMiddleware(['admin']);
+    Route::post('/referral/assign-staff/store/{case_no}', 'App\Http\Controllers\Form\ReferralFormController@storeAssignStaff')->name('referral.store.assign')->withoutMiddleware(['admin']);
+    Route::get('/referral/status/{case_no}', 'App\Http\Controllers\Form\ReferralFormController@statusReferral')->withoutMiddleware(['admin']);
+    Route::post('/referral/status/store/{case_no}', 'App\Http\Controllers\Form\ReferralFormController@storeStatus')->withoutMiddleware(['admin']);
+    Route::get('/referral/pdf/{id}', 'App\Http\Controllers\Form\ReferralFormController@pdf')->name('referral.pdf')->withoutMiddleware(['admin']);
+
+    //Complaint
+    Route::get('/manage-complaint/view/all', 'App\Http\Controllers\Form\ComplaintFormController@viewAll')->name('complaint.view-all')->withoutMiddleware(['admin']);
+    Route::get('/complaint/assign-staff/{id}', 'App\Http\Controllers\Form\ComplaintFormController@assignStaff')->name('complaint.assign')->withoutMiddleware(['admin']);
+    Route::post('/complaint/assign-staff/store/{id}', 'App\Http\Controllers\Form\ComplaintFormController@storeAssignStaff')->name('complaint.store.assign')->withoutMiddleware(['admin']);
+    Route::get('/complaint/investigate/{id}', 'App\Http\Controllers\Form\ComplaintFormController@investigateComplaint')->withoutMiddleware(['admin']);
+    Route::post('/complaint/investigate/store/{id}', 'App\Http\Controllers\Form\ComplaintFormController@storeInvestigation')->withoutMiddleware(['admin']);
+
+    //T&C
+    Route::get('/terms/create', 'App\Http\Controllers\Form\TermsController@create')->name('terms.create')->withoutMiddleware(['admin']);
+    Route::post('/terms/store', 'App\Http\Controllers\Form\TermsController@store')->name('terms.store')->withoutMiddleware(['admin']);
+    Route::get('/manage-terms/view/all', 'App\Http\Controllers\Form\TermsController@viewAll')->name('terms.view-all')->withoutMiddleware(['admin']);
+    Route::get('/terms/edit', 'App\Http\Controllers\Form\TermsController@edit')->name('terms.edit')->withoutMiddleware(['admin']);
+    Route::get('/terms/show', 'App\Http\Controllers\Form\TermsController@show')->name('terms.show');
+    Route::get('/terms/pdf/{id}', 'App\Http\Controllers\Form\TermsController@pdf')->name('terms.pdf')->withoutMiddleware(['admin']);
+    Route::get('/terms/view/{id}', 'App\Http\Controllers\Form\TermsController@view')->name('terms.view')->withoutMiddleware(['admin']);
+    Route::post('terms', 'App\Http\Controllers\Form\TermsController@store')->name('terms.store')->withoutMiddleware(['admin']);
+    Route::post('terms', 'App\Http\Controllers\Form\TermsController@store')->withoutMiddleware(['admin']);
+    Route::post('/terms/store', 'TermsController@store')->withoutMiddleware(['admin']);
+
+    //Speaker Consent For->withoutMiddleware(['admin'])m
+    Route::get('/speaker/create', 'App\Http\Controllers\Form\SpeakerController@create')->name('speaker.create')->withoutMiddleware(['admin']);
+    Route::post('/speaker/store', 'App\Http\Controllers\Form\SpeakerController@store')->name('speaker.store')->withoutMiddleware(['admin']);
+    Route::get('/manage-speaker/view/all', 'App\Http\Controllers\Form\SpeakerController@viewAll')->name('speaker.view-all')->withoutMiddleware(['admin']);
+    Route::get('/speaker/edit', 'App\Http\Controllers\Form\SpeakerController@edit')->name('speaker.edit')->withoutMiddleware(['admin']);
+    Route::get('/speaker/show', 'App\Http\Controllers\Form\SpeakerController@show')->name('speaker.show')->withoutMiddleware(['admin']);
+    Route::get('/speaker/pdf/{id}', 'App\Http\Controllers\Form\SpeakerController@pdf')->name('speaker.pdf')->withoutMiddleware(['admin']);
+    Route::get('/speaker/view/{id}', 'App\Http\Controllers\Form\SpeakerController@view')->name('speaker.view')->withoutMiddleware(['admin']);
+    Route::post('speaker', 'App\Http\Controllers\Form\SpeakerController@store')->name('speaker.store')->withoutMiddleware(['admin']);
+    Route::post('speaker', 'App\Http\Controllers\Form\SpeakerController@store')->withoutMiddleware(['admin']);
+    Route::post('/speaker/store', 'SpeakerController@store')->withoutMiddleware(['admin']);
+
+    //SLO repor->withoutMiddleware(['admin'])t
+    Route::get('/slo-report/create', 'App\Http\Controllers\Form\SLOReportController@create')->name('slo-report.create')->withoutMiddleware(['admin']);
+    Route::post('/slo-report/store', 'App\Http\Controllers\Form\SLOReportController@storeReport')->name('slo-report.store')->withoutMiddleware(['admin']);
+    Route::get('/manage-sloreport/view/all', 'App\Http\Controllers\Form\SLOReportController@viewAll')->name('slo-report.view-all')->withoutMiddleware(['admin']);
+    Route::get('/slo-report/details/{id}', 'App\Http\Controllers\Form\SLOReportController@viewSLOReportDetails')->withoutMiddleware(['admin']);
+    Route::get('/sloreport/assign-staff/{id}', 'App\Http\Controllers\Form\SLOReportController@assignStaff')->name('slo-report.assign')->withoutMiddleware(['admin']);
+    Route::post('/sloreport/assign-staff/store/{id}', 'App\Http\Controllers\Form\SLOReportController@storeAssignStaff')->name('slo-report.store.assign')->withoutMiddleware(['admin']);
+    Route::get('/sloreport/investigate/{id}', 'App\Http\Controllers\Form\SLOReportController@commentSLOReport')->withoutMiddleware(['admin']);
+    Route::post('/sloreport/investigate/store/{id}', 'App\Http\Controllers\Form\SLOReportController@storeComment')->withoutMiddleware(['admin']);
+    Route::get('/sloreport/pdf/{id}', 'App\Http\Controllers\Form\SLOReportController@pdf')->name('slo-report.pdf')->withoutMiddleware(['admin']);
+
+    //Shariah Clini->withoutMiddleware(['admin'])c
+    Route::get('/clinic/create', 'App\Http\Controllers\Form\ClinicController@create')->name('clinic.create')->withoutMiddleware(['admin']);
+    Route::post('/clinic/store', 'App\Http\Controllers\Form\ClinicController@store')->name('clinic.store')->withoutMiddleware(['admin']);
+    Route::get('/manage-clinic/view/all', 'App\Http\Controllers\Form\ClinicController@viewAll')->name('clinic.view-all')->withoutMiddleware(['admin']);
+    Route::get('/clinic/show', 'App\Http\Controllers\Form\ClinicController@show')->name('clinic.show')->withoutMiddleware(['admin']);
+    Route::get('/clinic/pdf/{id}', 'App\Http\Controllers\Form\ClinicController@pdf')->name('clinic.pdf')->withoutMiddleware(['admin']);
+    Route::get('/clinic/view/{id}', 'App\Http\Controllers\Form\ClinicController@view')->name('clinic.view')->withoutMiddleware(['admin']);
+    Route::get('/clinic/assign-staff/{id}', 'App\Http\Controllers\Form\ClinicController@assignStaff')->name('clinic.assign')->withoutMiddleware(['admin']);
+    Route::post('/clinic/assign-staff/store/{id}', 'App\Http\Controllers\Form\ClinicController@storeAssignStaff')->name('clinic.store.assign')->withoutMiddleware(['admin']);
+    Route::get('/clinic/comment/{id}', 'App\Http\Controllers\Form\ClinicController@commentClinic')->withoutMiddleware(['admin']);
+    Route::post('/clinic/comment/store/{id}', 'App\Http\Controllers\Form\ClinicController@storeComment')->withoutMiddleware(['admin']);
+
+    //SLO Monthly repor->withoutMiddleware(['admin'])t
+    Route::get('/slo-monthly/create', 'App\Http\Controllers\Form\SLOMonthlyController@create')->name('slo-monthly.create')->withoutMiddleware(['admin']);
+    Route::post('/slo-monthly/store', 'App\Http\Controllers\Form\SLOMonthlyController@storeReport')->name('slo-monthly.store')->withoutMiddleware(['admin']);
+    Route::get('/manage-slo-monthly/view/all', 'App\Http\Controllers\Form\SLOMonthlyController@viewAll')->name('slo-monthly.view-all')->withoutMiddleware(['admin']);
+    Route::get('/slo-monthly/details/{id}', 'App\Http\Controllers\Form\SLOMonthlyController@viewSLOMonthlyDetails')->withoutMiddleware(['admin']);
+    Route::get('/slo-monthly/assign-staff/{id}', 'App\Http\Controllers\Form\SLOMonthlyController@assignStaff')->name('slo-monthly.assign')->withoutMiddleware(['admin']);
+    Route::post('/slo-monthly/assign-staff/store/{id}', 'App\Http\Controllers\Form\SLOMonthlyController@storeAssignStaff')->name('slo-monthly.store.assign')->withoutMiddleware(['admin']);
+    Route::get('/slo-monthly/investigate/{id}', 'App\Http\Controllers\Form\SLOMonthlyController@commentSLOReport')->withoutMiddleware(['admin']);
+    Route::post('/slo-monthly/investigate/store/{id}', 'App\Http\Controllers\Form\SLOMonthlyController@storeComment')->withoutMiddleware(['admin']);
+    Route::get('/slo-monthly/pdf/{id}', 'App\Http\Controllers\Form\SLOMonthlyController@pdf')->name('slo-monthly.pdf')->withoutMiddleware(['admin']);
+
+    //Patient Visit repor->withoutMiddleware(['admin'])t
+    Route::get('/patient-visit/create', 'App\Http\Controllers\Form\PatientVisitController@create')->name('patient-visit.create')->withoutMiddleware(['admin']);
+    Route::post('/patient-visit/store', 'App\Http\Controllers\Form\PatientVisitController@storeReport')->name('patient-visit.store')->withoutMiddleware(['admin']);
+    Route::get('/manage-patient-visit/view/all', 'App\Http\Controllers\Form\PatientVisitController@viewAll')->name('patient-visit.view-all')->withoutMiddleware(['admin']);
+    Route::get('/patient-visit/details/{id}', 'App\Http\Controllers\Form\PatientVisitController@viewPatientVisitDetails')->withoutMiddleware(['admin']);
+    Route::get('/patient-visit/assign-staff/{id}', 'App\Http\Controllers\Form\PatientVisitController@assignStaff')->name('patient-visit.assign')->withoutMiddleware(['admin']);
+    Route::post('/patient-visit/assign-staff/store/{id}', 'App\Http\Controllers\Form\PatientVisitController@storeAssignStaff')->name('patient-visit.store.assign')->withoutMiddleware(['admin']);
+    Route::get('/patient-visit/investigate/{id}', 'App\Http\Controllers\Form\PatientVisitController@commentSLOReport')->withoutMiddleware(['admin']);
+    Route::post('/patient-visit/investigate/store/{id}', 'App\Http\Controllers\Form\PatientVisitController@storeComment')->withoutMiddleware(['admin']);
+    Route::get('/patient-visit/pdf/{id}', 'App\Http\Controllers\Form\PatientVisitController@pdf')->name('patient-visit.pdf')->withoutMiddleware(['admin']);
+
+    //Acceptance or Concent For->withoutMiddleware(['admin'])m
+    Route::get('/acceptance/create', 'App\Http\Controllers\Form\AcceptanceController@create')->name('acceptance.create')->withoutMiddleware(['admin']);
+    Route::post('/acceptance/store', 'App\Http\Controllers\Form\AcceptanceController@store')->name('acceptance.store')->withoutMiddleware(['admin']);
+    Route::get('/manage-acceptance/view/all', 'App\Http\Controllers\Form\AcceptanceController@viewAll')->name('acceptance.view-all')->withoutMiddleware(['admin']);
+    Route::get('/acceptance/view/{id}', 'App\Http\Controllers\Form\AcceptanceController@view')->name('acceptance.view')->withoutMiddleware(['admin']);
+    Route::get('/acceptance/details/{id}', 'App\Http\Controllers\Form\AcceptanceController@viewSLOReportDetails')->withoutMiddleware(['admin']);
+    Route::get('/acceptance/assign-staff/{id}', 'App\Http\Controllers\Form\AcceptanceController@assignStaff')->name('acceptance.assign')->withoutMiddleware(['admin']);
+    Route::post('/acceptance/assign-staff/store/{id}', 'App\Http\Controllers\Form\AcceptanceController@storeAssignStaff')->name('acceptance.store.assign')->withoutMiddleware(['admin']);
+    Route::get('/acceptance/investigate/{id}', 'App\Http\Controllers\Form\AcceptanceController@commentSLOReport')->withoutMiddleware(['admin']);
+    Route::post('/acceptance/investigate/store/{id}', 'App\Http\Controllers\Form\AcceptanceController@storeComment')->withoutMiddleware(['admin']);
+    Route::get('/acceptance/pdf/{id}', 'App\Http\Controllers\Form\AcceptanceController@pdf')->name('acceptance.pdf')->withoutMiddleware(['admin']);
+
+    //Complain->withoutMiddleware(['admin'])t
+    Route::get('/complaint/create', 'App\Http\Controllers\Form\ComplaintFormController@create')->name('complaint.create')->withoutMiddleware(['admin']);
+    Route::post('/complaint/store', 'App\Http\Controllers\Form\ComplaintFormController@storeReport')->name('complaint.store')->withoutMiddleware(['admin']);
+    Route::get('/complaint/details/{id}', 'App\Http\Controllers\Form\ComplaintFormController@viewComplaintDetails')->withoutMiddleware(['admin']);
+    Route::get('/complaint/show', 'App\Http\Controllers\Form\ComplaintFormController@show')->name('complaint.show')->withoutMiddleware(['admin']);
+    Route::get('/complaint/pdf/{id}', 'App\Http\Controllers\Form\ComplaintFormController@pdf')->name('complaint.pdf')->withoutMiddleware(['admin']);
+    Route::get('/complaint/view/{id}', 'App\Http\Controllers\Form\ComplaintFormController@view')->name('complaint.view')->withoutMiddleware(['admin']);
+});
+
+require __DIR__ . '/auth.php';

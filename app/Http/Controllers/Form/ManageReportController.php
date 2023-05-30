@@ -44,6 +44,7 @@ class ManageReportController extends Controller
         // $complaints = DB::select('select * from complaint_forms');
 
         $terms = DB::select('select * from terms');
+
         $food_premises = DB::select('select * from food_premises');
 
         $speakers = DB::select('select * from speakers');
@@ -63,10 +64,12 @@ class ManageReportController extends Controller
         $slomonthly = DB::select('select * from s_l_o_monthlies');
 
         $patientvisit = DB::select('select * from patient_visits');
+
+        $activity = DB::select('select * from activity_monitorings');
         $count = 1;
 
         return view('User.report_history', compact('complaints','terms','speakers','programs','documents'
-        ,'referrals','sloreports','clinics','acceptances','slomonthly','patientvisit', 'food_premises', 'count'));
+        ,'referrals','sloreports','clinics','acceptances','slomonthly','patientvisit', 'food_premises', 'count', 'activity'));
     }
 
 }
