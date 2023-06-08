@@ -11,7 +11,7 @@
 
   <div class="sl-pagebody">
     <div class="sl-page-title">
-      <h5>Program Monitoring Form</h5>
+      <h5>Activity Monitoring Form</h5>
     </div><!-- sl-page-title -->
 
     <form class="form-horizontal form-wizard form" action="{{ route('activity-monitor.store') }}" method="POST" method="post" onsubmit="return submitUserForm();">
@@ -40,25 +40,25 @@
                     <div class="mg-t-25">
                       <label for="activity_name" class="form-label">Acitivity Name <span style="color:red">*</span></label>
                     </div>
-                    <input type="text" id="activity_name" name="activity_name" placeholder="Activity Name" class="form-control" autofocus minlength="5" required>
+                    <input type="text" id="activity_name" name="activity_name" placeholder="Activity Name" class="form-control" autofocus minlength="5" required maxlength="253">
 
 
                     <div class="mg-t-25">
                       <label for="pic" class="form-label">Person In Charge<span style="color:red">*</span></label>
                     </div>
-                    <input type="text" id="pic" name="pic" placeholder="Person In Charge" class="form-control" required>
+                    <input type="text" id="pic" name="pic" placeholder="Person In Charge" class="form-control" required maxlength="253">
 
 
                     <div class="mg-t-25">
                       <label for="department" class="form-label">Activity Department <span style="color:red">*</span></label>
                     </div>
-                    <input type="text" id="department" name="department" placeholder="Activity Department" class="form-control" required>
+                    <input type="text" id="department" name="department" placeholder="Activity Department" class="form-control" required maxlength="253">
 
 
                     <div class="mg-t-25">
                       <label for="shariah_non_conformity" class="form-label">Shariah Critical Points</label>
                     </div>
-                    <input type="text" id="shariah_non_conformity" name="shariah_non_conformity" placeholder="Shariah Non Conformity" class="form-control">
+                    <input type="text" id="shariah_non_conformity" name="shariah_non_conformity" placeholder="Shariah Non Conformity" class="form-control" maxlength="253">
 
                   </div><!-- col-3 -->
                 </div><!-- row -->
@@ -79,12 +79,12 @@
                   <div class="mg-t-25">
                     <label for="discussion_point" class="form-label">Activity Correctiveness Action <span style="color:red">*</span></label>
                   </div>
-                  <textarea id="corrective_action" name="corrective_action" cols="700" rows="5" class="form-control"></textarea>
+                  <textarea id="corrective_action" name="corrective_action" cols="700" rows="5" class="form-control" maxlength="253"></textarea>
 
                   <div class="mg-t-25">
                     <label for="discussion_point" class="form-label">Activity Discussion Points<span style="color:red">*</span></label>
                   </div>
-                  <textarea id="discussion_point" name="discussion_point" cols="700" rows="5" class="form-control"></textarea>
+                  <textarea id="discussion_point" name="discussion_point" cols="700" rows="5" class="form-control" maxlength="253"></textarea>
 
                 </div><!-- row -->
               </div>
@@ -95,7 +95,7 @@
 
 
           <section class="step">
-          <p class="card-text wizard-title">suggestion / recommendations</p>
+            <p class="card-text wizard-title">suggestion / recommendations</p>
 
             <div class="row ">
 
@@ -105,12 +105,12 @@
                   <div class="mg-t-25">
                     <label for="suggestion" class="form-label">Suggestion <span style="color:red">*</span></label>
                   </div>
-                  <textarea id="suggestion" name="suggestion" cols="700" rows="5" class="form-control"></textarea>
+                  <textarea id="suggestion" name="suggestion" cols="700" rows="5" class="form-control" maxlength="253"></textarea>
 
                   <div class="mg-t-25">
                     <label for="next_follow" class="form-label">Acitivity Next Follow Up<span style="color:red">*</span></label>
                   </div>
-                  <textarea id="next_follow" name="next_follow" cols="700" rows="5" class="form-control"></textarea>
+                  <textarea id="next_follow" name="next_follow" cols="700" rows="5" class="form-control" maxlength="253"></textarea>
 
                 </div><!-- row -->
               </div>

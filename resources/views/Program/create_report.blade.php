@@ -63,7 +63,7 @@
                                         <div class="mg-t-25">
                                             <label for="program_details" class="form-label">Program Details <span style="color:red">*</label>
                                         </div>
-                                        <input type="text" id="program_details" name="program_details" placeholder="Program Details" class="form-control" required>
+                                        <input type="text" id="program_details" name="program_details" placeholder="Program Details" class="form-control" maxlength="253">
                                         <br>
                                         <div class="file-upload-wrapper">
                                             <input type="file" id="attachment" name="attachment" class="file-upload" data-height="500" />
@@ -132,7 +132,7 @@
 
                                         <div class="mg-t-25">
                                             <label for="advise_details" class="form-label">Details of advice:</label>
-                                            <input type="text" id="advise_details" name="advise_details" placeholder="Details" class="form-control" autofocus>
+                                            <input type="text" id="advise_details" name="advise_details" placeholder="Details" class="form-control" autofocus maxlength="253">
 
                                         </div>
 
@@ -153,7 +153,7 @@
                                         <div class="mg-t-25">
                                             <label for="during_prog_report" class="form-label">During Program</label>
 
-                                            <textarea id="during_prog_report" name="during_prog_report" cols="700" rows="5" class="form-control"></textarea>
+                                            <textarea id="during_prog_report" name="during_prog_report" cols="700" rows="5" class="form-control" maxlength="253"></textarea>
                                         </div>
 
                                     </div><!-- col-3 -->
@@ -173,7 +173,7 @@
                                         <div class="mg-t-25">
                                             <label for="corrective_action" class="form-label">After Program</label>
 
-                                            <textarea id="corrective_action" name="corrective_action" cols="700" rows="5" class="form-control"></textarea>
+                                            <textarea id="corrective_action" name="corrective_action" cols="700" rows="5" class="form-control" maxlength="253"></textarea>
                                         </div>
 
                                     </div><!-- col-3 -->
