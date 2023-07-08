@@ -9,6 +9,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('User.dsc_index');
+        if (Auth::user()->role == 'dsc') {
+            return view('User.dsc_index');
+        } else if (Auth::user()->role == 'admin') {
+            return view('User.admin_index');
+        }
     }
 }

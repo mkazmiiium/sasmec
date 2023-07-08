@@ -32,56 +32,80 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::post('/admin/edit-user/{id}', [AdminController::class, 'UpdateUser'])->name('admin.update-user');
 
 
+    //Document Review
+    Route::get('/document-review/create', 'App\Http\Controllers\Form\DocumentReviewController@create')->name('document-review.create');
+    Route::post('/document-review/store', 'App\Http\Controllers\Form\DocumentReviewController@store')->name('document-review.store');
+    Route::get('/manage-document/view/all', 'App\Http\Controllers\Form\DocumentReviewController@viewAll')->name('document-review.view-all');
+    Route::get('/document-review/details/{id}', 'App\Http\Controllers\Form\DocumentReviewController@viewDocumentDetails');
+    Route::get('/document/pdf/{id}', 'App\Http\Controllers\Form\DocumentReviewController@pdf')->name('document.pdf');
+
+    //Food Premise
+    Route::get('/food/create', 'App\Http\Controllers\Form\FoodPremiseController@create')->name('food.create');
+    Route::post('/food/store', 'App\Http\Controllers\Form\FoodPremiseController@store')->name('food.store');
+    Route::get('/food/show', 'App\Http\Controllers\Form\FoodPremiseController@show')->name('food.show');
+    Route::get('/manage-food/view/all', 'App\Http\Controllers\Form\FoodPremiseController@viewAll')->name('food.view-all');
+    Route::get('/food/details/{id}', [FoodPremiseController::class, 'show']);
+    Route::post('food', 'App\Http\Controllers\Form\FoodPremiseController@store')->name('food.store');
+    Route::get('/food/pdf/{id}', 'App\Http\Controllers\Form\FoodPremiseController@pdf')->name('food.pdf');
+
+    //Referral
+    Route::get('/referral/create', 'App\Http\Controllers\Form\ReferralFormController@create')->name('referral.create');
+    Route::post('referral/store', 'App\Http\Controllers\Form\ReferralFormController@store')->name('referral.store');
+    Route::get('/manage-referral/view/all', 'App\Http\Controllers\Form\ReferralFormController@viewAll')->name('referral.view-all');
+    Route::get('/referral/details/{case_no}', 'App\Http\Controllers\Form\ReferralFormController@viewReferralDetails');
+    Route::get('/referral/assign-staff/{case_no}', 'App\Http\Controllers\Form\ReferralFormController@assignStaff')->name('referral.assign');
+    Route::post('/referral/assign-staff/store/{case_no}', 'App\Http\Controllers\Form\ReferralFormController@storeAssignStaff')->name('referral.store.assign');
+    Route::get('/referral/status/{case_no}', 'App\Http\Controllers\Form\ReferralFormController@statusReferral');
+    Route::post('/referral/status/store/{case_no}', 'App\Http\Controllers\Form\ReferralFormController@storeStatus');
+    Route::get('/referral/pdf/{id}', 'App\Http\Controllers\Form\ReferralFormController@pdf')->name('referral.pdf');
+
+    //Program Monitoring
+    Route::get('/program/create', 'App\Http\Controllers\Form\ProgramController@create')->name('program.create');
+    Route::post('/program/store', 'App\Http\Controllers\Form\ProgramController@store')->name('program.store');
+    Route::get('/program/show', 'App\Http\Controllers\Form\ProgramController@show')->name('program.show');
+    Route::get('/manage-program/view/all', 'App\Http\Controllers\Form\ProgramController@viewAll')->name('program.view-all');
+    Route::get('/program/assign-staff/{id}', 'App\Http\Controllers\Form\ProgramController@assignStaff')->name('program.assign');
+    Route::post('/program/assign-staff/store/{id}', 'App\Http\Controllers\Form\ProgramController@storeAssignStaff')->name('program.store.assign');
+    Route::get('/program/comment/{id}', 'App\Http\Controllers\Form\ProgramController@commentProgram');
+    Route::post('/program/comment/store/{id}', 'App\Http\Controllers\Form\ProgramController@storeComment');
+    Route::get('/program/pdf/{id}', 'App\Http\Controllers\Form\ProgramController@pdf')->name('program.pdf');
+    Route::get('/program/view/{id}', 'App\Http\Controllers\Form\ProgramController@view')->name('program.view');
+
+    //Shariah Clinic
+    Route::get('/clinic/create', 'App\Http\Controllers\Form\ClinicController@create')->name('clinic.create');
+    Route::post('/clinic/store', 'App\Http\Controllers\Form\ClinicController@store')->name('clinic.store');
+    Route::get('/manage-clinic/view/all', 'App\Http\Controllers\Form\ClinicController@viewAll')->name('clinic.view-all');
+    Route::get('/clinic/show', 'App\Http\Controllers\Form\ClinicController@show')->name('clinic.show');
+    Route::get('/clinic/pdf/{id}', 'App\Http\Controllers\Form\ClinicController@pdf')->name('clinic.pdf');
+    Route::get('/clinic/view/{id}', 'App\Http\Controllers\Form\ClinicController@view')->name('clinic.view');
+    Route::get('/clinic/assign-staff/{id}', 'App\Http\Controllers\Form\ClinicController@assignStaff')->name('clinic.assign');
+    Route::post('/clinic/assign-staff/store/{id}', 'App\Http\Controllers\Form\ClinicController@storeAssignStaff')->name('clinic.store.assign');
+    Route::get('/clinic/comment/{id}', 'App\Http\Controllers\Form\ClinicController@commentClinic');
+    Route::post('/clinic/comment/store/{id}', 'App\Http\Controllers\Form\ClinicController@storeComment');
+
+    //Patient Visit report
+    Route::get('/patient-visit/create', 'App\Http\Controllers\Form\PatientVisitController@create')->name('patient-visit.create');
+    Route::post('/patient-visit/store', 'App\Http\Controllers\Form\PatientVisitController@storeReport')->name('patient-visit.store');
+    Route::get('/manage-patient-visit/view/all', 'App\Http\Controllers\Form\PatientVisitController@viewAll')->name('patient-visit.view-all');
+    Route::get('/patient-visit/details/{id}', 'App\Http\Controllers\Form\PatientVisitController@viewPatientVisitDetails');
+    Route::get('/patient-visit/assign-staff/{id}', 'App\Http\Controllers\Form\PatientVisitController@assignStaff')->name('patient-visit.assign');
+    Route::post('/patient-visit/assign-staff/store/{id}', 'App\Http\Controllers\Form\PatientVisitController@storeAssignStaff')->name('patient-visit.store.assign');
+    Route::get('/patient-visit/investigate/{id}', 'App\Http\Controllers\Form\PatientVisitController@commentSLOReport');
+    Route::post('/patient-visit/investigate/store/{id}', 'App\Http\Controllers\Form\PatientVisitController@storeComment');
+    Route::get('/patient-visit/pdf/{id}', 'App\Http\Controllers\Form\PatientVisitController@pdf')->name('patient-visit.pdf');
+
+
     Route::withoutMiddleware(['admin'])->group(function () {
         //My Task
         Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
         Route::get('/my-task', 'App\Http\Controllers\Form\MyTaskController@viewTask')->name('view.task');
         Route::get('/my-report-history', 'App\Http\Controllers\Form\ManageReportController@viewReportHistory')->name('report.history');
 
-        //Document Review
-        Route::get('/document-review/create', 'App\Http\Controllers\Form\DocumentReviewController@create')->name('document-review.create');
-        Route::post('/document-review/store', 'App\Http\Controllers\Form\DocumentReviewController@store')->name('document-review.store');
-        Route::get('/manage-document/view/all', 'App\Http\Controllers\Form\DocumentReviewController@viewAll')->name('document-review.view-all');
-        Route::get('/document-review/details/{id}', 'App\Http\Controllers\Form\DocumentReviewController@viewDocumentDetails');
-        Route::get('/document/pdf/{id}', 'App\Http\Controllers\Form\DocumentReviewController@pdf')->name('document.pdf');
-
-        //Food Premise
-        Route::get('/food/create', 'App\Http\Controllers\Form\FoodPremiseController@create')->name('food.create');
-        Route::post('/food/store', 'App\Http\Controllers\Form\FoodPremiseController@store')->name('food.store');
-        Route::get('/food/show', 'App\Http\Controllers\Form\FoodPremiseController@show')->name('food.show');
-        Route::get('/manage-food/view/all', 'App\Http\Controllers\Form\FoodPremiseController@viewAll')->name('food.view-all');
-        Route::get('/food/details/{id}', [FoodPremiseController::class, 'show']);
-        Route::post('food', 'App\Http\Controllers\Form\FoodPremiseController@store')->name('food.store');
-        Route::get('/food/pdf/{id}', 'App\Http\Controllers\Form\FoodPremiseController@pdf')->name('food.pdf');
-
-        //Program Monitoring
-        Route::get('/program/create', 'App\Http\Controllers\Form\ProgramController@create')->name('program.create');
-        Route::post('/program/store', 'App\Http\Controllers\Form\ProgramController@store')->name('program.store');
-        Route::get('/program/show', 'App\Http\Controllers\Form\ProgramController@show')->name('program.show');
-        Route::get('/manage-program/view/all', 'App\Http\Controllers\Form\ProgramController@viewAll')->name('program.view-all');
-        Route::get('/program/assign-staff/{id}', 'App\Http\Controllers\Form\ProgramController@assignStaff')->name('program.assign');
-        Route::post('/program/assign-staff/store/{id}', 'App\Http\Controllers\Form\ProgramController@storeAssignStaff')->name('program.store.assign');
-        Route::get('/program/comment/{id}', 'App\Http\Controllers\Form\ProgramController@commentProgram');
-        Route::post('/program/comment/store/{id}', 'App\Http\Controllers\Form\ProgramController@storeComment');
-        Route::get('/program/pdf/{id}', 'App\Http\Controllers\Form\ProgramController@pdf')->name('program.pdf');
-        Route::get('/program/view/{id}', 'App\Http\Controllers\Form\ProgramController@view')->name('program.view');
-
         //Activity MonitoringActivityController
         Route::get('/activity-monitoring/create', 'App\Http\Controllers\Form\ActivityMonitoringController@create')->name('activity-monitor.create');
         Route::post('/activity-monitoring/store', 'App\Http\Controllers\Form\ActivityMonitoringController@store')->name('activity-monitor.store');
         Route::get('/activity-monitoring/view', 'App\Http\Controllers\Form\ActivityMonitoringController@view')->name('activity-monitor.view');
         Route::get('/activity-monitoring/pdf/{id}', 'App\Http\Controllers\Form\ActivityMonitoringController@pdf')->name('activity-monitor.pdf');
-
-        //Referral
-        Route::get('/referral/create', 'App\Http\Controllers\Form\ReferralFormController@create')->name('referral.create');
-        Route::post('referral/store', 'App\Http\Controllers\Form\ReferralFormController@store')->name('referral.store');
-        Route::get('/manage-referral/view/all', 'App\Http\Controllers\Form\ReferralFormController@viewAll')->name('referral.view-all');
-        Route::get('/referral/details/{case_no}', 'App\Http\Controllers\Form\ReferralFormController@viewReferralDetails');
-        Route::get('/referral/assign-staff/{case_no}', 'App\Http\Controllers\Form\ReferralFormController@assignStaff')->name('referral.assign');
-        Route::post('/referral/assign-staff/store/{case_no}', 'App\Http\Controllers\Form\ReferralFormController@storeAssignStaff')->name('referral.store.assign');
-        Route::get('/referral/status/{case_no}', 'App\Http\Controllers\Form\ReferralFormController@statusReferral');
-        Route::post('/referral/status/store/{case_no}', 'App\Http\Controllers\Form\ReferralFormController@storeStatus');
-        Route::get('/referral/pdf/{id}', 'App\Http\Controllers\Form\ReferralFormController@pdf')->name('referral.pdf');
 
         //Complaint
         Route::get('/manage-complaint/view/all', 'App\Http\Controllers\Form\ComplaintFormController@viewAll')->name('complaint.view-all');
@@ -125,18 +149,6 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
         Route::post('/sloreport/investigate/store/{id}', 'App\Http\Controllers\Form\SLOReportController@storeComment');
         Route::get('/sloreport/pdf/{id}', 'App\Http\Controllers\Form\SLOReportController@pdf')->name('slo-report.pdf');
 
-        //Shariah Clinic
-        Route::get('/clinic/create', 'App\Http\Controllers\Form\ClinicController@create')->name('clinic.create');
-        Route::post('/clinic/store', 'App\Http\Controllers\Form\ClinicController@store')->name('clinic.store');
-        Route::get('/manage-clinic/view/all', 'App\Http\Controllers\Form\ClinicController@viewAll')->name('clinic.view-all');
-        Route::get('/clinic/show', 'App\Http\Controllers\Form\ClinicController@show')->name('clinic.show');
-        Route::get('/clinic/pdf/{id}', 'App\Http\Controllers\Form\ClinicController@pdf')->name('clinic.pdf');
-        Route::get('/clinic/view/{id}', 'App\Http\Controllers\Form\ClinicController@view')->name('clinic.view');
-        Route::get('/clinic/assign-staff/{id}', 'App\Http\Controllers\Form\ClinicController@assignStaff')->name('clinic.assign');
-        Route::post('/clinic/assign-staff/store/{id}', 'App\Http\Controllers\Form\ClinicController@storeAssignStaff')->name('clinic.store.assign');
-        Route::get('/clinic/comment/{id}', 'App\Http\Controllers\Form\ClinicController@commentClinic');
-        Route::post('/clinic/comment/store/{id}', 'App\Http\Controllers\Form\ClinicController@storeComment');
-
         //SLO Monthly report
         Route::get('/slo-monthly/create', 'App\Http\Controllers\Form\SLOMonthlyController@create')->name('slo-monthly.create');
         Route::post('/slo-monthly/store', 'App\Http\Controllers\Form\SLOMonthlyController@storeReport')->name('slo-monthly.store');
@@ -147,17 +159,6 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
         Route::get('/slo-monthly/investigate/{id}', 'App\Http\Controllers\Form\SLOMonthlyController@commentSLOReport');
         Route::post('/slo-monthly/investigate/store/{id}', 'App\Http\Controllers\Form\SLOMonthlyController@storeComment');
         Route::get('/slo-monthly/pdf/{id}', 'App\Http\Controllers\Form\SLOMonthlyController@pdf')->name('slo-monthly.pdf');
-
-        //Patient Visit report
-        Route::get('/patient-visit/create', 'App\Http\Controllers\Form\PatientVisitController@create')->name('patient-visit.create');
-        Route::post('/patient-visit/store', 'App\Http\Controllers\Form\PatientVisitController@storeReport')->name('patient-visit.store');
-        Route::get('/manage-patient-visit/view/all', 'App\Http\Controllers\Form\PatientVisitController@viewAll')->name('patient-visit.view-all');
-        Route::get('/patient-visit/details/{id}', 'App\Http\Controllers\Form\PatientVisitController@viewPatientVisitDetails');
-        Route::get('/patient-visit/assign-staff/{id}', 'App\Http\Controllers\Form\PatientVisitController@assignStaff')->name('patient-visit.assign');
-        Route::post('/patient-visit/assign-staff/store/{id}', 'App\Http\Controllers\Form\PatientVisitController@storeAssignStaff')->name('patient-visit.store.assign');
-        Route::get('/patient-visit/investigate/{id}', 'App\Http\Controllers\Form\PatientVisitController@commentSLOReport');
-        Route::post('/patient-visit/investigate/store/{id}', 'App\Http\Controllers\Form\PatientVisitController@storeComment');
-        Route::get('/patient-visit/pdf/{id}', 'App\Http\Controllers\Form\PatientVisitController@pdf')->name('patient-visit.pdf');
 
         //Acceptance or Concent Form
         Route::get('/acceptance/create', 'App\Http\Controllers\Form\AcceptanceController@create')->name('acceptance.create');

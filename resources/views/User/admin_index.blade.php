@@ -3,130 +3,242 @@
 @section('content')
 
 
-<section class="sl-mainpanel">
-  <nav class="breadcrumb sl-breadcrumb">
-    <a class="breadcrumb-item" href="/dashboard">Dashboard</a>
 
-  </nav>
-
-  <!-- Main content -->
-  <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-3">
-
-          <!-- Profile Image -->
-          <div class="card card-primary card-outline">
-            <div class="card-body box-profile">
-              <div class="text-center">
-                <img class="profile-user-img img-fluid img-circle admin_picture" src="/images/admin_vector.jpg" alt="User profile picture">
-              </div>
-
-              <h3 class="profile-username text-center admin_name"> $user->name </h3>
-
-              <p class="text-muted text-center">$user->role</p>
+<div class="sl-mainpanel">
 
 
+    <div class="sl-pagebody">
+        <div class="sl-page-title">
+            <h4>Dashboard</h4>
+        </div><!-- sl-page-title -->
+
+
+        @if(session('message'))
+        <div class="alert {{ session('alert-class') }} {{ session('alert-type') }}">
+            {{ session('message') }}
+        </div>
+        @endif
+
+
+        <div class="card pd-20 pd-sm-40">
+            {{-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
+
+            {{-- <p class="text-xl font-bold p-2">Pending Tasks</p>
+        <div class="row">
+            <div class="col-sm-4 py-2">
+                <div class="card h-100 text-white bg-dark" >
+                    <div class="card-body">
+                        <h3 class="card-title">My Task</h3>
+                        <p class="card-text">View my task</p>
+                        
+                    </div>
+                </div>
+            </div>
+    
+        </div> --}}
+
+            <p class="text-xl font-bold p-2">Menu</p>
+            <div class="row">
+                <div class="col-sm-4 py-2">
+                    <div class="card h-100 text-white bg-dark">
+                        <div class="card-body">
+                            <h3 class="card-title">My Task</h3>
+                            <p class="card-text">View my task</p>
+                            <a href="{{ route('view.task') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">View Task</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 py-2">
+                    <div class="card h-100 text-white bg-dark">
+                        <div class="card-body">
+                            <h3 class="card-title">My Report History</h3>
+                            <p class="card-text">View all my reports history</p>
+                            <a href="{{ route('report.history') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">View History</a>
+                        </div>
+                    </div>
+                </div>
 
             </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-
-
-        </div>
-        <!-- /.col -->
-        <div class="col-md-9">
-          <br><br>
-          <div class="card">
-            <div class="card-header p-2">
-
-              <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link active" href="#personal_info" data-toggle="tab">Personal Information</a></li>
-                <li class="nav-item"><a class="nav-link" href="#change_password" data-toggle="tab">Change Password</a></li>
-              </ul>
-            </div><!-- /.card-header -->
-            <div class="card-body">
-              <div class="tab-content">
-                <div class="active tab-pane" id="personal_info">
-                  <form class="form-horizontal" method="POST" action="#" id="AdminInfoForm">
-                    <div class="form-group row">
-                      <label for="inputName" class="col-sm-2 col-form-label">Name</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="name" value="$user->name" name="name">
-
-                        <span class="text-danger error-text name_error"></span>
-                      </div>
+            <p class="text-xl font-bold p-2">List of All Reports</p>
+            <div class="row">
+                <div class="col-sm-4 py-2">
+                    <div class="card h-100 text-white" style="background-color:#0d8368">
+                        <div class="card-body">
+                            <h3 class="card-title">Document Review Form</h3>
+                            <p class="card-text">IIUM-IIUMMC-SHAR-F001</p>
+                            <a href="{{ route('document-review.create') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Create Report</a>
+                            <a href="{{ route('document-review.view-all') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Manage Reports</a>
+                        </div>
                     </div>
-                    <div class="form-group row">
-                      <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="email" value="$user->email" name="email">
-                        <span class="text-danger error-text email_error"></span>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="cpassword" class="col-sm-2 col-form-label">Role</label>
-                      <div class="col-sm-5">
-                        <select name="role" style="padding: 8px;" >
-                          <option value="admin">Admin</option>
-                          <option value="dsc">DSC</option>
-                          <option value="ndsc" selected="selected">NDSC</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <div class="offset-sm-2 col-sm-10">
-                        <button type="submit" class="btn btn-danger">Save Changes</button>
-                      </div>
-                    </div>
-                  </form>
                 </div>
-                <!-- /.tab-pane -->
-                <div class="tab-pane" id="change_password">
-                  <form class="form-horizontal" action="#" method="POST" id="changePasswordAdminForm">
-                    <div class="form-group row">
-                      <label for="inputName" class="col-sm-2 col-form-label">Old Passord</label>
-                      <div class="col-sm-10">
-                        <input type="password" class="form-control" id="inputName" placeholder="Enter current password" name="oldpassword">
-                        <span class="text-danger error-text oldpassword_error"></span>
-                      </div>
+
+                <div class="col-sm-4 py-2">
+                    <div class="card h-100 text-white " style="background-color:#0d8368">
+                        <div class="card-body">
+                            <h3 class="card-title">Food Premise Inspection</h3>
+                            <p class="card-text">IIUM-IIUMMC-SHAR-F002</p>
+                            <a href="{{ route('food.create') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Create Report</a>
+                            <a href="{{ route('food.view-all') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Manage Reports</a>
+                        </div>
                     </div>
-                    <div class="form-group row">
-                      <label for="inputName2" class="col-sm-2 col-form-label">New Password</label>
-                      <div class="col-sm-10">
-                        <input type="password" class="form-control" id="newpassword" placeholder="Enter new password" name="newpassword">
-                        <span class="text-danger error-text newpassword_error"></span>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="inputName2" class="col-sm-2 col-form-label">Confirm New Password</label>
-                      <div class="col-sm-10">
-                        <input type="password" class="form-control" id="cnewpassword" placeholder="ReEnter new password" name="cnewpassword">
-                        <span class="text-danger error-text cnewpassword_error"></span>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <div class="offset-sm-2 col-sm-10">
-                        <button type="submit" class="btn btn-danger">Update Password</button>
-                      </div>
-                    </div>
-                  </form>
                 </div>
-              </div>
-              <!-- /.tab-content -->
-            </div><!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </div><!-- /.container-fluid -->
-  </section>
-  <!-- /.content -->
 
-</section>
+                <div class="col-sm-4 py-2">
+                    <div class="card h-100 text-white " style="background-color:#0d8368">
+                        <div class="card-body">
+                            <h3 class="card-title">Referral Form</h3>
+                            <p class="card-text">IIUM-IIUMMC-SHAR-F004</p>
+                            <a href="{{ route('referral.create') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Create Report</a>
+                            <a href="{{ route('referral.view-all') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Manage Reports</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 py-2">
+                    <div class="card h-100 text-white " style="background-color:#0d8368">
+                        <div class="card-body">
+                            <h3 class="card-title">Program Monitoring Form</h3>
+                            <p class="card-text">IIUM-IIUMMC-SHAR-F006</p>
+                            <a href="{{ route('program.create') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Create Report</a>
+                            <a href="{{ route('program.view-all') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Manage Reports</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 py-2">
+                    <div class="card h-100 text-white " style="background-color:#0d8368">
+                        <div class="card-body">
+                            <h3 class="card-title">Activity Monitoring Form</h3>
+                            <p class="card-text">IIUM-IIUMMC-SHAR-F007</p>
+                            <a href="{{ route('activity-monitor.create') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Create Report</a>
+                            <a href="{{ route('activity-monitor.view') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Manage Reports</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 py-2">
+                    <div class="card h-100 text-white " style="background-color:#0d8368">
+                        <div class="card-body">
+                            <h3 class="card-title">Complaint Form</h3>
+                            <p class="card-text">IIUM-IIUMMC-SHAR-F008</p>
+                            <a href="{{ route('complaint.create') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Create Report</a>
+                            <a href="{{ route('complaint.view-all') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Manage Reports</a>
+                        </div>
+                    </div>
+                </div>
+                {{-- 
+                <div class="col-sm-4 py-2">
+                    <div class="card h-100 text-white  " style="background-color:#0d8368">
+                        <div class="card-body">
+                            <h3 class="card-title">Terms and Condition Form</h3>
+                            <p class="card-text">IIUM-IIUMMC-SHAR-F009</p>
+                            <a href="{{ route('terms.create') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Create Report</a>
+                            <a href="{{ route('terms.view-all') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Manage Reports</a>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                <div class="col-sm-4 py-2">
+                    <div class="card h-100 text-white " style="background-color:#0d8368">
+                        <div class="card-body">
+                            <h3 class="card-title">SLO Report</h3>
+                            <p class="card-text">IIUM-IIUMMC-SHAR-F010</p>
+                            <a href="{{ route('slo-report.create') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Create Report</a>
+                            <a href="{{ route('slo-report.view-all') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Manage Reports</a>
+                        </div>
+                    </div>
+                </div>
+                --}}
+
+                <div class="col-sm-4 py-2">
+                    <div class="card h-100 text-white  " style="background-color:#0d8368">
+                        <div class="card-body">
+                            <h3 class="card-title">Shariah Clinic Form</h3>
+                            <p class="card-text">IIUM-IIUMMC-SHAR-F011</p>
+                            <a href="{{ route('clinic.create') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Create Report</a>
+                            <a href="{{ route('clinic.view-all') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Manage Reports</a>
+                        </div>
+                    </div>
+                </div>
+                
+                {{-- 
+                <div class="col-sm-4 py-2">
+                    <div class="card h-100 text-white " style="background-color:#0d8368">
+                        <div class="card-body">
+                            <h3 class="card-title">Acceptance/ Speaker Consent form</h3>
+                            <p class="card-text">IIUM-IIUMMC-SHAR-F012</p>
+                            <a href="{{ route('acceptance.create') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Create Report</a>
+                            <a href="{{ route('acceptance.view-all') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Manage Reports</a>
+                        </div>
+                    </div>
+                </div>
+                --}}
+
+                <div class="col-sm-4 py-2">
+                    <div class="card h-100 text-white " style="background-color:#0d8368">
+                        <div class="card-body">
+                            <h3 class="card-title">SLO Monthly Report</h3>
+                            <p class="card-text">IIUM-IIUMMC-SHAR-F013</p>
+                            <a href="{{ route('slo-monthly.create') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Create Report</a>
+                            <a href="{{ route('slo-monthly.view-all') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Manage Reports</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 py-2">
+                    <div class="card h-100 text-white " style="background-color:#0d8368">
+                        <div class="card-body">
+                            <h3 class="card-title">Patient Visit Report</h3>
+                            <p class="card-text">IIUM-IIUMMC-SHAR-F014</p>
+                            <a href="{{ route('patient-visit.create') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Create Report</a>
+                            <a href="{{ route('patient-visit.view-all') }}" class="btn btn-outline-light" style="background-color: #C3C4C9; color: black;">Manage Reports</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- card -->
+
+    </div><!-- sl-mainpanel -->
+
+    <script>
+        $(function() {
+            'use strict';
+
+            $('#datatable1').DataTable({
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_ items/page',
+                }
+            });
+
+            $('#datatable2').DataTable({
+                bLengthChange: false,
+                searching: false,
+                responsive: true
+            });
+
+            // Select2
+            $('.dataTables_length select').select2({
+                minimumResultsForSearch: Infinity
+            });
+
+        });
+    </script>
+
+    <style>
+        .card-title {
+            color: white;
+        }
+    </style>
 
 
-@endsection
+
+    @endsection
