@@ -12,18 +12,41 @@ use PDF;
 
 class SLOMonthlyController extends Controller
 {
-    public function viewAll(){      
+    public function viewAll()
+    {
 
-        $slomonthly = DB::table('s_l_o_monthlies')->latest()->latest()->get();
+        if (Auth::user()->role == 'admin') {
+            $slomonthly = DB::table('s_l_o_monthlies')
+                ->orderBy('status', 'DESC')
+                ->get();
 
-        return view('ManageReports.all-slo-monthly', compact('slomonthly'));
+            $received_by = DB::table('users')
+                ->join('s_l_o_monthlies', 'users.id', '=', 's_l_o_monthlies.slo_id')
+                ->select('users.name')
+                ->get();
+
+            return view('ManageReports.all-slo-monthly', compact('slomonthly', 'received_by'));
+        } else {
+            $slomonthly = DB::table('s_l_o_monthlies')->where('slo_id', '=', Auth::user()->id)
+                ->orderBy('status', 'DESC')
+                ->get();
+
+            $received_by = DB::table('users')
+                ->join('s_l_o_monthlies', 'users.id', '=', 's_l_o_monthlies.slo_id')
+                ->select('users.name')
+                ->get();
+
+            return view('ManageReports.all-slo-monthly', compact('slomonthly', 'received_by'));
+        }
     }
 
-    public function create(){
+    public function create()
+    {
         return view('Forms.SloMonthly.create');
     }
 
-    public function storeReport(Request $request){
+    public function storeReport(Request $request)
+    {
 
         SloMonthly::insert([
             'slo_id' => Auth::user()->id,
@@ -39,26 +62,27 @@ class SLOMonthlyController extends Controller
 
         $notification = array(
             'message' => 'Your SLO monthly report is successfully submitted.',
-              'alert-type' => 'success',
+            'alert-type' => 'success',
             'alert-class' => 'bg-success text-white'
         );
 
 
         return redirect()->route('dashboard')->with($notification);
-
     }
 
-    public function viewSLOMonthlyDetails($id){
+    public function viewSLOMonthlyDetails($id)
+    {
 
         $slomonthly = SloMonthly::findOrFail($id);
 
         return view('ManageReports.view-slomonthly-details', compact('slomonthly'));
     }
 
-    public function pdf($id) {
+    public function pdf($id)
+    {
         $slomonthly = SloMonthly::find($id);
         $pdf = PDF::loadView('Forms/SloMonthly/pdf', compact('slomonthly'));
-        
+
         return $pdf->stream('slo_monthly.pdf');
     }
 }

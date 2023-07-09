@@ -40,12 +40,16 @@
                             <td>{{ $user->position }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
-                                <div class="btn-group table-action" role="group">
-                                    <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
-                                        <i class="fa fa-eye mg-r-10"></i>
-                                        <a href="{{ action('App\Http\Controllers\AdminController@EditUser', $user->id) }}" target="_blank">Show</a>
-                                    </button>
-                                </div>
+                            <div class="btn-group table-action" role="group">
+                      <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
+                        <i class="fa fa-eye mg-r-10"></i>
+                        <a href="{{ action('App\Http\Controllers\AdminController@EditUser', $user->id) }}" target="_blank">View Details</a>
+                      </button>
+                      <button class="btn btn-outline-failure btn-block wd-xs-60p m-0 ml-1" style="background-color: orange; padding-top: 2px">
+                        <i class="fa fa-trash mg-r-10"></i>
+                        <a href="{{ action('App\Http\Controllers\AdminController@DeleteUser', $user->id) }}" target="_blank" onclick="return confirm('Are you sure you want to delete this user? ')">Delete</a>
+                      </button>
+                    </div>
                             </td>
                         </tr>
                         @endforeach

@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 use App\Models\ActivityMonitoring;
 use PDF;
 use Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class ActivityMonitoringController extends Controller
 {
@@ -22,15 +23,28 @@ class ActivityMonitoringController extends Controller
     // return view of all activity monitoring itesm
     public function view()
     {
-        $activity = DB::select('select * from activity_monitorings');
-        $user = Auth::user();
-        return view('ManageReports.all-activity', compact('activity', 'user'));
+
+        if (Auth::user()->role == 'admin') {
+            $activity = DB::table('activity_monitorings')
+                ->orderBy('id', 'DESC')
+                ->get();
+            $user = Auth::user();
+            return view('ManageReports.all-activity', compact('activity', 'user'));
+        } else {
+            $activity = DB::table('activity_monitorings')->where('id', '=', Auth::user()->id)
+                ->orderBy('id', 'DESC')
+                ->get();
+            $user = Auth::user();
+            return view('ManageReports.all-activity', compact('activity', 'user'));
+        }
+        
     }
 
     // store activity in db
     public function store(Request $req)
     {
         ActivityMonitoring::insert([
+            'user_id' => Auth::user()->id,
             'activity_name' => $req->activity_name,
             'pic' => $req->pic,
             'department' => $req->department,
@@ -55,7 +69,7 @@ class ActivityMonitoringController extends Controller
     // get pdf stream
     public function pdf($id)
     {
-        
+
         if (ActivityMonitoring::where('id', $id)->exists()) {
 
             $activity = ActivityMonitoring::find($id);

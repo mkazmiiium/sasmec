@@ -16,6 +16,7 @@ class CreateActivityMonitoringsTable extends Migration
         Schema::create('activity_monitorings', function (Blueprint $table) {
             $table->id();
             $table->string('activity_name');
+            $table->integer('user_id');
             $table->string('pic');
             $table->string('department');
             $table->string('shariah_critical_point')->nullable();

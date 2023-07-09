@@ -104,4 +104,26 @@ class AdminController extends Controller
         $user = User::find($id);
         return view('Admin.ManageStaff.edit-staff-info', compact('user'));
     }
+
+    public function DeleteUser($id)
+    {
+
+        if (Auth::user()->id == $id) {
+            $notification = array(
+                'message' => "You cannot delete your own account",
+                'alert-type' => 'error',
+                'alert-class' => 'bg-danger text-white'
+            );
+
+            return redirect()->route('dashboard')->with($notification);
+        }
+        User::find($id)->delete();
+        $notification = array(
+            'message' => "User deleted successfully",
+            'alert-type' => 'success',
+            'alert-class' => 'bg-success text-white'
+        );
+
+        return redirect()->route('dashboard')->with($notification);
+    }
 }

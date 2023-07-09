@@ -31,6 +31,8 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
     Route::get('/admin/edit-user/{id}', [AdminController::class, 'EditUser'])->name('admin.edit-user');
     Route::post('/admin/edit-user/{id}', [AdminController::class, 'UpdateUser'])->name('admin.update-user');
 
+    // delete user
+    Route::get('/admin/delete-user/{id}', [AdminController::class, 'DeleteUser'])->name('admin.delete-user');
 
     //Document Review
     Route::get('/document-review/create', 'App\Http\Controllers\Form\DocumentReviewController@create')->name('document-review.create');

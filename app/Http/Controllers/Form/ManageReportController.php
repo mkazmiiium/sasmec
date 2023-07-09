@@ -12,64 +12,71 @@ use DB;
 
 class ManageReportController extends Controller
 {
-    public function viewAllReport(){      
+    public function viewAllReport()
+    {
         return view('Reports.view');
     }
 
-    public function viewReportHistory(){
-        
+    public function viewReportHistory()
+    {
 
-        // $complaints = DB::table('complaint_forms')->where('complainant_id', '=', Auth::user()->id)
-        //                                         ->orderBy('status', 'DESC')
-        //                                         ->get();
+        if (Auth::user()->role == 'admin') {
+            $documents = DB::select('select * from document_reviews'); // need update
 
-        // $referrals = DB::table('referral_forms')->where('doc_id', '=', Auth::user()->id)
-        //                                             ->orderBy('case_status', 'DESC')
-        //                                             ->get();
+            $food_premises = DB::select('select * from food_premises'); // need update
 
-        // $slo = DB::table('slo_reports')->where('slo_id', '=', Auth::user()->id)
-        //                                         ->orderBy('status', 'DESC')
-        //                                         ->get();
+            $referrals = DB::select('select * from referral_forms'); // beed update
 
-        // return view('User.report_history', compact('complaints', 'referrals', 'slo'),['programs'=>$programs]);
+            $programs = DB::select('select * from programs'); // need update
 
-        // $complaints = DB::table('complaint_forms')->where('scu_id', '=', Auth::user()->id)
-        //                                         ->orderBy('status', 'DESC')
-        //                                         ->get();
+            $activity = DB::select('select * from activity_monitorings'); // need update    
 
-        $complaints = DB::table('complaint_forms')->where('complainant_id', '=', Auth::user()->id)
-                                                ->orderBy('status', 'DESC')
-                                                ->get();
-        
-        // $complaints = DB::select('select * from complaint_forms');
+            $complaints = DB::select('select * from complaint_forms'); // need update
 
-        $terms = DB::select('select * from terms');
+            $clinics = DB::select('select * from clinics'); // need update
 
-        $food_premises = DB::select('select * from food_premises');
+            $slomonthly = DB::select('select * from s_l_o_monthlies'); // need update
 
-        $speakers = DB::select('select * from speakers');
+            $patientvisit = DB::select('select * from patient_visits'); // need update
 
-        $programs = DB::select('select * from programs');
+            $count = 1;
 
-        $documents = DB::select('select * from document_reviews');
+            return view('User.admin_report_history', compact(
+                'complaints',
+                'programs',
+                'documents',
+                'referrals',
+                'clinics',
+                'slomonthly',
+                'patientvisit',
+                'food_premises',
+                'count',
+                'activity'
+            ));
+        } else {
 
-        $referrals = DB::select('select * from referral_forms');
+            // the new update, to show only this 3 to users 
 
-        $sloreports = DB::select('select * from slo_reports');
+            $complaints = DB::table('complaint_forms')->where('complainant_id', '=', Auth::user()->id)
+                ->orderBy('status', 'DESC')
+                ->get();
+            
+            $activity = DB::table('activity_monitorings')->where('id', '=', Auth::user()->id)
+                ->orderBy('id', 'DESC')
+                ->get();
 
-        $clinics = DB::select('select * from clinics');
 
-        $acceptances = DB::select('select * from acceptances');
+            $slomonthly = DB::table('s_l_o_monthlies')->where('slo_id', '=', Auth::user()->id)
+                ->orderBy('id', 'DESC')
+                ->get();
 
-        $slomonthly = DB::select('select * from s_l_o_monthlies');
-
-        $patientvisit = DB::select('select * from patient_visits');
-
-        $activity = DB::select('select * from activity_monitorings');
-        $count = 1;
-
-        return view('User.report_history', compact('complaints','terms','speakers','programs','documents'
-        ,'referrals','sloreports','clinics','acceptances','slomonthly','patientvisit', 'food_premises', 'count', 'activity'));
+            $count = 1;
+            return view('User.report_history', compact(
+                'activity',
+                'complaints',
+                'slomonthly',
+                'count'
+            ));
+        }
     }
-
 }

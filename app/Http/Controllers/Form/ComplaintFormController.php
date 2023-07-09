@@ -15,14 +15,30 @@ class ComplaintFormController extends Controller
     public function viewAll()
     {
 
-        $complaints = DB::table('complaint_forms')->latest()->latest()->get();
 
-        $received_by = DB::table('users')
-            ->join('complaint_forms', 'users.id', '=', 'complaint_forms.scu_id')
-            ->select('users.name')
-            ->get();
+        if (Auth::user()->role == 'admin') {
+            $complaints = DB::table('complaint_forms')
+                ->orderBy('status', 'DESC')
+                ->get();
 
-        return view('ManageReports.all-complaint', compact('complaints', 'received_by'));
+            $received_by = DB::table('users')
+                ->join('complaint_forms', 'users.id', '=', 'complaint_forms.scu_id')
+                ->select('users.name')
+                ->get();
+
+            return view('ManageReports.all-complaint', compact('complaints', 'received_by'));
+        } else {
+            $complaints = DB::table('complaint_forms')->where('complainant_id', '=', Auth::user()->id)
+                ->orderBy('status', 'DESC')
+                ->get();
+
+            $received_by = DB::table('users')
+                ->join('complaint_forms', 'users.id', '=', 'complaint_forms.scu_id')
+                ->select('users.name')
+                ->get();
+
+            return view('ManageReports.all-complaint', compact('complaints', 'received_by'));
+        }
     }
 
     public function create()

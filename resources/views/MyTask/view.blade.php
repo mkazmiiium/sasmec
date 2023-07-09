@@ -161,7 +161,7 @@
                   <td>{{ $complaint->complainant_name }}</td>
                   <td>{{ $complaint->complaint_type }}</td>
                   <td>{{ $complaint->complaint_date }}</td>
-                  <td>{{ $program->status }}</td>
+                  <td>{{ $complaint->status }}</td>
                   <td>{{ $complaint->received_by }}</td>
                   <td>
                     <div class="btn-group table-action" role="group">

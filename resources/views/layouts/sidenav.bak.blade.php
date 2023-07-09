@@ -2,7 +2,6 @@
 
 $prefix = Request::route()->getPrefix();
 $route = Route::current()->getName();
-$admin = (auth()->user()->role == 'admin');
 
 @endphp
 
@@ -31,23 +30,24 @@ $admin = (auth()->user()->role == 'admin');
       </div><!-- menu-item -->
     </a><!-- sl-menu-link -->
     <ul class="sl-menu-sub nav flex-column">
-      @if($admin == 'admin')
       <li class="nav-item"><a href="{{ route('document-review.create') }}" class="nav-link">Document Review</a></li>
       <li class="nav-item"><a href="{{ route('food.create') }}" class="nav-link">Food Premise Inspection</a></li>
       <li class="nav-item"><a href="{{ route('referral.create') }}" class="nav-link">Referral Form</a></li>
       <li class="nav-item"><a href="{{ route('program.create') }}" class="nav-link">Program Monitoring</a></li>
-      @endif
       <li class="nav-item"><a href="{{ route('activity-monitor.create') }}" class="nav-link">Activity Monitoring</a></li>
       <li class="nav-item"><a href="{{ route('complaint.create') }}" class="nav-link">Complaint Form</a></li>
-      @if($admin == 'admin')
-      <li class="nav-item"><a href="{{ route('clinic.create') }}" class="nav-link">Shariah Clinic</a></li>
-      @endif
-    
-      <li class="nav-item"><a href="{{ route('slo-monthly.create') }}" class="nav-link">SLO Monthly Report</a></li>
+      <li class="nav-item"><a href="{{ route('terms.create') }}" class="nav-link">Terms and Condition</a></li>
 
-      @if($admin == 'admin')
-      <li class="nav-item"><a href="{{ route('patient-visit.create') }}" class="nav-link">Patient Visit Form</a></li>
+      @if(Auth::user()->role == 'dsc')
+      <li class="nav-item"><a href="{{ route('slo-report.create') }}" class="nav-link">SLO Report</a></li>
+      @else
       @endif
+
+      <li class="nav-item"><a href="{{ route('clinic.create') }}" class="nav-link">Shariah Clinic</a></li>
+      <li class="nav-item"><a href="{{ route('speaker.create') }}" class="nav-link">Speaker Consent Form</a></li>
+      <li class="nav-item"><a href="{{ route('acceptance.create') }}" class="nav-link">Acceptance or Consent Form</a></li>
+      <li class="nav-item"><a href="{{ route('slo-monthly.create') }}" class="nav-link">SLO Monthly Report</a></li>
+      <li class="nav-item"><a href="{{ route('patient-visit.create') }}" class="nav-link">Patient Visit Form</a></li>
     </ul>
 
     @php
@@ -58,7 +58,7 @@ $admin = (auth()->user()->role == 'admin');
     $reviewreport = (auth()->user()->reviewreport == 1);
     $reviewstatistic = (auth()->user()->reviewstatistic == 1);
     $useraccess = (auth()->user()->useraccess == 1);
-
+    $admin = (auth()->user()->role == 'admin');
     $dsc = (auth()->user()->role == 'dsc');
 
     @endphp
@@ -72,27 +72,24 @@ $admin = (auth()->user()->role == 'admin');
       </div><!-- menu-item -->
     </a><!-- sl-menu-link -->
     <ul class="sl-menu-sub nav flex-column">
-      @if($admin == true)
       <li class="nav-item"><a href="{{ route('document-review.view-all') }}" class="nav-link">Document Review</a></li>
       <li class="nav-item"><a href="{{ route('food.view-all') }}" class="nav-link">Food Premise Inspection</a></li>
       <li class="nav-item"><a href="{{ route('referral.view-all') }}" class="nav-link">Referral Form</a></li>
       <li class="nav-item"><a href="{{ route('program.view-all') }}" class="nav-link">Program Monitoring</a></li>
-      @endif
       <li class="nav-item"><a href="{{ route('activity-monitor.view') }}" class="nav-link">Activity Monitoring</a></li>
       <li class="nav-item"><a href="{{ route('complaint.view-all') }}" class="nav-link">Complaint Form</a></li>
-      @if($admin == true)
+      <li class="nav-item"><a href="{{ route('terms.view-all') }}" class="nav-link">Terms and Condition</a></li>
+      <li class="nav-item"><a href="{{ route('slo-report.view-all') }}" class="nav-link">SLO Report</a></li>
       <li class="nav-item"><a href="{{ route('clinic.view-all') }}" class="nav-link">Shariah Clinic</a></li>
-      @endif
-    
+      <li class="nav-item"><a href="{{ route('speaker.view-all') }}" class="nav-link">Speaker Consent Form</a></li>
+      <li class="nav-item"><a href="{{ route('acceptance.view-all') }}" class="nav-link">Acceptance or Consent Form</a></li>
       <li class="nav-item"><a href="{{ route('slo-monthly.view-all') }}" class="nav-link">SLO Monthly Report</a></li>
-      @if($admin == true)
       <li class="nav-item"><a href="{{ route('patient-visit.view-all') }}" class="nav-link">Patient Visit Form</a></li>
-      @endif
     </ul>
     @else
     @endif
 
-    @if($admin == true )
+    @if($admin == true || $dsc == true)
     <a href="{{ route('view.task') }}" class="sl-menu-link">
       <div class="sl-menu-item">
         <i class="menu-item-icon icon ion-ios-list tx-22"></i>
@@ -109,6 +106,9 @@ $admin = (auth()->user()->role == 'admin');
       </div><!-- menu-item -->
     </a><!-- sl-menu-link -->
 
+    </a><!-- sl-menu-link -->
+
+
     @if($admin == true)
     <a href="index.html" class="sl-menu-link">
       <div class="sl-menu-item">
@@ -119,9 +119,8 @@ $admin = (auth()->user()->role == 'admin');
     </a><!-- sl-menu-link -->
     <ul class="sl-menu-sub nav flex-column">
       <li class="nav-item"><a href="{{ route('admin.register') }}" class="nav-link">Create Staff</a></li>
-      <li class="nav-item"><a href="{{ route('admin.view-all') }}" class="nav-link">Edit/Delete Staff</a></li>
+      <li class="nav-item"><a href="{{ route('admin.view-all') }}" class="nav-link">View Staffs</a></li>
      
-
     </ul>
     @else
     @endif
