@@ -14,45 +14,49 @@
     <!-- <link rel="stylesheet" href="/css/login.css"> -->
 </head>
 
+
 <body class="bg-cover bg-center bg-no-repeat bg-fixed flex flex-col items-center justify-center" style="background-image: url('images/sasmec-iium.jpg')">
+    <div class="flex justify-center">
+        <img src="images/Uialonglogo.jpeg" width="120%" style="border-radius: 10px; margin: 2%;">
+    </div>
+    <div class=" items-center content-center justify-center g-gray-200 bg-opacity-75" style="background-color: #2CA2A2; width: 70%; height: 80vh; border-radius: 1%; opacity: 0.9; padding-top: 1px; margin-top: 0; grid-gap: 1px;">
 
-    <div class="relative grid gap-10 w-max flex flex-col flex-wrap items-center content-center justify-center min-h-screen bg-gray-200 bg-opacity-75 px-5 filter drop-shadow-2xl">
-        <div class="flex justify-center">
-            <img src="images/dsc-logo.jpg" alt="" height="130px" width="140px">
-            <img src="images/sasmec-iium-logo.png" alt="" height="150px" width="270px">
+
+        <h1 style="text-align: center; color: white; font-weight: bold; font-size: 20px; margin-top: 3%">SASMEC SHARIAH COMPLIANCE REPORTING MONITORING <br> SYSTEM (SASCOMS)</h1>
+        <div class="flex justify-center" style="padding: 10px;">
+            <img src="images/dsc-logo.jpg" alt="" height="130px" width="140px" style="border-radius: 20%;">
+            <!-- <img src="images/sasmec-iium-logo.png" alt="" height="150px" width="270px"> -->
         </div>
 
-        <div style="background-color: #ADD8E6; padding-bottom: 10px; padding-top: 20px; border-radius: 5%"> 
-            <form class="pt-0" method="POST" action="{{ route('login') }}">
-                @csrf
+        <h1 style="font-size: 40px; font-weight: bold; text-align: center">LOGIN</h1>
+        <div class="flex justify-center" style="padding: 30px;">
+            <div style="background-color: #081C1B; padding: 60px; border-radius: 10px; width: 100vh;">
+                <form class="pt-0" method="POST" action="{{ route('login') }}">
+                    @csrf
 
-                <!-- Email Address -->
-                <div class="flex items-center justify-center w-full px-4 py-2 rounded-md">
-                    <input type="email" name="email" id="email" class="form-input w-full px-4 py-3 rounded-full placeholder-gray-500 placeholder-opacity-100" placeholder="Email" required>
-                </div>
+                    <!-- Email Address -->
+                    <div class="flex items-center justify-center w-full px-4 py-2 rounded-md">
+                        <input type="email" name="email" id="email" class="form-input w-full px-4 py-3 rounded-full placeholder-gray-500 placeholder-opacity-100" placeholder="Email" required>
+                    </div>
 
-                <!-- Password -->
-                <div class="flex items-center justify-center w-full px-4 py-2 rounded-md">
-                    <input type="password" name="password" id="password" class="form-input w-full px-4 py-3 rounded-full placeholder-gray-500 placeholder-opacity-100" placeholder="Password" required>
-                </div>
+                    <!-- Password -->
+                    <div class="flex items-center justify-center w-full px-4 py-2 rounded-md">
+                        <input type="password" name="password" id="password" class="form-input w-full px-4 py-3 rounded-full placeholder-gray-500 placeholder-opacity-100" placeholder="Password" required>
+                    </div>
 
-                <div class="flex items-center justify-end mt-4 mr-4">
-                    <x-button class="ml-3">
-                        {{ __('Log in') }}
-                    </x-button>
-                </div>
-            </form>
+                    <div class="flex items-center justify-end mt-4 mr-4 ">
+                        <x-button class="ml-3" style="background-color: #2CA2A2;">
+                            {{ __('Log in') }}
+                        </x-button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="flex justify-center absolute bottom-5 place-self-center">
-            &copy; <span id="copy-year"></span>
-            &nbsp; <a href="https://sasmec.iium.edu.my/" class="text-blue-600 visited:text-purple-600">SASMEC @ IIUM</a>. All Rights Reserved.
+        <!-- <div class="flex justify-center absolute bottom-5 place-self-center">
+           
 
-            <script>
-                var d = new Date();
-                var year = d.getFullYear();
-                document.getElementById("copy-year").innerHTML = year;
-            </script>
-        </div>
+            
+        </div> -->
     </div>
 
 

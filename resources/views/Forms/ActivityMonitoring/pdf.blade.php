@@ -4,6 +4,45 @@
 <head>
     <meta charset="utf-8">
     <title></title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 5px;
+            border: 1px solid black;
+            vertical-align: text-top;
+
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        td {
+            background-color: white;
+        }
+
+        .yes-no-col {
+            width: 75px;
+            text-align: center;
+            /* Adjust the width as needed */
+        }
+
+        h4 {
+            font-size: 16px;
+            font-weight: normal;
+            padding-left: 5px;
+        }
+    </style>
 </head>
 
 <body>
@@ -16,7 +55,7 @@
         <img src="images/iium-logo.jpg" alt="logo" width="200">
     </div>
     <div style="position: relative; text-align: center">
-        <h4>SULTAN AHMAD SHAH MEDICAL CENTRE @IIUM<br>ACTIVITY MONITORING FORM</h4>
+        <h4>SULTAN AHMAD SHAH MEDICAL CENTRE @IIUM<br>SHARIAH COMPLIANCE ACTIVITY MONITORING FORM</h4>
     </div>
 
 
@@ -26,16 +65,16 @@
                 <div>
                     <table class="pt-info">
                         <tr>
-                            <th style="width: 25%; text-align: left; padding: 5px;">ACTIVITY NAME</th>
-                            <td>{{ $activity->activity_name }}</td>
+                            <th style="width: 25%; text-align: left; padding: 5px;">Department / Unit / Ward / Clinic</th>
+                            <td>{{ $activity->department }}</td>
                         </tr>
                         <tr>
-                            <th style="width: 25%; text-align: left; padding: 5px;">PERSON IN CHARGE</th>
+                            <th style="width: 25%; text-align: left; padding: 5px;">Representative of Department / Unit / Ward / Clinic</th>
                             <td>{{ $activity->pic }}</td>
                         </tr>
                         <tr>
-                            <th style="width: 25%; text-align: left; padding: 5px;">Department / Unit / Ward / Clinic</th>
-                            <td>{{ $activity->department }}</td>
+                            <th style="width: 25%; text-align: left; padding: 5px;">Representative from Department of Shariah Compliance</th>
+                            <td>{{ $activity->spic }}</td>
                         </tr>
                         <tr>
                             <th style="width: 25%; text-align: left; padding: 5px;">Date</th>
@@ -43,44 +82,88 @@
                         </tr>
                     </table>
                     <br>
-                    <table class="pt-info">
+                    <table>
                         <tr>
-                            <th style="text-align: left; padding: 5px;" colspan="2">DETAILS</th>
-                        </tr>                    
-                        <tr>
-                            <td style="text-align: left; padding: 5px;" colspan="2">
-                                <h5>DISCUSSION POINTS</h5>
-                                <div>
-                                    {{ $activity->discussion_point }}
-                                </div>
-                            </td>
+                            <th colspan="3" style="background-color: #A8D08D;">INSPECTION DETAILS</th>
                         </tr>
                         <tr>
-                            <td style="text-align: left; padding: 5px;" colspan="2">
-                                <h5>SHARIAH CRITICAL POINTS</h5>
-                                <div>
-                                    {{ $activity->shariah_critical_point }}
-                                </div>
-                            </td>
+                            <td style="text-align: center;">CONTENT</td>
+                            <td class="yes-no-col">Yes/No</td>
+                            <td style="text-align: center;">REMARKS</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <ol>
 
+                                    <li><b>Workflow</b></li>
+
+                                    <ul>
+                                        <li>Person in charge give a briefing or explanation about workflow</li>
+                                        <li>Workflow of the department / unit / ward / clinic is comply to shariah <br> (If not comply to shariah, it shall be stated in remarks column)</li>
+                                    </ul>
+                                </ol>
+
+                            </td>
+                            <td class="yes-no-col"></td>
+                            <td></td>
                         </tr>
                         <tr>
-                            <td style="text-align: left; padding: 5px;" colspan="2">
-                                <h5>Suggestions / Recommendations/ Comments from Representative of Shariah Compliance Unit</h5>
-                                <div>
-                                    {{ $activity->suggestion }}
-                                </div>
+                            <td>
+                                <ol start="2">
+                                    <li><b>Shariah Critical Control Point</b></li>
+                                </ol>
+                                <ul>
+                                    <li>Shariah Critical Control Points are archieved / fully implemented</li>
+                                    <li>Shariah Critical Control Points are identified accordingly to Shariah requirements</li>
+                                </ul>
                             </td>
+                            <td class="yes-no-col"></td>
+                            <td></td>
                         </tr>
                         <tr>
-                            <td style="text-align: left; padding: 5px;" colspan="2">
-                                <h5>Next Follow Up</h5>
-                                <div>
-                                    {{ $activity->next_follow }}
-                                </div>
+                            <td>
+                                <h4><b>Any activities of non-conformity to Shariah are noticed during inspection</b></h4>
+                                <h4>(If any activites of non-conformaties are noticed, it shall be stated in the remark column)</h4>
                             </td>
+                            <td class="yes-no-col"></td>
+
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="border-right: 1px white; height: 150px; vertical-align: text-top">
+                                <h4> <b>Corrective Action</b> (if any)</h4>
+                            </td>
+                            <td style="border-right: 1px white;"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="border-right: 1px white; height: 300px; vertical-align: text-top">
+                                <h4> <b>Discussion points</b> (if any)</h4>
+                            </td>
+                            <td style="border-right: 1px white;"></td>
+                            <td></td>
                         </tr>
 
+                        <tr>
+                            <td style="border-right: 1px white; height: 300px; vertical-align: text-top">
+                                <h4> <b>Suggestion / Recommendations / Comments from <br> Representative from Department of Shariah <b> Compliance</b></h4>
+                            </td>
+                            <td style="border-right: 1px white;"></td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td style="border-right: 1px white; height: 150px; vertical-align: text-top">
+                                <h4> <b>Next Follow Up of Any Non-Conformities Activities</b> (if any)</h4>
+                            </td>
+                            <td style="border-right: 1px white;"></td>
+                            <td></td>
+                        </tr>
+
+
+                    </table>
+                    <br>
+                    <table>
                         <tr>
                             <td>
                                 <h5>Representative of Hod/Department: </h5>
@@ -91,10 +174,10 @@
                                     Name: {{ $user->name }}
                                 </div>
                                 <div>
-                                    Position :
+                                    Position: {{ $user->position}}
                                 </div>
                                 <div>
-                                    Date : {{ $activity->created_date  }}
+                                    Date: {{ $activity->created_date  }}
                                 </div>
                             </td>
                             <td>
@@ -103,21 +186,22 @@
                                     <h6>This is an auto-generated signature</h6>
                                 </div>
                                 <div>
-                                    Name : 
+                                    Name:
                                 </div>
                                 <div>
-                                    Position :
+                                    Position:
                                 </div>
                                 <div>
-                                    Date : 
+                                    Date:
                                 </div>
                             </td>
                         </tr>
                     </table>
+
                 </div>
 
-
             </div>
+
 
             <div style="position: relative; text-align: center">
                 <p style="position: fixed; bottom: 0; width:100%;">Sultan Ahmad Shah Medical Centre @IIUM, Jalan Sultan Ahmad Shah, Bandar Indera Mahkota, 25200 Kuantan, Pahang Darul Makmur.<br>Tel: 09-591 2500</p>

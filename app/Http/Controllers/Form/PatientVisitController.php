@@ -50,6 +50,7 @@ class PatientVisitController extends Controller
             'intervention' => $request->intervention,
             'casestatus' => $request->casestatus,
             'followup' => $request->followup,
+            'created_at' => Carbon::now(),
         ]);
 
         $notification = array(

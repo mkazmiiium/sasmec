@@ -48,7 +48,7 @@
 
                   <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
                     <i class="fa fa-eye mg-r-10"></i>
-                    <a href="{{ action('App\Http\Controllers\Form\ClinicController@pdf', $patientvisit->id) }}" target="_blank">Show</a>
+                    <a href="{{ action('App\Http\Controllers\Form\PatientVisitController@pdf', $patientvisit->id) }}" target="_blank">Show</a>
                   </button>
                 </div>
               </td>
