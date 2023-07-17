@@ -1,10 +1,105 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <style>
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
 
+    input[type="text"],
+    input[type="checkbox"] {
+      margin-bottom: 10px;
+    }
+
+    textarea {
+      margin-bottom: 10px;
+      width: 100%;
+      height: 100px;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .form-container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .submit-btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
+  <div class="form-container">
+    <form>
+      <div class="question">
+        <label for="activity1">Question 1: Activity Description</label>
+        <input type="text" id="activity1" name="activity1">
+      </div>
 
+      <div class="question">
+        <label>Is the activity currently active?</label>
+        <input type="checkbox" id="active1" name="active1" value="true">
+        <label for="active1">True</label>
+        <input type="checkbox" id="active2" name="active1" value="false">
+        <label for="active2">False</label>
+      </div>
 
+      <div class="question">
+        <label for="remarks1">Remarks</label>
+        <textarea id="remarks1" name="remarks1"></textarea>
+      </div>
+
+      <div class="question">
+        <label for="activity2">Question 2: Activity Description</label>
+        <input type="text" id="activity2" name="activity2">
+      </div>
+
+      <div class="question">
+        <label>Is the activity currently active?</label>
+        <input type="checkbox" id="active3" name="active2" value="true">
+        <label for="active3">True</label>
+        <input type="checkbox" id="active4" name="active2" value="false">
+        <label for="active4">False</label>
+      </div>
+
+      <div class="question">
+        <label for="remarks2">Remarks</label>
+        <textarea id="remarks2" name="remarks2"></textarea>
+      </div>
+
+      <div class="question">
+        <label for="activity3">Question 3: Activity Description</label>
+        <input type="text" id="activity3" name="activity3">
+      </div>
+
+      <div class="question">
+        <label>Is the activity currently active?</label>
+        <input type="checkbox" id="active5" name="active3" value="true">
+        <label for="active5">True</label>
+        <input type="checkbox" id="active6" name="active3" value="false">
+        <label for="active6">False</label>
+      </div>
+
+      <div class="question">
+        <label for="remarks3">Remarks</label>
+        <textarea id="remarks3" name="remarks3"></textarea>
+      </div>
+
+      <input type="submit" class="submit-btn" value="Submit">
+    </form>
+  </div>
 </body>
 </html>

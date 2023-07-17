@@ -27,7 +27,6 @@
         <hr>
         <div class="box row-fluid">
 
-
           <section class="step">
             <p class="card-text wizard-title">Program Information</p>
 
@@ -38,27 +37,21 @@
                   <div class="col-lg-10">
 
                     <div class="mg-t-25">
-                      <label for="activity_name" class="form-label">Acitivity Name <span style="color:red">*</span></label>
+                      <label for="department_info" class="form-label">Department / Unit / Ward / Clinic <span style="color:red">*</span></label>
                     </div>
-                    <input type="text" id="activity_name" name="activity_name" placeholder="Activity Name" class="form-control" autofocus minlength="5" required maxlength="253">
+                    <input type="text" id="department_info" name="department_info" placeholder="Department / Unit / Ward / Clinic" class="form-control" autofocus minlength="5" required maxlength="253">
 
 
                     <div class="mg-t-25">
-                      <label for="pic" class="form-label">Person In Charge<span style="color:red">*</span></label>
+                      <label for="pic" class="form-label">Representative of Department / Unit / Ward / Clinic <span style="color:red">*</span></label>
                     </div>
-                    <input type="text" id="pic" name="pic" placeholder="Person In Charge" class="form-control" required maxlength="253">
+                    <input type="text" id="representative_dep" name="representative_dep" placeholder="Representative of Department / Unit / Ward / Clinic" class="form-control" required maxlength="253">
 
 
                     <div class="mg-t-25">
-                      <label for="department" class="form-label">Activity Department <span style="color:red">*</span></label>
+                      <label for="department" class="form-label"> Representative from Department of Shariah Compliance <span style="color:red">*</span></label>
                     </div>
-                    <input type="text" id="department" name="department" placeholder="Activity Department" class="form-control" required maxlength="253">
-
-
-                    <div class="mg-t-25">
-                      <label for="shariah_non_conformity" class="form-label">Shariah Critical Points</label>
-                    </div>
-                    <input type="text" id="shariah_non_conformity" name="shariah_non_conformity" placeholder="Shariah Non Conformity" class="form-control" maxlength="253">
+                    <input type="text" id="representative_shariah" name="representative_shariah" placeholder="Representative from Department of Shariah Compliance" class="form-control" required maxlength="253">
 
                   </div><!-- col-3 -->
                 </div><!-- row -->
@@ -66,6 +59,213 @@
             </div>
           </section>
 
+
+
+
+          <section class="step">
+            <p class="card-text wizard-title">Workflow</p>
+            <div class="row">
+              <div class="col-lg-10">
+                <div class="card pd-5 pd-sm-1">
+
+
+                  <div class="table-wrapper">
+                    <table id="datatable1" class="table display responsive nowrap">
+                      <thead>
+                        <tr>
+                          <th class="wd-180p">Does Person in charge give a briefing or explanation about workflow?</th>
+                          <th class="wd-5p">Yes</th>
+                          <th class="wd-5p">No</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        <tr>
+                          <td>
+                            <label for="Q1_remarks" class="form-label"> <b>Remarks: </b></label>
+                            <br>
+                            <textarea id="Q1_remarks" name="Q1_remarks" cols="700" rows="5" class="form-control" maxlength="253"></textarea>
+                          </td>
+                          <td>
+                            <input type="radio" id="yes" name="Q1" value="yes" required>
+                          </td>
+                          <td>
+                            <input type="radio" id="no" name="Q1" value="no" required>
+                          </td>
+
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div><!-- table-wrapper -->
+                </div><!-- card -->
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-10">
+                <div class="card pd-5 pd-sm-1">
+
+
+                  <div class="table-wrapper">
+                    <table id="datatable1" class="table display responsive nowrap">
+                      <thead>
+                        <tr>
+                          <th class="wd-180p">Workflow of the deparment / Unit / Ward / clinic comply with shariah? </th>
+                          <th class="wd-5p">Yes</th>
+                          <th class="wd-5p">No</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        <tr>
+                          <td>
+                            <label for="Q2_remarks" class="form-label"> <b>Remarks </b>(Note: If not comply with shariah, it shall be stated in remarks field.)
+                            </label>
+                            <br><br>
+                            <textarea id="Q2_remarks" name="Q2_remarks" cols="700" rows="5" class="form-control" maxlength="253"></textarea>
+                          </td>
+                          <td>
+                            <input type="radio" id="yes" name="Q2" value="yes" required>
+                          </td>
+                          <td>
+                            <input type="radio" id="no" name="Q2" value="no" required>
+                          </td>
+
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div><!-- table-wrapper -->
+                </div><!-- card -->
+              </div>
+            </div>
+          </section>
+
+          <section class="step">
+            <p class="card-text wizard-title">Shariah Critical Control Points</p>
+            <div class="row">
+              <div class="col-lg-10">
+                <div class="card pd-5 pd-sm-1">
+
+
+                  <div class="table-wrapper">
+                    <table id="datatable1" class="table display responsive nowrap">
+                      <thead>
+                        <tr>
+                          <th class="wd-180p">Shariah Critical Control Points are achieved / fully implemente?</th>
+                          <th class="wd-5p">Yes</th>
+                          <th class="wd-5p">No</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        <tr>
+                          <td>
+                            <label for="Q3_remarks" class="form-label"> <b>Remarks: </b></label>
+                            <br>
+                            <textarea id="Q3_remarks" name="Q3_remarks" cols="700" rows="5" class="form-control" maxlength="253"></textarea>
+                          </td>
+                          <td>
+                            <input type="radio" id="yes" name="Q3" value="yes" required>
+                          </td>
+                          <td>
+                            <input type="radio" id="no" name="Q3" value="no" required>
+                          </td>
+
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div><!-- table-wrapper -->
+                </div><!-- card -->
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-10">
+                <div class="card pd-5 pd-sm-1">
+
+
+                  <div class="table-wrapper">
+                    <table id="datatable1" class="table display responsive nowrap">
+                      <thead>
+                        <tr>
+                          <th class="wd-180p">Shariah Critical Control Points are identified accordingly to Shariah requirements? </th>
+                          <th class="wd-5p">Yes</th>
+                          <th class="wd-5p">No</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        <tr>
+                          <td>
+                            <label for="Q4_remarks" class="form-label"> <b>Remarks </b>(Note: If not comply with shariah, it shall be stated in remarks field.)
+                            </label>
+                            <br><br>
+                            <textarea id="Q4_remarks" name="Q4_remarks" cols="700" rows="5" class="form-control" maxlength="253"></textarea>
+                          </td>
+                          <td>
+                            <input type="radio" id="yes" name="Q4" value="yes" required>
+                          </td>
+                          <td>
+                            <input type="radio" id="no" name="Q4" value="no" required>
+                          </td>
+
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div><!-- table-wrapper -->
+                </div><!-- card -->
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-lg-10">
+                <div class="card pd-5 pd-sm-1">
+
+
+                  <div class="table-wrapper">
+                    <table id="datatable1" class="table display responsive nowrap">
+                      <thead>
+                        <tr>
+                          <th class="wd-180p">Any activites of non-conformitiy to Shariah are noticed during inspection? </th>
+                          <th class="wd-5p">Yes</th>
+                          <th class="wd-5p">No</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        <tr>
+                          <td>
+                            <label for="Q5_remarks" class="form-label"> <b>Remarks </b>(Note: If any activities of non-conformites are noticed, it shall be stated in the remark field.)
+                            </label>
+                            <br><br>
+                            <textarea id="Q5_remarks" name="Q5_remarks" cols="700" rows="5" class="form-control" maxlength="253"></textarea>
+                          </td>
+                          <td>
+                            <input type="radio" id="yes" name="Q5" value="yes" required>
+                          </td>
+                          <td>
+                            <input type="radio" id="no" name="Q5" value="no" required>
+                          </td>
+
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div><!-- table-wrapper -->
+                </div><!-- card -->
+              </div>
+            </div>
+          </section>
 
 
           <section class="step">
@@ -77,7 +277,7 @@
                 <div class="row mg-t-25">
 
                   <div class="mg-t-25">
-                    <label for="discussion_point" class="form-label">Activity Correctiveness Action <span style="color:red">*</span></label>
+                    <label for="discussion_point" class="form-label">Activity Correctiveness Action (If any) <span style="color:red">*</span></label>
                   </div>
                   <textarea id="corrective_action" name="corrective_action" cols="700" rows="5" class="form-control" maxlength="253"></textarea>
 
