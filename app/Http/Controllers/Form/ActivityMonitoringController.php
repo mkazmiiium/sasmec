@@ -26,18 +26,17 @@ class ActivityMonitoringController extends Controller
 
         if (Auth::user()->role == 'admin') {
             $activity = DB::table('activity_monitorings')
-                ->orderBy('id', 'DESC')
+                ->latest()
                 ->get();
             $user = Auth::user();
             return view('ManageReports.all-activity', compact('activity', 'user'));
         } else {
             $activity = DB::table('activity_monitorings')->where('id', '=', Auth::user()->id)
-                ->orderBy('id', 'DESC')
+                ->latest()
                 ->get();
             $user = Auth::user();
             return view('ManageReports.all-activity', compact('activity', 'user'));
         }
-        
     }
 
     // store activity in db
@@ -46,15 +45,24 @@ class ActivityMonitoringController extends Controller
         ActivityMonitoring::insert([
             'user_id' => Auth::user()->id,
             'activity_name' => $req->activity_name,
-            'pic' => $req->pic,
-            'department' => $req->department,
-            'shariah_critical_point' => $req->shariah_critical_point,
-            'shariah_non_conformity' => $req->shariah_non_conformity,
+            'department_info' => $req->department_info,
+            'representative_dep' => $req->representative_dep,
+            'representative_shariah' => $req->representative_shariah,
+            'Q1' => $req->Q1,
+            'Q1_remarks' => $req->Q1_remarks,
+            'Q2' => $req->Q2,
+            'Q2_remarks' => $req->Q2_remarks,
+            'Q3' => $req->Q3,
+            'Q3_remarks' => $req->Q3_remarks,
+            'Q4' => $req->Q4,
+            'Q4_remarks' => $req->Q4_remarks,
+            'Q5' => $req->Q5,
+            'Q5_remarks' => $req->Q5_remarks,
             'corrective_action' => $req->corrective_action,
             'discussion_point' => $req->discussion_point,
             'suggestion' => $req->suggestion,
             'next_follow' => $req->next_follow,
-            'created_date' => Carbon::now()
+            'created_at' => Carbon::now()->format('Y-m-d')
         ]);
 
         $notification = array(

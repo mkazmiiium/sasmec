@@ -15,17 +15,27 @@ class CreateActivityMonitoringsTable extends Migration
     {
         Schema::create('activity_monitorings', function (Blueprint $table) {
             $table->id();
-            $table->string('activity_name');
+            
             $table->integer('user_id');
-            $table->string('pic');
-            $table->string('department');
-            $table->string('shariah_critical_point')->nullable();
-            $table->string('shariah_non_conformity')->nullable();
+            $table->string('activity_name');
+            $table->string('department_info');
+            $table->string('representative_dep');
+            $table->string('representative_shariah');
+            $table->string('Q1');
+            $table->string('Q1_remarks')->nullable();
+            $table->string('Q2');
+            $table->string('Q2_remarks')->nullable();
+            $table->string('Q3');
+            $table->string('Q3_remarks')->nullable();
+            $table->string('Q4');
+            $table->string('Q4_remarks')->nullable();
+            $table->string('Q5');
+            $table->string('Q5_remarks')->nullable();
             $table->string('corrective_action')->nullable();
             $table->string('discussion_point')->nullable();
             $table->string('suggestion')->nullable();
             $table->string('next_follow')->nullable();
-            $table->date('created_date');
+            $table->date('created_at');
         });
     }
 
@@ -39,3 +49,5 @@ class CreateActivityMonitoringsTable extends Migration
         Schema::dropIfExists('activity_monitorings');
     }
 }
+
+

@@ -37,6 +37,12 @@
                   <div class="col-lg-10">
 
                     <div class="mg-t-25">
+                      <label for="activity_name" class="form-label">Activity Name<span style="color:red">*</span></label>
+                    </div>
+                    <input type="text" id="activity_name" name="activity_name" placeholder="Activity Name" class="form-control" autofocus minlength="5" required maxlength="253">
+
+
+                    <div class="mg-t-25">
                       <label for="department_info" class="form-label">Department / Unit / Ward / Clinic <span style="color:red">*</span></label>
                     </div>
                     <input type="text" id="department_info" name="department_info" placeholder="Department / Unit / Ward / Clinic" class="form-control" autofocus minlength="5" required maxlength="253">
@@ -58,7 +64,6 @@
               </div>
             </div>
           </section>
-
 
 
 
@@ -334,7 +339,5 @@
   </div><!-- sl-pagebody -->
 
 </div><!-- sl-mainpanel -->
-
-
 
 @endsection

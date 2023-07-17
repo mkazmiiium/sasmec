@@ -57,7 +57,11 @@
     <div style="position: relative; text-align: center">
         <h4>SULTAN AHMAD SHAH MEDICAL CENTRE @IIUM<br>SHARIAH COMPLIANCE ACTIVITY MONITORING FORM</h4>
     </div>
-
+    @php
+    $datetime = $activity->created_at;
+    $dateParts = explode(' ', $datetime);
+    $date = implode('-', array_reverse(explode('-', $dateParts[0])));
+    @endphp
 
     <div style="left: 30px;">
         <div>
@@ -66,19 +70,19 @@
                     <table class="pt-info">
                         <tr>
                             <th style="width: 25%; text-align: left; padding: 5px;">Department / Unit / Ward / Clinic</th>
-                            <td>{{ $activity->department }}</td>
+                            <td>{{ $activity->department_info }}</td>
                         </tr>
                         <tr>
                             <th style="width: 25%; text-align: left; padding: 5px;">Representative of Department / Unit / Ward / Clinic</th>
-                            <td>{{ $activity->pic }}</td>
+                            <td>{{ $activity->representative_dep }}</td>
                         </tr>
                         <tr>
                             <th style="width: 25%; text-align: left; padding: 5px;">Representative from Department of Shariah Compliance</th>
-                            <td>{{ $activity->spic }}</td>
+                            <td>{{ $activity->representative_shariah }}</td>
                         </tr>
                         <tr>
                             <th style="width: 25%; text-align: left; padding: 5px;">Date</th>
-                            <td>{{ $activity->created_date }}</td>
+                            <td> {{ $date }}</td>
                         </tr>
                     </table>
                     <br>
@@ -96,16 +100,16 @@
                                 <ol>
 
                                     <li><b>Workflow</b></li>
-
-                                    <ul>
-                                        <li>Person in charge give a briefing or explanation about workflow</li>
-                                        <li>Workflow of the department / unit / ward / clinic is comply to shariah <br> (If not comply to shariah, it shall be stated in remarks column)</li>
-                                    </ul>
                                 </ol>
+                                <ul>
+                                    <li>Person in charge give a briefing or explanation about workflow</li>
+                                    <li>Workflow of the department / unit / ward / clinic is comply to shariah <br> (If not comply to shariah, it shall be stated in remarks column)</li>
+                                </ul>
+
 
                             </td>
-                            <td class="yes-no-col"></td>
-                            <td></td>
+                            <td class="yes-no-col"> <br> <br>{{ $activity->Q1}} <br> <br><br> {{ $activity->Q2}}</td>
+                            <td><br> <br>- {{ $activity->Q1_remarks}} <br> <br>- {{ $activity->Q2_remarks}}</td>
                         </tr>
                         <tr>
                             <td>
@@ -117,28 +121,30 @@
                                     <li>Shariah Critical Control Points are identified accordingly to Shariah requirements</li>
                                 </ul>
                             </td>
-                            <td class="yes-no-col"></td>
-                            <td></td>
+                            <td class="yes-no-col"><br> <br>{{ $activity->Q3}} <br> <br><br> {{ $activity->Q4}}</td>
+                            <td><br> <br>- {{ $activity->Q3_remarks}} <br> <br>- {{ $activity->Q4_remarks}}</td>
                         </tr>
                         <tr>
                             <td>
                                 <h4><b>Any activities of non-conformity to Shariah are noticed during inspection</b></h4>
                                 <h4>(If any activites of non-conformaties are noticed, it shall be stated in the remark column)</h4>
                             </td>
-                            <td class="yes-no-col"></td>
+                            <td class="yes-no-col"><br> <br>{{ $activity->Q5}} </td>
 
-                            <td></td>
+                            <td><br> <br>- {{ $activity->Q5_remarks}} </td>
                         </tr>
                         <tr>
                             <td style="border-right: 1px white; height: 150px; vertical-align: text-top">
                                 <h4> <b>Corrective Action</b> (if any)</h4>
+                                {{$activity->corrective_action}}
                             </td>
                             <td style="border-right: 1px white;"></td>
-                            <td></td>
+                            <td> </td>
                         </tr>
                         <tr>
                             <td style="border-right: 1px white; height: 300px; vertical-align: text-top">
                                 <h4> <b>Discussion points</b> (if any)</h4>
+                                {{$activity->discussion_point}}
                             </td>
                             <td style="border-right: 1px white;"></td>
                             <td></td>
@@ -147,6 +153,7 @@
                         <tr>
                             <td style="border-right: 1px white; height: 300px; vertical-align: text-top">
                                 <h4> <b>Suggestion / Recommendations / Comments from <br> Representative from Department of Shariah <b> Compliance</b></h4>
+                                {{$activity->suggestion}}
                             </td>
                             <td style="border-right: 1px white;"></td>
                             <td></td>
@@ -155,6 +162,7 @@
                         <tr>
                             <td style="border-right: 1px white; height: 150px; vertical-align: text-top">
                                 <h4> <b>Next Follow Up of Any Non-Conformities Activities</b> (if any)</h4>
+                                {{$activity->next_follow}}
                             </td>
                             <td style="border-right: 1px white;"></td>
                             <td></td>

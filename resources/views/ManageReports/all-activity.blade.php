@@ -23,7 +23,7 @@
             <tr>
               <th class="wd-10p">No</th>
               <th class="wd-15p">Activity Name</th>
-              <th class="wd-15p">Department</th>
+              <th class="wd-15p">Department Rep</th>
               <th class="wd-20p">SCU in-charge</th>
               <th class="wd-20p">Corrective Action</th>
               <th class="wd-15p">Suggession</th>
@@ -36,12 +36,12 @@
             <tr>
               <td>{{ $count }}</td>
               <td>{{ $activity->activity_name }}</td>
-              <td>{{ $activity->department }}</td>
+              <td>{{ $activity->department_info }}</td>
               <td>
-                @if($activity->pic == NULL)
+                @if($activity->representative_dep == NULL)
                 No SCU assigned
                 @else
-                {{ $activity->pic }}
+                {{ $activity->representative_dep }}
                 @endif
               </td>
               <td>{{ $activity->corrective_action }}</td>
