@@ -15,6 +15,7 @@ class CreatePatientVisitTable extends Migration
     {
         Schema::create('patient_visit', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('slo_name')->nullable();
             $table->string('patientname')->nullable();
             $table->string('ward')->nullable();
             $table->date('referreddate')->nullable();
@@ -29,6 +30,7 @@ class CreatePatientVisitTable extends Migration
             $table->timestamps();
         });
     }
+// run 
 
     /**
      * Reverse the migrations.

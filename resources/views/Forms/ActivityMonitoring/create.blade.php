@@ -160,7 +160,7 @@
                     <table id="datatable1" class="table display responsive nowrap">
                       <thead>
                         <tr>
-                          <th class="wd-180p">Shariah Critical Control Points are achieved / fully implemente?</th>
+                          <th class="wd-180p">Shariah Critical Control Points are achieved / fully implemented?</th>
                           <th class="wd-5p">Yes</th>
                           <th class="wd-5p">No</th>
 
@@ -274,7 +274,7 @@
 
 
           <section class="step">
-            <p class="card-text wizard-title">corrective action</p>
+            <p class="card-text wizard-title">Corrective Action</p>
 
             <div class="row ">
 
@@ -300,7 +300,7 @@
 
 
           <section class="step">
-            <p class="card-text wizard-title">suggestion / recommendations</p>
+            <p class="card-text wizard-title">Suggestion / Recommendations</p>
 
             <div class="row ">
 

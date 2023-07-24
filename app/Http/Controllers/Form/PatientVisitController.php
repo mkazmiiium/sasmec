@@ -38,18 +38,19 @@ class PatientVisitController extends Controller
     public function storeReport(Request $request){
 
         PatientVisit::insert([
-            // 'id' => Auth::user()->id,
+            
             'patientname' => $request->patientname,
             'ward' => $request->ward,
             'referreddate' => $request->referreddate,
             'attendeddate' => $request->attendeddate,
             'reason' => $request->reason,
             'background' => $request->background,
-            'currentcondiiton' => $request->currentcondiiton,
+            'currentcondition' => $request->currentcondition,
             'problem' => $request->problem,
             'intervention' => $request->intervention,
             'casestatus' => $request->casestatus,
             'followup' => $request->followup,
+            'slo_name' => Auth::user()->name,
             'created_at' => Carbon::now(),
         ]);
 

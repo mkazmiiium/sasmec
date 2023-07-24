@@ -89,10 +89,10 @@
                                         <textarea class="form-control" id="background" rows="5" name="background" style="width:700px;"></textarea>
 
                                         <div class="mg-t-25">
-                                            <label for="currentcondiiton" class="form-label">Current Condition</label>
+                                            <label for="currentcondition" class="form-label">Current Condition</label>
                                         </div>
 
-                                        <textarea class="form-control" id="currentcondiiton" rows="5" name="currentcondiiton" style="width:700px;"></textarea>
+                                        <textarea class="form-control" id="currentcondition" rows="5" name="currentcondition" style="width:700px;"></textarea>
 
                                         <div class="mg-t-25">
                                             <label for="problem" class="form-label">Problem</label>
