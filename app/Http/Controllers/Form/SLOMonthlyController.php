@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Form;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SLOMonthly;
+use App\Models\User;
 use Illuminate\Support\Carbon;
 use Auth;
 use DB;
@@ -56,6 +57,7 @@ class SLOMonthlyController extends Controller
             'date' => Carbon::now(),
             'report_details' => $request->report_details,
             'correctiveaction' => $request->correctiveaction,
+            'suggestion' => $request->suggestion,
             'status' => "Pending",
         ]);
 
@@ -81,8 +83,10 @@ class SLOMonthlyController extends Controller
     public function pdf($id)
     {
         $slomonthly = SloMonthly::find($id);
-        $pdf = PDF::loadView('Forms/SloMonthly/pdf', compact('slomonthly'));
+        $user = User::find($slomonthly->slo_id);
+        $pdf = PDF::loadView('Forms/SloMonthly/pdf', compact('slomonthly', 'user'));
 
         return $pdf->stream('slo_monthly.pdf');
     }
 }
+

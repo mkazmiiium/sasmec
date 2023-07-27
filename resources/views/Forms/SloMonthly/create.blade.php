@@ -48,6 +48,12 @@
                                 </div>
 
                                 <textarea class="form-control" id="correctiveaction" rows="5" name="correctiveaction" style="width:700px;"></textarea>
+
+                                <div class="mg-t-25">
+                                <label for="suggesttion" class="form-label">Suggestions / Recommendation from SLO</label>
+                                </div>
+
+                                <textarea class="form-control" id="suggestion" rows="5" name="suggestion" style="width:700px;"></textarea>
                                
                             </div><!-- col-3 -->
                         </div><!-- row -->

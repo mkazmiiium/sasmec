@@ -51,7 +51,7 @@
                 <div class="btn-group table-action" role="group">
                   <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
                     <i class="fa fa-download mg-r-10"></i>
-                    <a href="{{ route('activity-monitor.pdf', $count) }}" target="_blank">Download</a>
+                    <a href="{{ route('activity-monitor.pdf', $activity->id) }}" target="_blank">Download</a>
                   </button>
                 </div>
               </td>

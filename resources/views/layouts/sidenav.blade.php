@@ -42,7 +42,7 @@ $admin = (auth()->user()->role == 'admin');
       @if($admin == 'admin')
       <li class="nav-item"><a href="{{ route('clinic.create') }}" class="nav-link">Shariah Clinic</a></li>
       @endif
-    
+
       <li class="nav-item"><a href="{{ route('slo-monthly.create') }}" class="nav-link">SLO Monthly Report</a></li>
 
       @if($admin == 'admin')
@@ -58,12 +58,10 @@ $admin = (auth()->user()->role == 'admin');
     $reviewreport = (auth()->user()->reviewreport == 1);
     $reviewstatistic = (auth()->user()->reviewstatistic == 1);
     $useraccess = (auth()->user()->useraccess == 1);
-
     $dsc = (auth()->user()->role == 'dsc');
 
     @endphp
 
-    @if($admin == true || $dsc == true)
     <a href="#" class="sl-menu-link">
       <div class="sl-menu-item">
         <i class="menu-item-icon icon ion-filing tx-24"></i>
@@ -83,14 +81,12 @@ $admin = (auth()->user()->role == 'admin');
       @if($admin == true)
       <li class="nav-item"><a href="{{ route('clinic.view-all') }}" class="nav-link">Shariah Clinic</a></li>
       @endif
-    
+
       <li class="nav-item"><a href="{{ route('slo-monthly.view-all') }}" class="nav-link">SLO Monthly Report</a></li>
       @if($admin == true)
       <li class="nav-item"><a href="{{ route('patient-visit.view-all') }}" class="nav-link">Patient Visit Form</a></li>
       @endif
     </ul>
-    @else
-    @endif
 
     @if($admin == true )
     <a href="{{ route('view.task') }}" class="sl-menu-link">
@@ -120,7 +116,7 @@ $admin = (auth()->user()->role == 'admin');
     <ul class="sl-menu-sub nav flex-column">
       <li class="nav-item"><a href="{{ route('admin.register') }}" class="nav-link">Create Staff</a></li>
       <li class="nav-item"><a href="{{ route('admin.view-all') }}" class="nav-link">Edit/Delete Staff</a></li>
-     
+
 
     </ul>
     @else

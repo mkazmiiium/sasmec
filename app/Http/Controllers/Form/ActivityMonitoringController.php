@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use App\Models\ActivityMonitoring;
+use App\Models\User;
 use PDF;
 use Auth;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
@@ -24,17 +25,23 @@ class ActivityMonitoringController extends Controller
     public function view()
     {
 
+
         if (Auth::user()->role == 'admin') {
-            $activity = DB::table('activity_monitorings')
-                ->latest()
-                ->get();
-            $user = Auth::user();
+            $activity = ActivityMonitoring::latest()->get();
+
+            // Loop through the activities to retrieve the associated user for each activity
+            foreach ($activity as $activity) {
+                $user = User::find($activity->user_id);
+                $activity->user = $user; // Add the user object to the activity object
+            }
+
             return view('ManageReports.all-activity', compact('activity', 'user'));
         } else {
-            $activity = DB::table('activity_monitorings')->where('id', '=', Auth::user()->id)
+            $activity = ActivityMonitoring::where('user_id', '=', Auth::user()->id)
                 ->latest()
                 ->get();
-            $user = Auth::user();
+            // Retrieve the associated user
+            $user = User::find($activity[0]->user_id);
             return view('ManageReports.all-activity', compact('activity', 'user'));
         }
     }
@@ -81,7 +88,7 @@ class ActivityMonitoringController extends Controller
         if (ActivityMonitoring::where('id', $id)->exists()) {
 
             $activity = ActivityMonitoring::find($id);
-            $user = Auth::user();
+            $user = User::find($activity->user_id);
             $pdf = PDF::loadview('Forms.ActivityMonitoring.pdf', compact('activity', 'user'));
             return $pdf->stream('Forms.ActivityMonitoring.pdf');
             // The record exists in the database

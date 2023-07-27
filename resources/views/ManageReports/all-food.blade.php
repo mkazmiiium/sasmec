@@ -43,7 +43,7 @@
                 <div class="btn-group table-action" role="group">
                   <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
                     <i class="fa fa-eye mg-r-10"></i>
-                    <a href="{{ action('App\Http\Controllers\Form\FoodPremiseController@pdf', $count) }}" target="_blank">Show</a>
+                    <a href="{{ action('App\Http\Controllers\Form\FoodPremiseController@pdf', $food->id) }}" target="_blank">Show</a>
                   </button>
                 </div>
               </td>

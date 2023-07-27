@@ -185,7 +185,7 @@
                                     Position: {{ $user->position}}
                                 </div>
                                 <div>
-                                    Date: {{ $activity->created_date  }}
+                                    Date: {{ $date  }}
                                 </div>
                             </td>
                             <td>
