@@ -102,7 +102,7 @@
 
                       <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
                         <i class="fa fa-download mg-r-10"></i>
-                        <a href="{{ action('App\Http\Controllers\Form\FoodPremiseController@pdf', $count) }}" target="_blank">Show</a>
+                        <a href="{{ action('App\Http\Controllers\Form\FoodPremiseController@pdf', $food->id) }}" target="_blank">Show</a>
 
                       </button>
                     </div>
@@ -241,14 +241,7 @@
                 <tr>
                   <td>{{ $count }}</td>
                   <td>{{ $activity->activity_name }}</td>
-                  <td>{{ $activity->department }}</td>
-                  <td>
-                    @if($activity->pic == NULL)
-                    No SCU assigned
-                    @else
-                    {{ $activity->pic }}
-                    @endif
-                  </td>
+                  <td>{{ $activity->department_info }}</td>
                   <td>{{ $activity->corrective_action }}</td>
                   <td>{{ $activity->suggestion }}</td>
 
@@ -256,7 +249,7 @@
                     <div class="btn-group table-action" role="group">
                       <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
                         <i class="fa fa-download mg-r-10"></i>
-                        <a href="{{ route('activity-monitor.pdf', $count) }}" target="_blank">Download</a>
+                        <a href="{{ route('activity-monitor.pdf', $activity->id) }}" target="_blank">Download</a>
                       </button>
                     </div>
                   </td>
@@ -488,9 +481,5 @@
 
   });
 </script>
-
-
-
-
 
 @endsection
