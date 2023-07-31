@@ -31,7 +31,7 @@
                   <th class="wd-10p">No</th>
                   <th class="wd-15p">Activity Name</th>
                   <th class="wd-15p">Department</th>
-                  <th class="wd-20p">SCU in-charge</th>
+                  
                   <th class="wd-20p">Corrective Action</th>
                   <th class="wd-15p">Suggession</th>
                   <th class="wd-25p">Actions</th>
@@ -43,14 +43,7 @@
                 <tr>
                   <td>{{ $count }}</td>
                   <td>{{ $activity->activity_name }}</td>
-                  <td>{{ $activity->department }}</td>
-                  <td>
-                    @if($activity->pic == NULL)
-                    No SCU assigned
-                    @else
-                    {{ $activity->pic }}
-                    @endif
-                  </td>
+                  <td>{{ $activity->department_info }}</td>
                   <td>{{ $activity->corrective_action }}</td>
                   <td>{{ $activity->suggestion }}</td>
 
@@ -58,7 +51,7 @@
                     <div class="btn-group table-action" role="group">
                       <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
                         <i class="fa fa-download mg-r-10"></i>
-                        <a href="{{ route('activity-monitor.pdf', $count) }}" target="_blank">Download</a>
+                        <a href="{{ route('activity-monitor.pdf', $activity->id) }}" target="_blank">Download</a>
                       </button>
                     </div>
                   </td>

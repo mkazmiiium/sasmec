@@ -61,7 +61,7 @@ class ManageReportController extends Controller
                 ->orderBy('status', 'DESC')
                 ->get();
             
-            $activity = DB::table('activity_monitorings')->where('id', '=', Auth::user()->id)
+            $activity = DB::table('activity_monitorings')->where('user_id', '=', Auth::user()->id)
                 ->orderBy('id', 'DESC')
                 ->get();
 
