@@ -24,7 +24,6 @@
               <th class="wd-10p">No</th>
               <th class="wd-15p">Activity Name</th>
               <th class="wd-15p">Department Rep</th>
-              <th class="wd-20p">SCU in-charge</th>
               <th class="wd-20p">Corrective Action</th>
               <th class="wd-15p">Suggession</th>
               <th class="wd-25p">Actions</th>
@@ -37,16 +36,9 @@
               <td>{{ $count }}</td>
               <td>{{ $activity->activity_name }}</td>
               <td>{{ $activity->department_info }}</td>
-              <td>
-                @if($activity->representative_dep == NULL)
-                No SCU assigned
-                @else
-                {{ $activity->representative_dep }}
-                @endif
-              </td>
               <td>{{ $activity->corrective_action }}</td>
               <td>{{ $activity->suggestion }}</td>
-              
+
               <td>
                 <div class="btn-group table-action" role="group">
                   <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
@@ -63,6 +55,7 @@
       </div><!-- table-wrapper -->
     </div><!-- card -->
   </div><!-- sl-mainpanel -->
+
 
   <script>
     $(function() {
@@ -90,4 +83,5 @@
 
     });
   </script>
+
   @endsection

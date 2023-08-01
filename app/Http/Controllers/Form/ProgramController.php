@@ -90,10 +90,7 @@ class ProgramController extends Controller
     {
 
         $program = Program::findOrFail($id);
-        $staffs = DB::table('users')
-            ->where('reviewreport', '=', 1)
-            ->get();
-
+        $staffs = DB::table('users')->get();
         return view('Program.assignstaff', compact('program', 'staffs'));
     }
 

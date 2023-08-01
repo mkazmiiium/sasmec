@@ -65,7 +65,7 @@ class ReferralFormController extends Controller
     public function pdf($id)
     {
         $referral = DB::table('referral_forms')->where('case_no', $id)->first();
-        $doc_name = DB::table('users')->where('id', $id)->value('name');
+        $doc_name = DB::table('users')->where('id', $referral->doc_id)->value('name');
         error_log($doc_name);
         $pdf = PDF::loadView('Forms/Referral/pdf', compact('referral', 'doc_name'));
 

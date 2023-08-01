@@ -54,7 +54,6 @@
         </table>
       </div><!-- table-wrapper -->
     </div><!-- card -->
-
   </div><!-- sl-mainpanel -->
 
   <script>

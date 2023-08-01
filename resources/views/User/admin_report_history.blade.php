@@ -61,7 +61,7 @@
                       </button>
                       <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
                         <i class="fa fa-eye mg-r-10"></i>
-                        <a href="{{ action('App\Http\Controllers\Form\DocumentReviewController@pdf', $document->id) }}" target="_blank">Show</a>
+                        <a href="/{{ $document->document_file}}" target="_blank">Show</a>
                       </button>
                     </div>
                   </td>
@@ -102,7 +102,7 @@
 
                       <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
                         <i class="fa fa-download mg-r-10"></i>
-                        <a href="{{ action('App\Http\Controllers\Form\FoodPremiseController@pdf', $food->id) }}" target="_blank">Show</a>
+                        <a href="{{ action('App\Http\Controllers\Form\FoodPremiseController@pdf', $food_premises->id) }}" target="_blank">Show</a>
 
                       </button>
                     </div>
@@ -150,13 +150,10 @@
                   </td> --}}
                   <td>
                     <div class="btn-group table-action" role="group">
-                      <button class="btn btn-outline-primary btn-block wd-xs-50p m-0 mr-1">
-                        <i class="fa fa-eye mg-r-10"></i>
-                        <a href="{{ url('referral/details/'.$referral->case_no) }}">Show</a>
-                      </button>
+                  
                       <button class="btn btn-outline-success btn-block wd-xs-60p m-0 ml-1">
                         <i class="fa fa-download mg-r-10"></i>
-                        <a href="{{ action('App\Http\Controllers\Form\ReferralFormController@pdf', $referral->case_no) }}">Download</a>
+                        <a href="{{ action('App\Http\Controllers\Form\ReferralFormController@pdf', $referral->case_no) }}" target="_blank">Download</a>
                       </button>
                     </div>
                   </td>

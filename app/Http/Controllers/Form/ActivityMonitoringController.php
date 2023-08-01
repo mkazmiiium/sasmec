@@ -25,15 +25,14 @@ class ActivityMonitoringController extends Controller
     public function view()
     {
 
-
         if (Auth::user()->role == 'admin') {
             $activity = ActivityMonitoring::latest()->get();
 
-            // Loop through the activities to retrieve the associated user for each activity
-            foreach ($activity as $activity) {
-                $user = User::find($activity->user_id);
-                $activity->user = $user; // Add the user object to the activity object
-            }
+
+            $user = DB::table('users')
+                ->join('activity_monitorings', 'users.id', '=', 'activity_monitorings.user_id')
+                ->select('users.name')
+                ->get();
 
             return view('ManageReports.all-activity', compact('activity', 'user'));
         } else {

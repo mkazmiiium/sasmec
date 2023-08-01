@@ -42,7 +42,7 @@
 
                 <button class="btn btn-outline-primary btn-block wd-xs-15p m-0 mr-1">
                   <i class="fa fa-eye mg-r-5"></i>
-                  <a href="{{ action('App\Http\Controllers\Form\SLOMonthlyController@pdf', $slomonthly->id) }}"
+                  <a href="{{ action('App\Http\Controllers\Form\SLOMonthlyController@pdf', $slomonthly->id) }}" 
                     target="_blank">Show</a>
                 </button>
       </div>
